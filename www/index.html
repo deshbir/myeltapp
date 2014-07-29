@@ -19,26 +19,173 @@
 -->
 <html>
     <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <meta name="msapplication-tap-highlight" content="no" />
         <title>Hello World</title>
+        <script type="text/javascript" src="cordova.js"></script>
+        
+        <!--Speex library includes -->
+	        <script src="js/speex/xaudio.js"></script>
+			<script src="js/speex/pcmdata.min.js"></script>
+			<script src="js/speex/swfobject.js"></script>
+		
+			<!-- Other Libraries/Polyfills -->
+			<script src="js/speex/usertiming.js"></script>
+			<script src="js/speex/bitstring.js"></script>
+			<script src="js/speex/mediacapture.js"></script>
+		
+			
+			<script src="js/speex/ogg.js"></script>
+			<script src="js/speex/libspeexdsp.js"></script>
+			<script src="js/speex/libspeex.js"></script>
+			<script src="js/speex/util.js"></script>
+			<script src="js/speex/types.js"></script>
+			<script src="js/speex/speex.js"></script>
+			<script src="js/speex/codec.js"></script>
+			<script src="js/speex/decoder.js"></script>
+			<script src="js/speex/encoder.js"></script>
+ 		
+			<!-- For input/microphone handling and codec API usage -->
+			<script src="js/speex/microphone.js"></script>
+			<script src="js/speex/audio.js"></script>
+			<script src="js/speex/application.js"></script>
+        
+        <!-- -->
+    	<script>
+    		document.addEventListener("deviceready", onDeviceReady, false);
+    		function onDeviceReady() {
+    			
+    			var isApp = true;
+				var iframe = document.getElementById('MyELTIframe');
+    			//var url = "http://myelt2.comprotechnologies.com";
+    			var url  = "http://192.168.1.112:3714";
+    			iframe.src= url;
+    			
+    			/*iframe.addEventListener("load", function(event) {
+    				window.frames[0].postMessage(isApp,"http://192.168.1.59:3714/ilrn");
+    				}, false);*/
+    			
+    			window.addEventListener("message", function(event) {
+    				if (event.data == "start") {
+		     			recordAudio();
+		     		}
+		     		if (event.data == "stop") {
+		     			stopRecordAudio()
+		     		}
+		     		if (event.data == "upload") {
+		     			uploadVoice();
+		     		}
+		     		if ((event.data).indexOf("pdf") > -1) {
+		     			window.open(event.data, '_system', 'location=yes');
+		     		}
+		     		if ((event.data).indexOf("Help") > -1) {
+		     			window.open(event.data, '_self', 'location=yes');
+		     		}
+    			});
+    			
+		    }
+		    
+		    //upload voice
+		    function uploadVoice() {
+		    	
+			    var fsFail1 = function(error) {
+			        alert("failed with error code: " + error.code);
+			    };
+			    var dirFail1 = function(error) {
+			        alert("Directory error code: " + error.code);
+			    };
+				var getDirSuccess1 = function(entry) {
+					//uploadAudio(entry.fullPath);
+			     	entry.file(gotFile, fail1);
+			    };
+				 var fail1 = function(error) {
+			        alert("An error has occurred: Code = " = error.code);
+			    };
+			    function gotFile(file){
+			    	 var reader = new FileReader();
+			    	 
+			    	 reader.onloadend = function (evt) {
+						var byteArray = new Uint8Array(evt.target.result);
+						compressedAudio = Speex.encodeFile(byteArray);
+						//var audioData = {"byteArray":evt.target.result,"fileName":"testAudio1.wav"};
+						window.frames[0].postMessage(compressedAudio,"http://192.168.1.112:3714/ilrn/authentication");
+				    };
+				    
+				    
+				    reader.readAsArrayBuffer(file);
+			        
+			    };
+			    var gotFileSystem1 = function (fileSystem) {
+			    	fileSystem.root.getFile("MyELT1/testAudio.wav", null, getDirSuccess1, dirFail1);
+			    };
+			    // get file system to copy or move audio file to
+			    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem1, fsFail1);
+			    
+			}
+	    //Record button will call this function
+	    var mediaRec;
+	    var recTime;
+    	function recordAudio() {
+    		createDirectory();
+    		audioFile="MyELT1/testAudio.wav";
+        	mediaRec = new Media(audioFile, onSuccess, onError);
+
+        	// Record audio
+        	mediaRec.startRecord();
+        	
+        	recTime = 0;
+        	recInterval = setInterval(function() {
+            	recTime = recTime + 1;
+            	setAudioPosition(recTime + " sec");
+            	}, 1000);
+    	}
+    	
+    	function createDirectory(){
+    		 // file system fail
+		    var fsFail = function(error) {
+		        alert("failed with error code: " + error.code);
+		
+		    };
+    		var dirFail = function(error) {
+		        alert("Directory error code: " + error.code);
+		
+		    };
+			var getDirSuccess = function() {
+				console.log("Directory created Successfully");
+		     	
+		    };
+    		 var gotFileSystem = function (fileSystem) {
+			    	fileSystem.root.getDirectory("MyELT1", { create: true, exclusive: false }, getDirSuccess, dirFail);
+			    };
+			
+			    // get file system to copy or move audio file to
+			    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem, fsFail);
+			    
+    	}
+    	function stopRecordAudio() {
+    		 if (mediaRec) {
+    		 	clearInterval(recInterval);
+                mediaRec.stopRecord();
+            }
+    	}
+		function onSuccess() {
+        	console.log("recordAudio():Audio Success");
+    	}
+
+    	// onError Callback 
+    	function onError(error) {
+        	alert('code: '    + error.code    + '\n' + 
+             'message: ' + error.message + '\n');
+    	}
+     	function setAudioPosition(position) {
+     		window.frames[0].document.getElementById('audio_position').innerHTML = position;
+    	}
+    	</script>
+    	<style type='text/css'>
+		  body,html,iframe {
+		    margin: 0; padding: 0; border: none; width: 100%; height: 100%;
+		  }
+		</style>
     </head>
     <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
+		<iframe src='' id='MyELTIframe'></iframe>       
     </body>
 </html>
