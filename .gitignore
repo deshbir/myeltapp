@@ -10,9 +10,6 @@ platforms/android/CordovaLib/ant-build
 platforms/android/CordovaLib/ant-gen
 platforms/android/CordovaLib/bin
 
-#Ignore iOS build files
-platforms/ios/MyeltApp/config.xml
-
 # Ignore iOS system files
 .DS_Store
 .fetch.json
