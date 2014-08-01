@@ -1,8 +1,17 @@
+#Ignore "www" folder inside platforms
 platforms/android/assets/www/
+platforms/ios/www/
+
+
+#Ignore android build files
 platforms/android/ant-build
 platforms/android/ant-gen
 platforms/android/bin
 platforms/android/CordovaLib/ant-build
 platforms/android/CordovaLib/ant-gen
 platforms/android/CordovaLib/bin
-platforms/ios/www/
+
+
+# Ignore iOS system files
+.DS_Store
+.fetch.json
