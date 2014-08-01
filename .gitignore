@@ -9,6 +9,11 @@ platforms/android/bin
 platforms/android/CordovaLib/ant-build
 platforms/android/CordovaLib/ant-gen
 platforms/android/CordovaLib/bin
+platforms/android/.classpath
+platforms/android/CordovaLib/.classpath
+platforms/android/CordovaLib/gen/org/apache/cordova/BuildConfig.java
+platforms/android/gen/com/myeltapp/BuildConfig.java
+platforms/android/gen/com/myeltapp/R.java
 
 # Ignore iOS system files
 .DS_Store
