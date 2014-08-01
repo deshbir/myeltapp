@@ -90,7 +90,7 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
     
     //Audio settings
     private static final int RECORDER_SAMPLERATE = 22050;
-   	private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
+   	private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_STEREO;
    	private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
    	
    	private static final String AUDIO_RECORDER_FOLDER = "MyELT1";
