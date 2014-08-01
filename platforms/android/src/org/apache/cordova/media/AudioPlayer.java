@@ -18,7 +18,15 @@
 */
 package org.apache.cordova.media;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import android.media.AudioFormat;
 import android.media.AudioManager;
+import android.media.AudioRecord;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnErrorListener;
@@ -26,10 +34,6 @@ import android.media.MediaPlayer.OnPreparedListener;
 import android.media.MediaRecorder;
 import android.os.Environment;
 import android.util.Log;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 
 /**
  * This class implements the audio playback and recording capabilities used by Cordova.
@@ -77,12 +81,25 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
     private String audioFile = null;        // File name to play or record to
     private float duration = -1;            // Duration of audio
 
-    private MediaRecorder recorder = null;  // Audio recording object
+    private AudioRecord recorder = null;  // Audio recording object
     private String tempFile = null;         // Temporary recording file name
 
     private MediaPlayer player = null;      // Audio player object
     private boolean prepareOnly = true;     // playback after file prepare flag
     private int seekOnPrepared = 0;     // seek to this location once media is prepared
+    
+    //Audio settings
+    private static final int RECORDER_SAMPLERATE = 22050;
+   	private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_STEREO;
+   	private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
+   	
+   	private static final String AUDIO_RECORDER_FOLDER = "MyELT1";
+   	private static final String AUDIO_RECORDER_TEMP_FILE = "record_temp.raw";
+   	private static final int RECORDER_BPP = 16;
+   	
+   	private int bufferSize = 0;
+   	private Thread recordingThread = null;
+   	private boolean isRecording = false;
 
     /**
      * Constructor.
@@ -94,14 +111,7 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
         this.handler = handler;
         this.id = id;
         this.audioFile = file;
-        this.recorder = new MediaRecorder();
-
-        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            this.tempFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/tmprecording.3gp";
-        } else {
-            this.tempFile = "/data/data/" + handler.cordova.getActivity().getPackageName() + "/cache/tmprecording.3gp";
-        }
-
+        this.bufferSize = AudioRecord.getMinBufferSize(RECORDER_SAMPLERATE,RECORDER_CHANNELS,RECORDER_AUDIO_ENCODING);
     }
 
     /**
@@ -137,21 +147,28 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
             break;
         case NONE:
             this.audioFile = file;
-            this.recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-            this.recorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT); // THREE_GPP);
-            this.recorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT); //AMR_NB);
-            this.recorder.setOutputFile(this.tempFile);
             try {
-                this.recorder.prepare();
-                this.recorder.start();
-                this.setState(STATE.MEDIA_RUNNING);
-                return;
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+	            recorder = new AudioRecord(MediaRecorder.AudioSource.MIC,
+						RECORDER_SAMPLERATE, RECORDER_CHANNELS,RECORDER_AUDIO_ENCODING, bufferSize);
+	            
+	            recorder.startRecording();				
+				isRecording = true;				
+				
+				recordingThread = new Thread(new Runnable() {					
+					@Override
+					public void run() {
+						writeAudioDataToFile();
+					}
+				},"AudioRecorder Thread");
+				
+				recordingThread.start();
+				
+				this.setState(STATE.MEDIA_RUNNING);
+	            return;
+            }   
+            catch (IllegalStateException e) {
+            	e.printStackTrace();
             }
-
             this.handler.webView.sendJavascript("cordova.require('org.apache.cordova.media.Media').onStatus('" + this.id + "', "+MEDIA_ERROR+", { \"code\":"+MEDIA_ERR_ABORTED+"});");
             break;
         case RECORD:
@@ -159,6 +176,161 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
             this.handler.webView.sendJavascript("cordova.require('org.apache.cordova.media.Media').onStatus('" + this.id + "', "+MEDIA_ERROR+", { \"code\":"+MEDIA_ERR_ABORTED+"});");
         }
     }
+        
+    private void writeAudioDataToFile(){
+		byte data[] = new byte[bufferSize];
+		String filename = getTempFilename();
+		FileOutputStream os = null;
+		
+		try {
+			os = new FileOutputStream(filename);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		int read = 0;
+		
+		if(null != os){
+			while(isRecording){
+				read = recorder.read(data, 0, bufferSize);
+				if(AudioRecord.ERROR_INVALID_OPERATION != read){
+					try {
+						os.write(data);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			
+			try {
+				os.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+    
+    private String getTempFilename(){
+		String filepath = Environment.getExternalStorageDirectory().getPath();
+		File file = new File(filepath,AUDIO_RECORDER_FOLDER);
+		
+		if(!file.exists()){
+			file.mkdirs();
+		}
+		
+		File tempFile = new File(filepath,AUDIO_RECORDER_TEMP_FILE);
+		
+		if(tempFile.exists())
+			tempFile.delete();
+		
+		return (file.getAbsolutePath() + "/" + AUDIO_RECORDER_TEMP_FILE);
+	}
+    
+    private String getFilename(){
+		String filepath = Environment.getExternalStorageDirectory().getPath();
+		File file = new File(filepath,AUDIO_RECORDER_FOLDER);
+		
+		if(!file.exists()){
+			file.mkdirs();
+		}
+		
+		return (file.getAbsolutePath() + "/" + this.audioFile);
+	}
+    
+    private void deleteTempFile() {
+		File file = new File(getTempFilename());
+		file.delete();
+	}
+    
+    private void copyWaveFile(String inFilename,String outFilename){
+		FileInputStream in = null;
+		FileOutputStream out = null;
+		long totalAudioLen = 0;
+		long totalDataLen = totalAudioLen + 36;
+		long longSampleRate = RECORDER_SAMPLERATE;
+		int channels = 2;
+		long byteRate = RECORDER_BPP * RECORDER_SAMPLERATE * channels/8;
+		
+		byte[] data = new byte[bufferSize];
+                
+		try {
+			in = new FileInputStream(inFilename);
+			out = new FileOutputStream(outFilename);
+			totalAudioLen = in.getChannel().size();
+			totalDataLen = totalAudioLen + 36;
+			
+			WriteWaveFileHeader(out, totalAudioLen, totalDataLen,
+					longSampleRate, channels, byteRate);
+			
+			while(in.read(data) != -1){
+				out.write(data);
+			}
+			
+			in.close();
+			out.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+    
+    private void WriteWaveFileHeader(
+			FileOutputStream out, long totalAudioLen,
+			long totalDataLen, long longSampleRate, int channels,
+			long byteRate) throws IOException {
+		
+		byte[] header = new byte[44];
+		
+		header[0] = 'R';  // RIFF/WAVE header
+		header[1] = 'I';
+		header[2] = 'F';
+		header[3] = 'F';
+		header[4] = (byte) (totalDataLen & 0xff);
+		header[5] = (byte) ((totalDataLen >> 8) & 0xff);
+		header[6] = (byte) ((totalDataLen >> 16) & 0xff);
+		header[7] = (byte) ((totalDataLen >> 24) & 0xff);
+		header[8] = 'W';
+		header[9] = 'A';
+		header[10] = 'V';
+		header[11] = 'E';
+		header[12] = 'f';  // 'fmt ' chunk
+		header[13] = 'm';
+		header[14] = 't';
+		header[15] = ' ';
+		header[16] = 16;  // 4 bytes: size of 'fmt ' chunk
+		header[17] = 0;
+		header[18] = 0;
+		header[19] = 0;
+		header[20] = 1;  // format = 1
+		header[21] = 0;
+		header[22] = (byte) channels;
+		header[23] = 0;
+		header[24] = (byte) (longSampleRate & 0xff);
+		header[25] = (byte) ((longSampleRate >> 8) & 0xff);
+		header[26] = (byte) ((longSampleRate >> 16) & 0xff);
+		header[27] = (byte) ((longSampleRate >> 24) & 0xff);
+		header[28] = (byte) (byteRate & 0xff);
+		header[29] = (byte) ((byteRate >> 8) & 0xff);
+		header[30] = (byte) ((byteRate >> 16) & 0xff);
+		header[31] = (byte) ((byteRate >> 24) & 0xff);
+		header[32] = (byte) (2 * 16 / 8);  // block align
+		header[33] = 0;
+		header[34] = RECORDER_BPP;  // bits per sample
+		header[35] = 0;
+		header[36] = 'd';
+		header[37] = 'a';
+		header[38] = 't';
+		header[39] = 'a';
+		header[40] = (byte) (totalAudioLen & 0xff);
+		header[41] = (byte) ((totalAudioLen >> 8) & 0xff);
+		header[42] = (byte) ((totalAudioLen >> 16) & 0xff);
+		header[43] = (byte) ((totalAudioLen >> 24) & 0xff);
+
+		out.write(header, 0, 44);
+	}
+
+
 
     /**
      * Save temporary recorded file to specified name
@@ -189,11 +361,17 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
         if (this.recorder != null) {
             try{
                 if (this.state == STATE.MEDIA_RUNNING) {
-                    this.recorder.stop();
+                	isRecording = false;
+                	recorder.stop();
+        			recorder.release();
+        			
+        			recorder = null;
+        			recordingThread = null;
+        			
                     this.setState(STATE.MEDIA_STOPPED);
                 }
-                this.recorder.reset();
-                this.moveFile(this.audioFile);
+                copyWaveFile(getTempFilename(), getFilename());
+                deleteTempFile();
             }
             catch (Exception e) {
                 e.printStackTrace();
