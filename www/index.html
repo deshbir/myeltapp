@@ -19,74 +19,40 @@
 -->
 <html>
     <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <title>Test</title>
+        <title>MyELT App</title>
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" charset="utf-8">
+        <script type="text/javascript" src="js/jquery.js"></script>
 
-        	document.addEventListener("deviceready", onDeviceReady, false);
+        <!--Speex library includes -->
+	        <script src="js/speex/xaudio.js"></script>
+			<script src="js/speex/pcmdata.min.js"></script>
+			<script src="js/speex/swfobject.js"></script>
 
+			<!-- Other Libraries/Polyfills -->
+			<script src="js/speex/usertiming.js"></script>
+			<script src="js/speex/bitstring.js"></script>
+			<script src="js/speex/mediacapture.js"></script>
+			<script src="js/speex/ogg.js"></script>
+			<script src="js/speex/libspeexdsp.js"></script>
+			<script src="js/speex/libspeex.js"></script>
+			<script src="js/speex/util.js"></script>
+			<script src="js/speex/types.js"></script>
+			<script src="js/speex/speex.js"></script>
+			<script src="js/speex/codec.js"></script>
+			<script src="js/speex/decoder.js"></script>
+			<script src="js/speex/encoder.js"></script>
 
-			function onDeviceReady() {
-				//Do nothing
-			}
+			<!-- For input/microphone handling and codec API usage -->
+			<script src="js/speex/microphone.js"></script>
+			<script src="js/speex/audio.js"></script>
+			<script src="js/speex/application.js"></script>
 
-			var mediaRec;
-			var recordMediaTimer;
-			var mediaSrc = "wavtest.wav";
-
-			function record() {
-
-				mediaRec = new Media(mediaSrc, onSuccess, onError);
-
-				// Record audio
-				mediaRec.startRecord();
-
-				var recTime = 0;
-				recordMediaTimer = setInterval(function() {
-					recTime = recTime + 1;
-					setRecordAudioPosition(recTime + " sec");
-				}, 1000);
-			}
-
-			function stopRecord() {
-				clearInterval(recordMediaTimer);
-				mediaRec.stopRecord();
-				document.getElementById('record_audio_position').innerHTML = "";
-			}
-
-			function onSuccess() {
-			        console.log("recordAudio():Audio Success");
-			}
-
-			// onError Callback
-			//
-			function onError(error) {
-				alert(JSON.stringify(error));
-				alert('code: '    + error.code    + '\n' +
-					  'message: ' + error.message + '\n');
-			}
-
-
-			function setRecordAudioPosition(position) {
-				document.getElementById('record_audio_position').innerHTML = position;
-			}
-
-
-		</script>
+        <!-- -->
+    	<script src="js/index.js"></script>
+    	<!--StyleSheet -->
+		<link href="css/index.css" rel="stylesheet">
     </head>
     <body>
-        <div class="app">
-            <h1>Record Audio</h1>
-            <a href="#" class="btn large" onclick="record();">Record</a>
-			<a href="#" class="btn large" onclick="stopRecord();">Stop</a>
-			<p id="record_audio_position"></p>
-			<hr/>
-        </div>
+		<iframe src='' id='MyELTIframe'></iframe>
     </body>
 </html>
