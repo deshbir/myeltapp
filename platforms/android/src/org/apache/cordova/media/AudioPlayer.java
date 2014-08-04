@@ -93,7 +93,7 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
    	private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_STEREO;
    	private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
    	
-   	private static final String AUDIO_RECORDER_FOLDER = "media-temp";
+   	private static final String AUDIO_RECORDER_FOLDER = "MyELT1";
    	private static final String AUDIO_RECORDER_TEMP_FILE = "record_temp.raw";
    	private static final int RECORDER_BPP = 16;
    	
@@ -227,15 +227,14 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
 	}
     
     private String getFilename(){
-		String filepath = Environment.getExternalStorageDirectory().getPath() +  "/" + this.audioFile;
-		String fileDir = filepath.substring(0, filepath.lastIndexOf("/"));
-		File file = new File(fileDir);
+		String filepath = Environment.getExternalStorageDirectory().getPath();
+		File file = new File(filepath,AUDIO_RECORDER_FOLDER);
 		
 		if(!file.exists()){
 			file.mkdirs();
 		}
 		
-		return (filepath);
+		return (file.getAbsolutePath() + "/" + this.audioFile);
 	}
     
     private void deleteTempFile() {
