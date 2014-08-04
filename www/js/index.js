@@ -88,8 +88,8 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	var mediaRec;
 	var recTime;
 	function recordAudio() {
-		//createDirectory();
-		audioFile="testAudio.wav";
+		createDirectory();
+		audioFile="MyELT1/testAudio.wav";
 		mediaRec = new Media(audioFile, onSuccess, onError);
 	
 		// Record audio
@@ -110,7 +110,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	     'message: ' + error.message + '\n');
 	}
 
-	/*function createDirectory(){
+	function createDirectory(){
 		 //function call if file system fails
 	    var fsFail = function(error) {
 	        alert("failed with error code: " + error.code);
@@ -133,7 +133,8 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	    // get file system to copy or move audio file to a specified location
 	    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem, fsFail);
 		    
-	}*/
+	}
+	
 	//Stop button will call this function and saves file at a specified location
 	function stopRecordAudio() {
 		 if (mediaRec) {
