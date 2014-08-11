@@ -6,9 +6,17 @@
 	var recordPlayTime;
 	var directoryName = "MyELT";
 	var defaultAduioFileName ="audioFile.wav";
-	var filePath = directoryName + "/" + defaultAduioFileName;
+	var filePath;
 	
 	/******************************************* Helper Functions Starts *********************************************/
+	var isIOSDevice = function() {
+        if( /iPhone|iPad/i.test(navigator.userAgent)) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+	
 	//function call if file system fails
 	var fsFail = function(error) {
 	   alert("failed with error code: " + error.code);
@@ -161,6 +169,13 @@
 				stopPlayback();
      		}
 		});
+		
+		if(isIOSDevice()) {
+			filePath = "documents://" + defaultAduioFileName;
+		} else {
+			filePath = directoryName + "/" + defaultAduioFileName;
+			
+		}
 	}
 	document.addEventListener("deviceready", onDeviceReady, false);
 	/******************************************* Device Ready Specific Ends *********************************************/
