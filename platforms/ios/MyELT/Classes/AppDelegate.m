@@ -27,6 +27,7 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "LoginViewController.h"
 
 #import <Cordova/CDVPlugin.h>
 
@@ -72,11 +73,11 @@
 #endif
     self.window.autoresizesSubviews = YES;
 
-#if __has_feature(objc_arc)
-        self.viewController = [[MainViewController alloc] init];
-#else
-        self.viewController = [[[MainViewController alloc] init] autorelease];
-#endif
+//#if __has_feature(objc_arc)
+//        self.viewController = [[MainViewController alloc] init];
+//#else
+//        self.viewController = [[[MainViewController alloc] init] autorelease];
+//#endif
 
     // Set your app's start page by setting the <content src='foo.html' /> tag in config.xml.
     // If necessary, uncomment the line below to override it.
@@ -84,8 +85,10 @@
 
     // NOTE: To customize the view's frame size (which defaults to full screen), override
     // [self.viewController viewWillAppear:] in your view controller.
+    
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
 
-    self.window.rootViewController = self.viewController;
+    self.window.rootViewController = loginVC;
     [self.window makeKeyAndVisible];
 
     return YES;
