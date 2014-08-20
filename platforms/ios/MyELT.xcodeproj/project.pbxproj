@@ -27,8 +27,10 @@
 		308D05391370CCF300D202BF /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 308D05301370CCF300D202BF /* icon@2x.png */; };
 		30A0434814DC770100060A13 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 30A0434314DC770100060A13 /* Localizable.strings */; };
 		30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FC414816E50CA1004E6F35 /* icon-72@2x.png */; };
-		5204C01C199CDF610027D04B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5204C01A199CDF610027D04B /* LoginViewController.m */; };
-		5204C01D199CDF610027D04B /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5204C01B199CDF610027D04B /* LoginViewController.xib */; };
+		52756FBB19A48D8D00D581F7 /* icon-132.png in Resources */ = {isa = PBXBuildFile; fileRef = 52756FBA19A48D8D00D581F7 /* icon-132.png */; };
+		52756FBF19A4927A00D581F7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52756FBD19A4927A00D581F7 /* LoginViewController.m */; };
+		52756FC019A4927A00D581F7 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52756FBE19A4927A00D581F7 /* LoginViewController.xib */; };
+		52756FC219A4C47100D581F7 /* icon-264.png in Resources */ = {isa = PBXBuildFile; fileRef = 52756FC119A4C47100D581F7 /* icon-264.png */; };
 		5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE5B34173C68D80009041E /* CoreLocation.framework */; };
 		5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
 		7E7966DE1810823500FA85AD /* icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D41810823500FA85AD /* icon-40.png */; };
@@ -92,9 +94,11 @@
 		30A0434714DC770100060A13 /* se */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = se; path = Localizable.strings; sourceTree = "<group>"; };
 		30FC414816E50CA1004E6F35 /* icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72@2x.png"; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* MyELT-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MyELT-Prefix.pch"; sourceTree = "<group>"; };
-		5204C019199CDF610027D04B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = ../../LoginViewController.h; sourceTree = "<group>"; };
-		5204C01A199CDF610027D04B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = ../../LoginViewController.m; sourceTree = "<group>"; };
-		5204C01B199CDF610027D04B /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = ../../LoginViewController.xib; sourceTree = "<group>"; };
+		52756FBA19A48D8D00D581F7 /* icon-132.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-132.png"; sourceTree = "<group>"; };
+		52756FBC19A4927A00D581F7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		52756FBD19A4927A00D581F7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		52756FBE19A4927A00D581F7 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		52756FC119A4C47100D581F7 /* icon-264.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-264.png"; path = "../../../../../../Downloads/icon-264.png"; sourceTree = "<group>"; };
 		5AEE5B34173C68D80009041E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		7E7966D41810823500FA85AD /* icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40.png"; sourceTree = "<group>"; };
@@ -141,14 +145,14 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				5204C019199CDF610027D04B /* LoginViewController.h */,
-				5204C01A199CDF610027D04B /* LoginViewController.m */,
-				5204C01B199CDF610027D04B /* LoginViewController.xib */,
 				302D95EE14D2391D003F00A1 /* MainViewController.h */,
 				302D95EF14D2391D003F00A1 /* MainViewController.m */,
 				302D95F014D2391D003F00A1 /* MainViewController.xib */,
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
+				52756FBC19A4927A00D581F7 /* LoginViewController.h */,
+				52756FBD19A4927A00D581F7 /* LoginViewController.m */,
+				52756FBE19A4927A00D581F7 /* LoginViewController.xib */,
 			);
 			name = Classes;
 			path = MyELT/Classes;
@@ -262,8 +266,10 @@
 				7E7966D41810823500FA85AD /* icon-40.png */,
 				7E7966D51810823500FA85AD /* icon-40@2x.png */,
 				7E7966D61810823500FA85AD /* icon-50.png */,
+				52756FC119A4C47100D581F7 /* icon-264.png */,
 				7E7966D71810823500FA85AD /* icon-50@2x.png */,
 				7E7966D81810823500FA85AD /* icon-60.png */,
+				52756FBA19A48D8D00D581F7 /* icon-132.png */,
 				7E7966D91810823500FA85AD /* icon-60@2x.png */,
 				7E7966DA1810823500FA85AD /* icon-76.png */,
 				7E7966DB1810823500FA85AD /* icon-76@2x.png */,
@@ -397,21 +403,23 @@
 				308D05391370CCF300D202BF /* icon@2x.png in Resources */,
 				1F766FE113BBADB100FB74C0 /* Localizable.strings in Resources */,
 				302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */,
+				52756FBB19A48D8D00D581F7 /* icon-132.png in Resources */,
 				7E7966E01810823500FA85AD /* icon-50.png in Resources */,
 				7E7966E31810823500FA85AD /* icon-60@2x.png in Resources */,
 				30A0434814DC770100060A13 /* Localizable.strings in Resources */,
+				52756FC219A4C47100D581F7 /* icon-264.png in Resources */,
 				7E7966E61810823500FA85AD /* icon-small.png in Resources */,
 				3088BBBD154F3926009F9C59 /* Default-Landscape@2x~ipad.png in Resources */,
 				3088BBBE154F3926009F9C59 /* Default-Landscape~ipad.png in Resources */,
 				3088BBBF154F3926009F9C59 /* Default-Portrait@2x~ipad.png in Resources */,
 				7E7966E71810823500FA85AD /* icon-small@2x.png in Resources */,
-				5204C01D199CDF610027D04B /* LoginViewController.xib in Resources */,
 				3088BBC0154F3926009F9C59 /* Default-Portrait~ipad.png in Resources */,
 				7E7966DE1810823500FA85AD /* icon-40.png in Resources */,
 				3088BBC1154F3926009F9C59 /* Default@2x~iphone.png in Resources */,
 				7E7966E21810823500FA85AD /* icon-60.png in Resources */,
 				3088BBC2154F3926009F9C59 /* Default~iphone.png in Resources */,
 				D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */,
+				52756FC019A4927A00D581F7 /* LoginViewController.xib in Resources */,
 				7E7966E11810823500FA85AD /* icon-50@2x.png in Resources */,
 				7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */,
 				30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */,
@@ -443,7 +451,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5204C01C199CDF610027D04B /* LoginViewController.m in Sources */,
+				52756FBF19A4927A00D581F7 /* LoginViewController.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
