@@ -143,8 +143,8 @@
         var iframeURL = url + "?u=" + userName + "&p=" + password;
         //  alert(iframeURL);
 		iframe.src= iframeURL;		
-		var initializeIframe = true;
-		iframe.src= url;
+		//var initializeIframe = true;
+		//iframe.src= url;
 		
 		//var initializeIframe = true;
 		
