@@ -47,7 +47,7 @@
 
 - (IBAction)login:(id)sender
 {
-    MainViewController *mainVC = [[MainViewController alloc] init];
+    MainViewController *mainVC = [[MainViewController alloc] initWithUserName:self.userName.text password:self.password.text];
     [self presentViewController:mainVC animated:NO completion:nil];
 }
 

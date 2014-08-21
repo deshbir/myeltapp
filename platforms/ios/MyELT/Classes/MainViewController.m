@@ -27,6 +27,20 @@
 
 #import "MainViewController.h"
 
+@interface MainViewController ()
+{
+    NSString *_username;
+    NSString *_password;
+}
+
+- (void)setUsername:(NSString *)str;
+- (NSString *)Username;
+
+- (void)setPassword:(NSString *)str;
+- (NSString *)Password;
+
+@end
+
 @implementation MainViewController
 
 - (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil
@@ -41,6 +55,20 @@
     return self;
 }
 
+- (instancetype)initWithUserName:(NSString*)usernameStr password:(NSString*)passwordStr
+{
+    self = [super init];
+    if (self) {
+        // Uncomment to override the CDVCommandDelegateImpl used
+        // _commandDelegate = [[MainCommandDelegate alloc] initWithViewController:self];
+        // Uncomment to override the CDVCommandQueue used
+        // _commandQueue = [[MainCommandQueue alloc] initWithViewController:self];
+        _username = usernameStr;
+        _password = passwordStr;
+    }
+    return self;
+}
+
 - (id)init
 {
     self = [super init];
@@ -51,6 +79,22 @@
         // _commandQueue = [[MainCommandQueue alloc] initWithViewController:self];
     }
     return self;
+}
+
+- (void)setUsername:(NSString *)str {
+    _username = str;
+}
+
+- (NSString *)Username {
+    return _username;
+}
+
+- (void)setPassword:(NSString *)str {
+    _password = str;
+}
+
+- (NSString *)Password {
+    return _password;
 }
 
 - (void)didReceiveMemoryWarning
@@ -105,6 +149,10 @@
 {
     // Black base color for background matches the native apps
     theWebView.backgroundColor = [UIColor blackColor];
+    
+    NSString *javaScript = [NSString stringWithFormat:@"setCredentials('%@', '%@')", [self Username], [self Password], nil];
+    
+    [theWebView stringByEvaluatingJavaScriptFromString:javaScript];
 
     return [super webViewDidFinishLoad:theWebView];
 }

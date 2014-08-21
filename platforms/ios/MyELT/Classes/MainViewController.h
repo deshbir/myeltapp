@@ -30,6 +30,7 @@
 #import <Cordova/CDVCommandQueue.h>
 
 @interface MainViewController : CDVViewController
+- (id)initWithUserName:(NSString*)usernameStr password:(NSString*)passwordStr;
 
 @end
 
