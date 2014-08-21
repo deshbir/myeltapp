@@ -17,12 +17,12 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-264.png" translatesAutoresizingMaskIntoConstraints="NO" id="vDY-Q6-OBD">
-                    <rect key="frame" x="252" y="150" width="264" height="92"/>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-185.png" translatesAutoresizingMaskIntoConstraints="NO" id="vDY-Q6-OBD">
+                    <rect key="frame" x="292" y="150" width="185" height="64"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jcd-g0-Ioe">
-                    <rect key="frame" x="159" y="282" width="450" height="40"/>
+                    <rect key="frame" x="159" y="274" width="450" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="KMn-r0-UPh"/>
@@ -35,7 +35,7 @@
                     </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hAj-FW-UoD">
-                    <rect key="frame" x="159" y="332" width="450" height="40"/>
+                    <rect key="frame" x="159" y="324" width="450" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="450" id="DtS-4d-ARc"/>
@@ -48,38 +48,62 @@
                     </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yZ-fo-cM0">
-                    <rect key="frame" x="159" y="397" width="450" height="40"/>
+                    <rect key="frame" x="159" y="389" width="450" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstAttribute="height" constant="50" id="1SN-1l-7JG"/>
                         <constraint firstAttribute="width" constant="450" id="1WG-y5-J2Y"/>
-                        <constraint firstAttribute="height" constant="40" id="ZEh-mJ-aMC"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <state key="normal" title="Log In">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="login:" destination="-1" eventType="touchUpInside" id="d7t-7s-5af"/>
                     </connections>
                 </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up for MyELT        Need Help?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOj-qR-Brr">
+                    <rect key="frame" x="470" y="983" width="273" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Your Password?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2K4-Lf-g6Z">
+                    <rect key="frame" x="294" y="464" width="180" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ngl_logo.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="GDw-xh-Tn2">
+                    <rect key="frame" x="20" y="934" width="150" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.27450980392156865" green="0.27450980392156865" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="jcd-g0-Ioe" firstAttribute="top" secondItem="vDY-Q6-OBD" secondAttribute="bottom" constant="60" id="8ab-6P-0WI"/>
                 <constraint firstAttribute="centerX" secondItem="hAj-FW-UoD" secondAttribute="centerX" id="9jz-rO-V8a"/>
+                <constraint firstItem="GDw-xh-Tn2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="Abz-Dp-y3S"/>
                 <constraint firstItem="hAj-FW-UoD" firstAttribute="top" secondItem="jcd-g0-Ioe" secondAttribute="bottom" constant="10" id="GhF-gP-CFR"/>
+                <constraint firstAttribute="bottom" secondItem="DOj-qR-Brr" secondAttribute="bottom" constant="20" id="Mlb-uo-jl1"/>
+                <constraint firstAttribute="bottom" secondItem="GDw-xh-Tn2" secondAttribute="bottom" constant="20" id="RY6-dE-Uf3"/>
+                <constraint firstAttribute="trailing" secondItem="DOj-qR-Brr" secondAttribute="trailing" constant="25" id="V1L-gI-Dud"/>
                 <constraint firstAttribute="centerX" secondItem="vDY-Q6-OBD" secondAttribute="centerX" id="f7G-Ad-nJg"/>
                 <constraint firstAttribute="centerX" secondItem="jcd-g0-Ioe" secondAttribute="centerX" id="gpD-wf-b5S"/>
+                <constraint firstAttribute="centerX" secondItem="2K4-Lf-g6Z" secondAttribute="centerX" id="lGy-J9-vvv"/>
                 <constraint firstItem="5yZ-fo-cM0" firstAttribute="top" secondItem="hAj-FW-UoD" secondAttribute="bottom" constant="25" id="mMB-Ej-xbE"/>
                 <constraint firstAttribute="centerX" secondItem="5yZ-fo-cM0" secondAttribute="centerX" id="nqc-6n-SJL"/>
-                <constraint firstItem="jcd-g0-Ioe" firstAttribute="top" secondItem="vDY-Q6-OBD" secondAttribute="bottom" constant="40" id="upG-Zd-Zvf"/>
+                <constraint firstItem="2K4-Lf-g6Z" firstAttribute="top" secondItem="5yZ-fo-cM0" secondAttribute="bottom" constant="25" id="ru9-ih-0kw"/>
                 <constraint firstItem="vDY-Q6-OBD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="150" id="yFo-MN-SfL"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
         </view>
     </objects>
     <resources>
-        <image name="icon-264.png" width="264" height="92"/>
+        <image name="icon-185.png" width="185" height="64"/>
+        <image name="ngl_logo.jpg" width="150" height="70"/>
     </resources>
 </document>

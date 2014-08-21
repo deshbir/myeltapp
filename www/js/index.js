@@ -1,7 +1,7 @@
 (function(){
 	
 	/* Global Variables. */
-	var url  = "http://myelt3.comprotechnologies.com";
+	var url  = "http://myelt3.comprotechnologies.com/ilrn/global/extlogin.do";
 	var mediaObject;
 	var recordPlayTime;
 	var directoryName = "MyELT";
@@ -140,8 +140,8 @@
 	
 	var onDeviceReady = function() {
 		var iframe = document.getElementById('MyELTIframe');
-        var iframeURL = url + "?username=" + userName + "&password=" + password;
-        alert(iframeURL);
+        var iframeURL = url + "?u=" + userName + "&p=" + password;
+        //  alert(iframeURL);
 		iframe.src= iframeURL;		
 		var initializeIframe = true;
 		iframe.src= url;
