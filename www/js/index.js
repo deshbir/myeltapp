@@ -1,7 +1,7 @@
 (function(){
 	
 	/* Global Variables. */
-	var url  = "http://192.168.1.59:3714";
+	var url  = "http://myelt3.comprotechnologies.com";
 	var mediaObject;
 	var recordPlayTime;
 	var directoryName = "MyELT";
@@ -107,11 +107,11 @@
 	    	var reader = new FileReader();
 	    	reader.onloadend = function (evt) {
 				var byteArray = new Uint8Array(evt.target.result);
-				compressedAudio = Speex.encodeFile(byteArray);
+	    		compressedAudio = Speex.encodeFile(byteArray);
 				jQuery.ajax({
 				    url : "http://sridemo.comprotechnologies.com:8080/sriUploader/upload?clientID=" + clientId,
 				    type: "POST",
-	   				contentType: false, 
+	   				contentType: false,
 				    data: btoa(compressedAudio),
 				    processData:false
 				}).done(function(data){
@@ -144,13 +144,17 @@
         alert(iframeURL);
 		iframe.src= iframeURL;		
 		var initializeIframe = true;
+		iframe.src= url;
+		
+		//var initializeIframe = true;
 		
 		iframe.addEventListener("load", 
 			function(event) {
-				if(initializeIframe) {
+			window.frames[0].postMessage({'location' : 'device'},url);
+				/*if(initializeIframe) {
 					window.frames[0].postMessage({'location' : 'device'},url);
 					initializeIframe = false;
-				}
+				}*/
 			}, false);
 		//Listens for events via postMessage
 		window.addEventListener("message", function(event) {
