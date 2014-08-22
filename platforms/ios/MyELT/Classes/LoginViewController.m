@@ -41,14 +41,26 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
+    if (textField == self.password) {
+        [textField resignFirstResponder];
+        [self switchToMainPage];
+    } else if (textField == self.userName) {
+        [self.password becomeFirstResponder];
+    }
     return YES;
 }
 
 - (IBAction)login:(id)sender
 {
+    [self switchToMainPage];
+}
+
+- (void)switchToMainPage
+{
     MainViewController *mainVC = [[MainViewController alloc] initWithUserName:self.userName.text password:self.password.text];
     [self presentViewController:mainVC animated:NO completion:nil];
 }
+
+
 
 @end
