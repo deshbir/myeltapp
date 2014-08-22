@@ -30,7 +30,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    UIView *usernamePaddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 8, 8)];
+    [self userName].leftViewMode = UITextFieldViewModeAlways;
+    [self userName].leftView = usernamePaddingView;
+    
+    UIView *passwordPaddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 8, 8)];
+    [self password].leftViewMode = UITextFieldViewModeAlways;
+    [self password].leftView = passwordPaddingView;
 }
 
 - (void)didReceiveMemoryWarning
