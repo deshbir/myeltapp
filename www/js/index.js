@@ -7,6 +7,8 @@
 	var directoryName = "MyELT";
 	var defaultAduioFileName ="audioFile.wav";
 	var filePath;
+	var counter = 0;
+	var timeDur = 0;
 	
 	/******************************************* Helper Functions Starts *********************************************/
 	var isIOSDevice = function() {
@@ -79,9 +81,9 @@
 		mediaObject.play();
 
 		/* On playback completion, send a post message to MyELT which further delegates it to activity so as to handle any UI or engine level changes. */
-		var counter = 0;
+		counter = 0;
 		var audioFileDuration = 0;
-		var timeDur = setInterval(function() {
+		timeDur = setInterval(function() {
 			audioFileDuration = mediaObject.getDuration();
 			counter = counter + 1;
 	        if (counter >= audioFileDuration) {
@@ -93,6 +95,8 @@
 	
 	/* Stop playback */
 	var stopPlayback = function() {
+		counter = 0;
+		clearInterval(timeDur);
 		if (mediaObject) {
 			mediaObject.stop();
         }
