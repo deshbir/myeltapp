@@ -63,17 +63,11 @@
 		mediaObject = new Media(filePath, onSuccess, onError);
 		// Record audio
 		mediaObject.startRecord();
-		/*recordPlayTime = 0;
-		recInterval = setInterval(function() {
-	    	recordPlayTime = recordPlayTime + 1;
-	    	setAudioPosition(recordPlayTime + " sec");
-	    	}, 1000);*/
 	}
 	
 	/* Stop button will call this function and saves file at a specified location */
 	var stopRecordAudio = function() {
 		 if (mediaObject) {
-		 	//clearInterval(recInterval);
 		 	//function to stop recording
 	        mediaObject.stopRecord();
 	    }
@@ -83,6 +77,18 @@
 	var startPlayback = function() {
 		mediaObject = new Media(filePath, onSuccess, onError);
 		mediaObject.play();
+
+		/* On playback completion, send a post message to MyELT which further delegates it to activity so as to handle any UI or engine level changes. */
+		var counter = 0;
+		var audioFileDuration = 0;
+		var timeDur = setInterval(function() {
+			audioFileDuration = mediaObject.getDuration();
+			counter = counter + 1;
+	        if (counter >= audioFileDuration) {
+	            clearInterval(timeDur);
+	            window.frames[0].postMessage({'location' : 'device','operation' : 'playbackCompleted'},url);
+	        }
+	   }, 1000);
 	}
 	
 	/* Stop playback */
