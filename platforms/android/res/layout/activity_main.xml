@@ -1,57 +1,89 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"    
-    android:orientation="vertical" 
+    android:layout_height="match_parent"
+    android:padding="10dp"
     android:background="@color/bodyBackground">
     
-	<LinearLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:background="#000000"
-	    android:paddingBottom="10dp"
-		android:paddingTop="25dp" >
-	
-	  <ImageView
-	    android:contentDescription="@string/app_header"     
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:src="@drawable/logo" />
-	  	   
-	</LinearLayout>
-	    
-	<LinearLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="vertical" 
-	 	android:paddingLeft="20dp"
-	 	android:paddingRight="20dp"
-	 	android:paddingTop="40dp">   
-	  
-	 <EditText android:id="@+id/username"
-	    android:layout_width="match_parent"
+   <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/icon185" />
+   
+   <EditText android:id="@+id/username"
+        android:layout_below="@+id/icon"
+	    android:layout_width="400dp"
 		android:layout_height="wrap_content"
+		android:layout_marginTop="20dp"
+		android:layout_centerHorizontal="true"
 	    android:hint="@string/username" />
 	 
-	 <EditText android:id="@+id/password"
+   <EditText android:id="@+id/password"
+        android:layout_below="@+id/username"
 	    android:inputType="textPassword" 
-	    android:layout_width="match_parent"        
+	    android:layout_width="400dp"        
 		android:layout_height="wrap_content"
+		android:layout_marginTop="5dp"
+		android:layout_centerHorizontal="true"
 	    android:hint="@string/password" />
-	 
-	  <Button
-	    android:layout_width="wrap_content"
+   
+   <Button android:id="@+id/login_button"
+        android:layout_below="@+id/password"
+	    android:layout_width="400dp"
 	    android:layout_height="wrap_content"
 	    android:text="@string/button_login"
-	    android:textStyle="bold"
-	    android:paddingBottom="10dp"
-		android:paddingLeft="16dp"
-		android:paddingRight="16dp"
+	    android:paddingBottom="10dp"	
 		android:paddingTop="10dp"
 		android:layout_marginTop="10dp"
-	    android:layout_gravity="center_vertical|center_horizontal"
 	    android:background="@color/buttonBackground"
+	    android:textSize="22sp"
+	    android:layout_centerHorizontal="true"
 	    android:onClick="login" />
-	</LinearLayout>   
-	 
-</LinearLayout>
+	  
+   <TextView
+        android:layout_below="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/forgot_password"
+        android:layout_centerHorizontal="true"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp" />
+   
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ngllogo" />
+    
+     <RelativeLayout
+   		 android:layout_width="250dp"
+   		 android:layout_height="wrap_content"
+   		 android:layout_alignParentBottom="true"
+         android:layout_alignParentRight="true"
+         android:layout_marginBottom="15dp">   
+         
+     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/signup"
+        android:layout_alignParentLeft="true"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp" />
+     
+     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="@string/needhelp"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp" />
+     
+      </RelativeLayout>  
+   
+</RelativeLayout>

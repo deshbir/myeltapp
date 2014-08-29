@@ -1,8 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">MyeltApp</string>
-    <string name="app_header">MyELT</string>
+    <string name="app_name">MyELT</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="button_login">Login</string>
+    <string name="button_login">Log In</string>
+    <string name="forgot_password">Forgot Your Password?</string>
+    <string name="signup">Sign Up for MyELT</string>
+    <string name="needhelp">Need Help?</string>
 </resources>
