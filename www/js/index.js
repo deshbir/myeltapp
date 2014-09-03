@@ -157,7 +157,7 @@
 		//iframe.src= url;
 		
 		//var initializeIframe = true;
-		
+		navigator.notification.activityStart("Loading","Please Wait");
 		iframe.addEventListener("load", 
 			function(event) {
 			window.frames[0].postMessage({'location' : 'device'},url);
@@ -165,6 +165,7 @@
 					window.frames[0].postMessage({'location' : 'device'},url);
 					initializeIframe = false;
 				}*/
+			navigator.notification.activityStop();
 			}, false);
 		//Listens for events via postMessage
 		window.addEventListener("message", function(event) {
@@ -186,7 +187,7 @@
 		});
 		
 		if(isIOSDevice()) {
-			filePath = "documents://" + defaultAduioFileName;
+			filePath = defaultAduioFileName;
 		} else {
 			filePath = directoryName + "/" + defaultAduioFileName;
 			
