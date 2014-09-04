@@ -19,19 +19,35 @@
 
 package com.myeltapp;
 
+import org.apache.cordova.Config;
+import org.apache.cordova.CordovaActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
-import org.apache.cordova.*;
 
 public class MyeltApp extends CordovaActivity 
 {
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState);
+    	
+    	super.onCreate(savedInstanceState);
         super.init();
         // Set by <content src="index.html" /> in config.xml
         super.loadUrl(Config.getStartUrl());
         //super.loadUrl("file:///android_asset/www/index.html");
+    }
+    
+    @Override
+    public Object onMessage(String id, Object data) {    	
+        if("onPageFinished".equals(id)) {
+        	Intent intent = getIntent();
+        	String username = intent.getStringExtra(MainActivity.USERNAME);
+        	String password = intent.getStringExtra(MainActivity.PASSWORD);
+        	String js = String.format("setCredentials('%s', '%s');",username, password);
+        	this.sendJavascript(js);
+        }
+        return super.onMessage(id, data);
     }
 }
 
