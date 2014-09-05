@@ -1,7 +1,7 @@
 (function(){
 	
 	/* Global Variables. */
-	var url  = "http://myelt3.comprotechnologies.com/ilrn/global/extlogin.do";
+	var url  = "http://192.168.1.59:3714/ilrn/global/extlogin.do";
 	var mediaObject;
 	var recordPlayTime;
 	var directoryName = "MyELT";
@@ -117,12 +117,22 @@
 	    	var reader = new FileReader();
 	    	reader.onloadend = function (evt) {
 				var byteArray = new Uint8Array(evt.target.result);
-	    		compressedAudio = Speex.encodeFile(byteArray);
+				var fileExtension = "wav";
+				/*compressedAudio = Speex.encodeFile(byteArray);
+				var response = {
+         			'location' : 'device',
+         			'operation' : 'scoreResults',
+         			'data' : btoa(compressedAudio),
+         			'clientId' : clientId
+         		};
+	    		window.frames[0].postMessage(response,url);*/
 				jQuery.ajax({
-				    url : "http://sridemo.comprotechnologies.com:8080/sriUploader/upload?clientID=" + clientId,
+				    url : "http://sridemo.comprotechnologies.com:8080/sriUploader/upload?clientID=" + clientId+"&fileExtension="+fileExtension,
+					//url : "http://192.168.1.112:8080/sriUploader/upload?clientID=" + clientId+"&fileExtension="+fileExtension,
 				    type: "POST",
 	   				contentType: false,
-				    data: btoa(compressedAudio),
+				    //data: btoa(compressedAudio),
+	   				data: byteArray,
 				    processData:false
 				}).done(function(data){
 						var response = {
@@ -130,6 +140,7 @@
 		         			'operation' : 'scoreResults',
 		         			'filePath' : data.filePath
 		         		};
+						alert(data.status);
 						window.frames[0].postMessage(response,url);
 					}).fail(function(){
 					alert("FilePath not recieved ");
@@ -157,7 +168,7 @@
 		//iframe.src= url;
 		
 		//var initializeIframe = true;
-		navigator.notification.activityStart("Loading","Please Wait");
+		//navigator.notification.activityStart("Loading","Please Wait");
 		iframe.addEventListener("load", 
 			function(event) {
 			window.frames[0].postMessage({'location' : 'device'},url);
@@ -165,7 +176,7 @@
 					window.frames[0].postMessage({'location' : 'device'},url);
 					initializeIframe = false;
 				}*/
-			navigator.notification.activityStop();
+			//navigator.notification.activityStop();
 			}, false);
 		//Listens for events via postMessage
 		window.addEventListener("message", function(event) {
