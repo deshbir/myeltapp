@@ -195,10 +195,4 @@
 	/******************************************* Device Ready Specific Ends *********************************************/
 	
 })();
-	
-    
-     NSMutableDictionary *recordSettings = [[NSMutableDictionary alloc] init];
-            [recordSettings setValue:[NSNumber numberWithFloat:22050.0] forKey:AVSampleRateKey];
-            
-            // create a new recorder for each start record
-            audioFile.recorder = [[CDVAudioRecorder alloc] initWithURL:audioFile.resourceURL settings:recordSettings error:&error];
+   
