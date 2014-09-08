@@ -105,7 +105,7 @@
 	/* Score Audio */
 	var scoreAudio = function(clientId) {	   
 	    //This function is called if file is successfully found
-	    function getDirSuccess(fileObj){                        
+	    function getDirSuccess(fileObj){   
             
             var fileURL;
             
@@ -116,7 +116,7 @@
                 fileURL = fileObj.fullPath;	
             }
             
-	    	var uploadSuccess = function(data) {               
+	    	var uploadSuccess = function(data) {    
                 var response = JSON.parse(data.response);                
                 var responseJSON = {
                     'location' : 'device',
