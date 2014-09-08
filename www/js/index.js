@@ -5,7 +5,7 @@
 	var mediaObject;
 	var recordPlayTime;
 	var directoryName = "MyELT";
-	var defaultAduioFileName ="audioFile.wav";
+	var defaultAudioFileName ="audioFile.wav";
 	var filePath;
 	var counter = 0;
 	var timeDur = 0;
@@ -103,56 +103,54 @@
 	}
 	
 	/* Score Audio */
-	var scoreAudio = function(clientId) {
-	    //This function is called if directory successfully created
-		var getDirSuccess1 = function(entry) {
-	     	entry.file(gotFile, fail);
-	    };
-	    //This function is called if error occurs while fetching file from directory
-		var fail = function(error) {
-	        alert("An error has occurred: Code = " = error.code);
-	    };
+	var scoreAudio = function(clientId) {	   
 	    //This function is called if file is successfully found
-	    function gotFile(file){
-	    	var reader = new FileReader();
-	    	reader.onloadend = function (evt) {
-				var byteArray = new Uint8Array(evt.target.result);
-				var fileExtension = "wav";
-				/*compressedAudio = Speex.encodeFile(byteArray);
-				var response = {
-         			'location' : 'device',
-         			'operation' : 'scoreResults',
-         			'data' : btoa(compressedAudio),
-         			'clientId' : clientId
-         		};
-	    		window.frames[0].postMessage(response,url);*/
-				jQuery.ajax({
-				    url : "http://sridemo.comprotechnologies.com:8080/sriUploader/upload?clientID=" + clientId+"&fileExtension="+fileExtension,
-					//url : "http://192.168.1.112:8080/sriUploader/upload?clientID=" + clientId+"&fileExtension="+fileExtension,
-				    type: "POST",
-	   				contentType: false,
-				    //data: btoa(compressedAudio),
-	   				data: byteArray,
-				    processData:false
-				}).done(function(data){
-						var response = {
-		         			'location' : 'device',
-		         			'operation' : 'scoreResults',
-		         			'filePath' : data.filePath
-		         		};
-						alert(data.status);
-						window.frames[0].postMessage(response,url);
-					}).fail(function(){
-					alert("FilePath not recieved ");
-				});
-		    };
-		    reader.readAsArrayBuffer(file);
+	    function getDirSuccess(fileObj){                        
+            
+            var fileURL;
+            
+            if(isIOSDevice()) {
+			    fileURL = fileObj.nativeURL;
+                fileURL = fileURL.replace("/Documents/" + defaultAudioFileName , "/tmp/" + defaultAudioFileName);
+            } else {
+                fileURL = fileObj.fullPath;	
+            }
+            
+	    	var uploadSuccess = function(data) {               
+                var response = JSON.parse(data.response);                
+                var responseJSON = {
+                    'location' : 'device',
+                    'operation' : 'scoreResults',
+                    'filePath' : response.filePath
+                };                
+                window.frames[0].postMessage(responseJSON,url);
+            }
+
+            var uploadFailure = function(error) {
+                alert("An error has occurred, Response= " + JSON.stringify(error));               
+            }                
+
+            var options = new FileUploadOptions();
+            options.fileKey= "file";
+            options.fileName= defaultAudioFileName;
+            options.mimeType= "audio/wav";
+            
+            var params = {};
+            params.fileExtension = "wav";
+            params.clientID = clientId;
+
+            options.params = params;          
+
+            var ft = new FileTransfer();           
+            ft.upload(fileURL, "http://sridemo.comprotechnologies.com:8080/sriUploader/upload", uploadSuccess, uploadFailure, options);
 	    };
-	    var gotFileSystem1 = function (fileSystem) {
-	    	fileSystem.root.getFile(filePath, null, getDirSuccess1, dirFail);
+        
+	    var gotFileSystem = function (fileSystem) {
+	    	fileSystem.root.getFile(filePath, null, getDirSuccess, dirFail);
 	    };
+        
 	    // get file system to copy or move audio file to a specified folder
-	    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem1, fsFail);
+	    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem, fsFail);
 	    
 	}
 	/******************************************* Audio Specific Ends *********************************************/
@@ -161,22 +159,12 @@
 	
 	var onDeviceReady = function() {
 		var iframe = document.getElementById('MyELTIframe');
-        var iframeURL = url + "?u=" + userName + "&p=" + password;
-        //  alert(iframeURL);
-		iframe.src= iframeURL;		
-		//var initializeIframe = true;
-		//iframe.src= url;
+        var iframeURL = url + "?u=" + userName + "&p=" + password;        
+		iframe.src= iframeURL;	
 		
-		//var initializeIframe = true;
-		//navigator.notification.activityStart("Loading","Please Wait");
 		iframe.addEventListener("load", 
 			function(event) {
-			window.frames[0].postMessage({'location' : 'device'},url);
-				/*if(initializeIframe) {
-					window.frames[0].postMessage({'location' : 'device'},url);
-					initializeIframe = false;
-				}*/
-			//navigator.notification.activityStop();
+			     window.frames[0].postMessage({'location' : 'device'},url);				
 			}, false);
 		//Listens for events via postMessage
 		window.addEventListener("message", function(event) {
@@ -198,10 +186,9 @@
 		});
 		
 		if(isIOSDevice()) {
-			filePath = defaultAduioFileName;
+			filePath = defaultAudioFileName;
 		} else {
-			filePath = directoryName + "/" + defaultAduioFileName;
-			
+			filePath = directoryName + "/" + defaultAudioFileName;			
 		}
 	}
 	document.addEventListener("deviceready", onDeviceReady, false);
@@ -209,3 +196,9 @@
 	
 })();
 	
+    
+     NSMutableDictionary *recordSettings = [[NSMutableDictionary alloc] init];
+            [recordSettings setValue:[NSNumber numberWithFloat:22050.0] forKey:AVSampleRateKey];
+            
+            // create a new recorder for each start record
+            audioFile.recorder = [[CDVAudioRecorder alloc] initWithURL:audioFile.resourceURL settings:recordSettings error:&error];
