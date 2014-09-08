@@ -17,4 +17,7 @@
     <author email="manav.manocha@comprotechnologies.com">Compro Technologies Private Limited</author>
     <content src="index.html" />
     <access origin="*" />
+    <feature name="FileTransfer">
+        <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
+    </feature>
 </widget>
