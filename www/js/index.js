@@ -1,7 +1,7 @@
 (function(){
 	
 	/* Global Variables. */
-	var url  = "http://192.168.1.59:3714/ilrn/global/extlogin.do";
+	var url  = "http://myelt3.comprotechnologies.com/ilrn/global/extlogin.do";
 	var mediaObject;
 	var recordPlayTime;
 	var directoryName = "MyELT";
