@@ -107,13 +107,9 @@
 	    //This function is called if file is successfully found
 	    function getDirSuccess(fileObj){   
             
-            var fileURL;
-            
+            var fileURL = fileObj.nativeURL;
             if(isIOSDevice()) {
-			    fileURL = fileObj.nativeURL;
                 fileURL = fileURL.replace("/Documents/" + defaultAudioFileName , "/tmp/" + defaultAudioFileName);
-            } else {
-                fileURL = fileObj.fullPath;	
             }
             
 	    	var uploadSuccess = function(data) {    
