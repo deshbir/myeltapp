@@ -18,6 +18,8 @@
 	    android:layout_width="400dp"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="20dp"
+		android:singleLine="true"
+		android:imeOptions="actionNext"
 		android:layout_centerHorizontal="true"
 	    android:hint="@string/username" />
 	 
@@ -27,6 +29,8 @@
 	    android:layout_width="400dp"        
 		android:layout_height="wrap_content"
 		android:layout_marginTop="5dp"
+		android:singleLine="true"
+		android:imeOptions="actionDone"
 		android:layout_centerHorizontal="true"
 	    android:hint="@string/password" />
    
