@@ -1,7 +1,6 @@
 (function(){
 	
-	/* Global Variables. */
-	var url  = "http://myelt3.comprotechnologies.com/ilrn/global/extlogin.do";
+	/* Global Variables. */	
 	var mediaObject;
 	var recordPlayTime;
 	var directoryName = "MyELT";
@@ -102,17 +101,18 @@
         }
 	}
 	
-	/* Score Audio */
-	var scoreAudio = function(clientId) {	   
-	    //This function is called if file is successfully found
-	    function getDirSuccess(fileObj){   
+	var scoreAudio = function(clientId) {	  
+        
+        var gotFileSystem = function (fileSystem) {
+            var appDirPath = fileSystem.root.toURL();        
             
-            var fileURL = fileObj.nativeURL;
             if(isIOSDevice()) {
-                fileURL = fileURL.replace("/Documents/" + defaultAudioFileName , "/tmp/" + defaultAudioFileName);
-            }
+            	appDirPath = appDirPath.replace("/Documents/", "/tmp/");
+            }	  
             
-	    	var uploadSuccess = function(data) {    
+            var fileURL = appDirPath + filePath;     
+          
+            var uploadSuccess = function(data) {    
                 var response = JSON.parse(data.response);                
                 var responseJSON = {
                     'location' : 'device',
@@ -139,29 +139,25 @@
 
             var ft = new FileTransfer();           
             ft.upload(fileURL, "http://sridemo.comprotechnologies.com:8080/sriUploader/upload", uploadSuccess, uploadFailure, options);
-	    };
-        
-	    var gotFileSystem = function (fileSystem) {
-	    	fileSystem.root.getFile(filePath, null, getDirSuccess, dirFail);
-	    };
-        
-	    // get file system to copy or move audio file to a specified folder
-	    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem, fsFail);
-	    
+   	
+	   };
+	        
+	   // get file system to copy or move audio file to a specified folder
+	   window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem, fsFail);	   
 	}
+	
 	/******************************************* Audio Specific Ends *********************************************/
 	
 	/******************************************* Device Ready Specific Starts *********************************************/
 	
 	var onDeviceReady = function() {
-		var iframe = document.getElementById('MyELTIframe');
-        var iframeURL = url + "?u=" + userName + "&p=" + password;  
-		iframe.src= iframeURL;	
 		
-		iframe.addEventListener("load", 
-			function(event) {
-			     window.frames[0].postMessage({'location' : 'device'},url);				
-			}, false);
+		var iframe = document.getElementById('MyELTIframe');
+        iframe.addEventListener("load", 
+		function(event) {
+		     window.frames[0].postMessage({'location' : 'device'},url);				
+		}, false);	
+						
 		//Listens for events via postMessage
 		window.addEventListener("message", function(event) {
 			if (event.data.operation == "startRecording") {

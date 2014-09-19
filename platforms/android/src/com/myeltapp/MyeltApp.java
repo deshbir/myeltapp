@@ -44,7 +44,7 @@ public class MyeltApp extends CordovaActivity
         	Intent intent = getIntent();
         	String username = intent.getStringExtra(MainActivity.USERNAME);
         	String password = intent.getStringExtra(MainActivity.PASSWORD);
-        	String js = String.format("setCredentials('%s', '%s');",username, password);
+        	String js = String.format("startMyELT('%s', '%s');",username, password);
         	this.sendJavascript(js);
         }
         return super.onMessage(id, data);
