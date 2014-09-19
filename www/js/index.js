@@ -155,7 +155,7 @@
 	
 	var onDeviceReady = function() {
 		var iframe = document.getElementById('MyELTIframe');
-        var iframeURL = url + "?u=" + userName + "&p=" + password;        
+        var iframeURL = url + "?u=" + userName + "&p=" + password;  
 		iframe.src= iframeURL;	
 		
 		iframe.addEventListener("load", 
