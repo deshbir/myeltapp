@@ -150,7 +150,7 @@
     // Black base color for background matches the native apps
     theWebView.backgroundColor = [UIColor blackColor];
     
-    NSString *javaScript = [NSString stringWithFormat:@"setCredentials('%@', '%@')", [self Username], [self Password], nil];
+    NSString *javaScript = [NSString stringWithFormat:@"startMyELT('%@', '%@')", [self Username], [self Password], nil];
     
     [theWebView stringByEvaluatingJavaScriptFromString:javaScript];
 
