@@ -50,6 +50,8 @@
 		D145B8A1D05D4CFD9D6FE520 /* CDVFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 07721CD8DB594455A0253D7B /* CDVFile.m */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		72666839556845F6A4D7C340 /* CDVFileTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF7BED10A094C3D84BE733D /* CDVFileTransfer.m */; };
+		106290ECEDBC43BAB105DEDC /* ActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CB306260A4D1DB278A71B /* ActivityIndicator.m */; };
+		460BFC80FFA240589F1A3055 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BEE5F8F020497E9A7B0B42 /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +134,10 @@
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = MyELT/config.xml; sourceTree = "<group>"; };
 		5EF7BED10A094C3D84BE733D /* CDVFileTransfer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVFileTransfer.m"; path = "Plugins\org.apache.cordova.file-transfer\CDVFileTransfer.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		7C62743C050244BA988EE7DA /* CDVFileTransfer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVFileTransfer.h"; path = "Plugins\org.apache.cordova.file-transfer\CDVFileTransfer.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		BC9CB306260A4D1DB278A71B /* ActivityIndicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "ActivityIndicator.m"; path = "Plugins\org.apache.cordova.plugin.ActivityIndicator\ActivityIndicator.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		61BEE5F8F020497E9A7B0B42 /* MBProgressHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "MBProgressHUD.m"; path = "Plugins\org.apache.cordova.plugin.ActivityIndicator\MBProgressHUD.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		3784552634F746B89A031BD5 /* ActivityIndicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ActivityIndicator.h"; path = "Plugins\org.apache.cordova.plugin.ActivityIndicator\ActivityIndicator.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		1428D0E06B4D4DC38B4B6CD7 /* MBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MBProgressHUD.h"; path = "Plugins\org.apache.cordova.plugin.ActivityIndicator\MBProgressHUD.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +271,10 @@
 				BC1008B661AA4A3FA05CFEDA /* CDVSound.h */,
 				5EF7BED10A094C3D84BE733D /* CDVFileTransfer.m */,
 				7C62743C050244BA988EE7DA /* CDVFileTransfer.h */,
+				BC9CB306260A4D1DB278A71B /* ActivityIndicator.m */,
+				61BEE5F8F020497E9A7B0B42 /* MBProgressHUD.m */,
+				3784552634F746B89A031BD5 /* ActivityIndicator.h */,
+				1428D0E06B4D4DC38B4B6CD7 /* MBProgressHUD.h */,
 			);
 			name = Plugins;
 			path = MyELT/Plugins;
@@ -476,6 +486,8 @@
 				81096A8CB6294B22A4125374 /* CDVAssetLibraryFilesystem.m in Sources */,
 				1B58B9983B4B4F35B261CE15 /* CDVSound.m in Sources */,
 				72666839556845F6A4D7C340 /* CDVFileTransfer.m in Sources */,
+				106290ECEDBC43BAB105DEDC /* ActivityIndicator.m in Sources */,
+				460BFC80FFA240589F1A3055 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

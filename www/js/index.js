@@ -54,6 +54,11 @@
 		window.frames[0].document.getElementById('audio_position').innerHTML = position;
 	}
 	
+	var showLoader = function(){
+		ActivityIndicator.show("Loading...");
+	}
+	
+	
 	/******************************************* Helper Functions Ends *********************************************/
 	
 	
@@ -151,11 +156,11 @@
 	/******************************************* Device Ready Specific Starts *********************************************/
 	
 	var onDeviceReady = function() {
-		
 		var iframe = document.getElementById('MyELTIframe');
         iframe.addEventListener("load", 
 		function(event) {
-		     window.frames[0].postMessage({'location' : 'device'},url);				
+		     window.frames[0].postMessage({'location' : 'device'},url);
+		     ActivityIndicator.hide();
 		}, false);	
 						
 		//Listens for events via postMessage
@@ -175,6 +180,10 @@
 			if (event.data.operation == "stopPlayback") {
 				stopPlayback();
      		}
+			if (event.data.operation == "loader") {
+				showLoader();
+     		}
+			
 		});
 		
 		if(isIOSDevice()) {

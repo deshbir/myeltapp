@@ -35,6 +35,10 @@
                         {
                             "xml": "<feature name=\"FileTransfer\"><param name=\"ios-package\" value=\"CDVFileTransfer\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"ActivityIndicator\"><param name=\"ios-package\" value=\"ActivityIndicator\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -49,6 +53,9 @@
             "PACKAGE_NAME": "com.myeltapp"
         },
         "org.apache.cordova.file-transfer": {
+            "PACKAGE_NAME": "com.myeltapp"
+        },
+        "org.apache.cordova.plugin.ActivityIndicator": {
             "PACKAGE_NAME": "com.myeltapp"
         }
     },
