@@ -156,6 +156,7 @@
 	/******************************************* Device Ready Specific Starts *********************************************/
 	
 	var onDeviceReady = function() {
+		ActivityIndicator.show("Loading...");
 		var iframe = document.getElementById('MyELTIframe');
         iframe.addEventListener("load", 
 		function(event) {
