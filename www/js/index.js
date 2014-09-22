@@ -4,10 +4,11 @@
 	var mediaObject;
 	var recordPlayTime;
 	var directoryName = "MyELT";
-	var defaultAudioFileName ="audioFile.wav";
+	var defaultAudioFileName;
 	var filePath;
 	var counter = 0;
 	var timeDur = 0;
+	var recordDur = 0;
 	
 	/******************************************* Helper Functions Starts *********************************************/
 	var isIOSDevice = function() {
@@ -20,15 +21,20 @@
 	
 	//function call if file system fails
 	var fsFail = function(error) {
-	   alert("failed with error code: " + error.code);
+		var fsError = {"fsFailErrorMessage":"Failure in reading File System",
+				  			"fsFailErrorCode":error.code};
+		window.frames[0].postMessage(fsError,url);
 	};
 	//function call if directory fails 
 	var dirFail = function(error) {
-	   alert("Directory error code: " + error.code);
+		var dirError = {"dirFailErrorMessage":"Failure in creating directory",
+				  		"dirFailErrorCode":error.code};
+		window.frames[0].postMessage(dirError,url);
 	};
 	//function call if directory successfully created
 	var getDirSuccess = function() {
-		console.log("Directory created Successfully");
+		var dirSuccess = {"dirSuccessMessage":"Directory created Successfully"};
+		window.frames[0].postMessage(dirSuccess,url);
 	};
 	
 	var createDirectory = function(){
@@ -41,17 +47,15 @@
 	}
 	
 	var onSuccess = function() {
-		console.log("recordAudio():Audio Success");
+		var mediaObjSuccess = {"mediaObjSuccessMessage":"Media object successfully created"};
+		window.frames[0].postMessage(mediaObjSuccess,url);
 	}
 	
 	// onError Callback 
 	var onError = function(error) {
-		alert('code: '    + error.code    + '\n' + 
-	     'message: ' + error.message + '\n');
-	}
-
-	var setAudioPosition = function(position) {
-		window.frames[0].document.getElementById('audio_position').innerHTML = position;
+		var mediaObjError = {"mediaObjErrorMessage":"Error occurred in creating media object",
+				  			 "mediaObjErrorCode":error.code};
+		window.frames[0].postMessage(mediaObjError,url);
 	}
 	
 	var showLoader = function(){
@@ -64,50 +68,141 @@
 	
 	/******************************************* Audio Specific Starts *********************************************/
 	/* Record button will call this function */
-	var recordAudio = function() {
-		createDirectory();
-		mediaObject = new Media(filePath, onSuccess, onError);
-		// Record audio
-		mediaObject.startRecord();
+	var recordAudio = function(parameters) {
+		try{
+			createDirectory();
+			mediaObject = new Media(filePath, onSuccess, onError);
+			// Record audio
+			mediaObject.startRecord();
+			counter = 0;
+			if(parameters.duration != undefined){
+				recordDur = setInterval(function() {
+					counter = counter + 1;
+			        if (counter == parameters.duration) {
+			            clearInterval(recordDur);
+			            var recordMediaCallbackSuccess  = {
+			                    'location' : 'device',
+			                    'operation' : 'recordMediaCallback',
+			                    'response' : {
+			                    	'success' : true
+			                    }
+			                };
+			            window.frames[0].postMessage(recordMediaCallbackSuccess ,url);
+			        }
+			   }, 1000);
+			}
+		}catch(err){
+			var recordMediaCallbackFailure = {
+	                'location' : 'device',
+	                'operation' : 'recordMediaCallback',
+	                'response' : {
+	                	'success' : false,
+	                	'errorMessage' :err.message
+	                }
+	            };
+			window.frames[0].postMessage(recordMediaCallbackFailure,url);
+		}	
 	}
 	
 	/* Stop button will call this function and saves file at a specified location */
 	var stopRecordAudio = function() {
-		 if (mediaObject) {
-		 	//function to stop recording
-	        mediaObject.stopRecord();
-	    }
+		try{ 
+			counter = 0;
+			clearInterval(recordDur);
+			if (mediaObject) {
+			 	//function to stop recording
+		        mediaObject.stopRecord();
+		        var stopRecordCallbackSuccess = {
+	                    'location' : 'device',
+	                    'operation' : 'stopRecordCallback',
+	                    'response' : {
+	                    	'success' : true
+	                    }
+	                };
+	         		
+				window.frames[0].postMessage(stopRecordCallbackSuccess,url);
+		        
+		    }
+		}catch(err){
+			var stopRecordCallbackFailure = {
+	                'location' : 'device',
+	                'operation' : 'stopRecordCallback',
+	                'response' : {
+	                	'success' : false,
+	                	'errorMessage' : err.message
+	                }
+	            };
+			window.frames[0].postMessage(stopRecordCallbackFailure,url);
+		}
 	}
 	
 	/* Start playback */
 	var startPlayback = function() {
-		mediaObject = new Media(filePath, onSuccess, onError);
-		mediaObject.play();
-
-		/* On playback completion, send a post message to MyELT which further delegates it to activity so as to handle any UI or engine level changes. */
-		counter = 0;
-		var audioFileDuration = 0;
-		timeDur = setInterval(function() {
-			audioFileDuration = mediaObject.getDuration();
-			counter = counter + 1;
-	        if (counter >= audioFileDuration) {
-	            clearInterval(timeDur);
-	            window.frames[0].postMessage({'location' : 'device','operation' : 'playbackCompleted'},url);
-	        }
-	   }, 1000);
+		try{
+			mediaObject = new Media(filePath, onSuccess, onError);
+			mediaObject.play();
+	
+			/* On playback completion, send a post message to MyELT which further delegates it to activity so as to handle any UI or engine level changes. */
+			counter = 0;
+			var audioFileDuration = 0;
+			timeDur = setInterval(function() {
+				audioFileDuration = mediaObject.getDuration();
+				counter = counter + 1;
+		        if (counter >= audioFileDuration) {
+		            clearInterval(timeDur);
+		            var startPlaybackCallbackSuccess = {
+		                    'location' : 'device',
+		                    'operation' : 'startPlaybackCallback',
+		                    'response' : {
+		                    	'success' : true
+		                    }
+		                };
+		            window.frames[0].postMessage(startPlaybackCallbackSuccess,url);
+		        }
+		   }, 1000);
+		}catch(err){
+			var startPlaybackCallbackFailure = {
+                    'location' : 'device',
+                    'operation' : 'startPlaybackCallback',
+                    'response' : {
+                    	'success' : false,
+                    	'errorMessage' : err.message
+                    }
+                };
+			window.frames[0].postMessage(startPlaybackCallbackFailure,url);
+		}
 	}
 	
 	/* Stop playback */
 	var stopPlayback = function() {
-		counter = 0;
-		clearInterval(timeDur);
-		if (mediaObject) {
-			mediaObject.stop();
-        }
+		try{	
+			counter = 0;
+			clearInterval(timeDur);
+			if (mediaObject) {
+				mediaObject.stop();
+				var stopPlaybackCallbackSuccess = {
+                    'location' : 'device',
+                    'operation' : 'stopPlaybackCallback',
+                    'response' : {
+                    	'success' : true
+                    }
+                };
+				window.frames[0].postMessage(stopPlaybackCallbackSuccess,url);
+	        }
+		}catch(err){
+			var stopPlaybackCallbackFailure = {
+                'location' : 'device',
+                'operation' : 'stopPlaybackCallback',
+                'response' : {
+                	'success' : false,
+                	'errorMessage' : err.message
+                }
+            };
+			window.frames[0].postMessage(stopPlaybackCallbackFailure,url);
+		}	
 	}
 	
-	var scoreAudio = function(clientId) {	  
-        
+	var scoreAudio = function(activityOptions) {	  
         var gotFileSystem = function (fileSystem) {
             var appDirPath = fileSystem.root.toURL();        
             
@@ -117,12 +212,14 @@
             
             var fileURL = appDirPath + filePath;     
           
-            var uploadSuccess = function(data) {    
-                var response = JSON.parse(data.response);                
+            var uploadSuccess = function(data) {
+                var response = JSON.parse(data.response);
                 var responseJSON = {
                     'location' : 'device',
-                    'operation' : 'scoreResults',
-                    'filePath' : response.filePath
+                    'operation' : 'scoreSRIMediaCallback',
+                    'response' : {
+                    	'success' : true
+                    }
                 };                
                 window.frames[0].postMessage(responseJSON,url);
             }
@@ -137,8 +234,7 @@
             options.mimeType= "audio/wav";
             
             var params = {};
-            params.fileExtension = "wav";
-            params.clientID = clientId;
+            params.filePath = activityOptions.fileName;
 
             options.params = params;          
 
@@ -166,20 +262,21 @@
 						
 		//Listens for events via postMessage
 		window.addEventListener("message", function(event) {
-			if (event.data.operation == "startRecording") {
-     			recordAudio();
+			defaultAudioFileName = event.data.options.fileName.split('/')[2];
+			if (event.data.operation == "recordMedia") {
+     			recordAudio(event.data.options);
      		}
-			if (event.data.operation == "stopRecording") {
-     			stopRecordAudio();
+			if (event.data.operation == "stopRecord") {
+     			stopRecordAudio(event.data.options);
      		}
-			if (event.data.operation == "scoreAudio") {
-     			scoreAudio(event.data.clientId);
+			if (event.data.operation == "scoreSRIMedia") {
+     			scoreAudio(event.data.options);
      		}
 			if (event.data.operation == "startPlayback") {
-     			startPlayback();
+     			startPlayback(event.data.options);
      		}
 			if (event.data.operation == "stopPlayback") {
-				stopPlayback();
+				stopPlayback(event.data.options);
      		}
 			if (event.data.operation == "loader") {
 				showLoader();
