@@ -262,8 +262,14 @@
 						
 		//Listens for events via postMessage
 		window.addEventListener("message", function(event) {
-			defaultAudioFileName = event.data.options.fileName.split('/')[2];
+			
 			if (event.data.operation == "recordMedia") {
+				defaultAudioFileName = (event.data.options.fileName.split('/'))[2];
+				if(isIOSDevice()) {
+					filePath = defaultAudioFileName;
+				} else {
+					filePath = directoryName + "/" + defaultAudioFileName;			
+				}
      			recordAudio(event.data.options);
      		}
 			if (event.data.operation == "stopRecord") {
@@ -284,11 +290,7 @@
 			
 		});
 		
-		if(isIOSDevice()) {
-			filePath = defaultAudioFileName;
-		} else {
-			filePath = directoryName + "/" + defaultAudioFileName;			
-		}
+		
 	}
 	document.addEventListener("deviceready", onDeviceReady, false);
 	/******************************************* Device Ready Specific Ends *********************************************/
