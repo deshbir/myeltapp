@@ -254,7 +254,7 @@
 	var onDeviceReady = function() {
 		ActivityIndicator.show("Loading...");
 		var iframe = document.getElementById('MyELTIframe');
-        iframe.addEventListener("load", 
+		iframe.addEventListener("load", 
 		function(event) {
 		     window.frames[0].postMessage({'location' : 'device'},url);
 		     ActivityIndicator.hide();
@@ -284,7 +284,7 @@
 			if (event.data.operation == "stopPlayback") {
 				stopPlayback(event.data.options);
      		}
-			if (event.data.operation == "loader") {
+			if (event.data.operation == "showLoader") {
 				showLoader();
      		}
 			
