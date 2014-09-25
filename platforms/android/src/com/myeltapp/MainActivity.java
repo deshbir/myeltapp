@@ -1,21 +1,32 @@
 package com.myeltapp;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 
-public class MainActivity extends Activity   {
+public class MainActivity extends Activity implements LoginAsyncResponse  {
 	
-    public final static String USERNAME = "com.myeltapp.USERNAME";
-    public final static String PASSWORD = "com.myeltapp.PASSWORD";
+    public final static String LOGINURL = "com.myeltapp.LOGINURL";
+    public final static String SERVER_URL = "http://myelt3.comprotechnologies.com";
+    JSONObject statusJson = null;
     EditText username;
     EditText password;
+    String usernameStr;
+    String passwordStr;
+    
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,15 +47,39 @@ public class MainActivity extends Activity   {
 
 	/** Called when the user clicks the Send button */
 	public void login(View view) {
-		Intent intent = new Intent(this, MyeltApp.class);
 		username = (EditText) findViewById(R.id.username);
 		password = (EditText) findViewById(R.id.password);
-		String usernameStr = username.getText().toString();
-		String passwordStr = password.getText().toString();
-		intent.putExtra(USERNAME, usernameStr);
-		intent.putExtra(PASSWORD, passwordStr);
-		startActivity(intent);
+		usernameStr = username.getText().toString();
+		passwordStr = password.getText().toString();
+		String url = SERVER_URL+"/ilrn/api/logincheck?u="+usernameStr+"&p="+passwordStr;
+		new LoginAsyncTask(this).execute(url);
+		
 	}
 
-	
+	@Override
+	public void processFinish(String result) {
+		Intent intent = new Intent(this, MyeltApp.class);
+		
+		try {
+			if(result != null){
+				statusJson = new JSONObject(result);
+				if(((JSONObject)statusJson.get("response")).get("status").equals("success")){
+					intent.putExtra(LOGINURL, SERVER_URL + "/ilrn/global/extlogin.do?u="+usernameStr+"&p="+passwordStr);
+					startActivity(intent);
+				}
+				else {
+					Context context = getApplicationContext();
+					CharSequence text = "Invalid Username or Password";
+					int duration = Toast.LENGTH_LONG;
+		
+					Toast toast = Toast.makeText(context, text, duration);
+					toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+					toast.show();
+				}
+			}
+	}catch (JSONException e) {
+		e.printStackTrace();
+	}
+	}
 }
+

@@ -30,7 +30,6 @@ public class MyeltApp extends CordovaActivity
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-    	
     	super.onCreate(savedInstanceState);
         super.init();
         // Set by <content src="index.html" /> in config.xml
@@ -42,9 +41,9 @@ public class MyeltApp extends CordovaActivity
     public Object onMessage(String id, Object data) {    	
         if("onPageFinished".equals(id)) {
         	Intent intent = getIntent();
-        	String username = intent.getStringExtra(MainActivity.USERNAME);
-        	String password = intent.getStringExtra(MainActivity.PASSWORD);
-        	String js = String.format("startMyELT('%s', '%s');",username, password);
+        	String loginURL = intent.getStringExtra(MainActivity.LOGINURL);
+        	
+        	String js = String.format("startMyELT('%s');",loginURL);
         	this.sendJavascript(js);
         }
         return super.onMessage(id, data);

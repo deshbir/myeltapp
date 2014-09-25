@@ -56,12 +56,11 @@
 		
 		<script type="text/javascript">
 		  
-		    var url  = "http://myelt3.comprotechnologies.com/ilrn/global/extlogin.do";  
-		           
-            function startMyELT(userName, password) {
+		    var url;     
+            function startMyELT(loginURL) {
                 var iframe = document.getElementById('MyELTIframe');
-       			var iframeURL = url + "?u=" + userName + "&p=" + password;  
-		        iframe.src= iframeURL;	
+		        url = loginURL;
+		        iframe.src= loginURL;	
 		        
             }
         </script>

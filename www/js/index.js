@@ -75,10 +75,10 @@
 			// Record audio
 			mediaObject.startRecord();
 			counter = 0;
-			if(parameters.duration != undefined){
+			if(parameters.maxDuration != undefined){
 				recordDur = setInterval(function() {
 					counter = counter + 1;
-			        if (counter == parameters.duration) {
+			        if (counter == parameters.maxDuration) {
 			            clearInterval(recordDur);
 			            var recordMediaCallbackSuccess  = {
 			                    'location' : 'device',
