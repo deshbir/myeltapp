@@ -261,6 +261,7 @@
 		function(event) {
 		     window.frames[0].postMessage({'location' : 'device'},url);
 		     ActivityIndicator.hide();
+		     window.JSInterface.showMyELT();
 		}, false);	
 						
 		//Listens for events via postMessage

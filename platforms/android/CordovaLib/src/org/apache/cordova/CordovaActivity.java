@@ -342,7 +342,11 @@ public class CordovaActivity extends Activity implements CordovaInterface {
         // Add web view but make it invisible while loading URL
         this.appView.setVisibility(View.INVISIBLE);
         this.root.addView(this.appView);
-        setContentView(this.root);
+        /**
+         * COMPRO CHANGE: Don't set content view on activity init().
+         * Instead using some custom logic in MyELTApp Activity to set content view.
+         */
+        //setContentView(this.root);
 
         // Clear cancel flag
         this.cancelLoadUrl = false;
