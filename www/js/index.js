@@ -228,7 +228,15 @@
             }
 
             var uploadFailure = function(error) {
-                alert("An error has occurred, Response= " + JSON.stringify(error));               
+            	var responseJSON = {
+                        'location' : 'device',
+                        'operation' : 'scoreSRIMediaCallback',
+                        'response' : {
+                        	'success' : false,
+                        	'errorMessage' : 'An unexpected error occured. Please check your internet connectivity and try after restarting application.\n\nInternal Server Error:\n\n'+JSON.stringify(error)
+                        }
+                    };
+        		window.frames[0].postMessage(responseJSON,url);
             }                
 
             var options = new FileUploadOptions();
