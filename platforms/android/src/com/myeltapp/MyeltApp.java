@@ -38,7 +38,7 @@ import android.widget.Toast;
 
 public class MyeltApp extends CordovaActivity implements LoginAsyncResponse 
 {
-	public final static String SERVER_URL = "http://myelt3.comprotechnologies.com";
+	public final static String SERVER_URL = "http://192.168.1.59:3714";
 	
 	String usernameStr;
 	String passwordStr;
@@ -85,7 +85,7 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
     public Object onMessage(String id, Object data) {   
     	
         if("onPageFinished".equals(id)) {
-        	String js = String.format("startMyELT('%s');",SERVER_URL + "/ilrn/global/extlogin.do?u=" + usernameStr + "&p=" + passwordStr + "&nativeApp=true");
+        	String js = String.format("startMyELT('%s');",SERVER_URL + "/ilrn/global/extlogin.do?u=" + usernameStr + "&p=" + passwordStr + "&isNative=true");
         	this.sendJavascript(js);
         }
         
@@ -128,8 +128,12 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
     
     @Override
    	public void processFinish(String result) {
+    	Context context = getApplicationContext();
+    	CharSequence text = null;
+    	int duration = Toast.LENGTH_LONG;
+    	Toast toast;
    		try {
-   			if(result != null){
+   			if(result != null) {
    				JSONObject statusJson = new JSONObject(result);
    				if(((JSONObject)statusJson.get("response")).get("status").equals("success")){
    					if (firstLaunch) {
@@ -141,18 +145,25 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
    					super.loadUrl("file:///android_asset/www/index.html");
    				}
    				else {
-   					Context context = getApplicationContext();
-   					CharSequence text = "Invalid Username or Password";
-   					int duration = Toast.LENGTH_LONG;
-   		
-   					Toast toast = Toast.makeText(context, text, duration);
+   					text = "Invalid Username or Password.";
+   					toast = Toast.makeText(context, text, duration);
    					toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
    					activityIndicator.dismiss();
    					toast.show();
    				}
+   			} else {
+   				text = "Something went wrong. Please try again later.";
+   				toast= Toast.makeText(context, text, duration);
+   				toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+   				activityIndicator.dismiss();
+   				toast.show();
    			}
    		} catch (JSONException e) {
    			//To-do: Show user a warning that something went wrong on server.
+			text = "Something went wrong. Please try again later.";
+			toast= Toast.makeText(context, text, duration);
+			toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+			toast.show();
    			e.printStackTrace();
    		}
    	}
