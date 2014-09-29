@@ -266,7 +266,6 @@
 		var iframe = document.getElementById('MyELTIframe');
 		iframe.addEventListener("load", 
 		function(event) {
-		     window.frames[0].postMessage({'location' : 'device'},url);
 		     ActivityIndicator.hide();
 		     window.JSInterface.showMyELT();
 		}, false);	
