@@ -45,27 +45,27 @@
 		<!-- For input/microphone handling and codec API usage -->
 		<script src="js/speex/microphone.js"></script>
 		<script src="js/speex/audio.js"></script>
-		<script src="js/speex/application.js"></script>   
-		 
-              
+		<script src="js/speex/application.js"></script>
+
+
     	<!--StyleSheet -->
 		<link href="css/index.css" rel="stylesheet">
     </head>
     <body>
-		<iframe src='' id='MyELTIframe'></iframe>		
-		
+		<iframe src='' id='MyELTIframe'></iframe>
+
 		<script type="text/javascript">
-		  
-		    var url  = "http://myelt3.comprotechnologies.com/ilrn/global/extlogin.do";  
-		           
+
+		    var url  = "http://myelt3.comprotechnologies.com/ilrn/global/extlogin.do";
+
             function startMyELT(userName, password) {
                 var iframe = document.getElementById('MyELTIframe');
-       			var iframeURL = url + "?u=" + userName + "&p=" + password;  
-		        iframe.src= iframeURL;	
-		        
+       			var iframeURL = url + "?u=" + userName + "&p=" + password + "&isNative=true";
+		        iframe.src= iframeURL;
+
             }
         </script>
-        
+
         <script src="js/index.js"></script>
     </body>
 </html>
