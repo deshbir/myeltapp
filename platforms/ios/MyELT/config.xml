@@ -26,15 +26,15 @@
     <feature name="Media">
         <param name="ios-package" value="CDVSound" />
     </feature>
-    <name>MyELT</name>
-    <description>Sample MyELT application</description>
-    <author email="manav.manocha@comprotechnologies.com">Compro Technologies Private Limited</author>
-    <content src="index.html" />
-    <access origin="*" />
     <feature name="FileTransfer">
         <param name="ios-package" value="CDVFileTransfer" />
     </feature>
     <feature name="ActivityIndicator">
         <param name="ios-package" value="ActivityIndicator" />
     </feature>
+    <name>MyELT</name>
+    <description>Sample MyELT application</description>
+    <author email="manav.manocha@comprotechnologies.com">Compro Technologies Private Limited</author>
+    <content src="index.html" />
+    <access origin="*" />
 </widget>
