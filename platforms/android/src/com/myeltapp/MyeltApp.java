@@ -38,7 +38,7 @@ import android.widget.Toast;
 
 public class MyeltApp extends CordovaActivity implements LoginAsyncResponse 
 {
-	public final static String SERVER_URL = "http://192.168.1.59:3714";
+	public final static String SERVER_URL = "http://myelt3.comprotechnologies.com";
 	
 	String usernameStr;
 	String passwordStr;
