@@ -26,6 +26,8 @@
 //
 
 #import "MainViewController.h"
+#import "LoginViewController.h"
+#import "JavaScriptCore/JavaScriptCore.h"
 
 @interface MainViewController ()
 {
@@ -150,9 +152,22 @@
     // Black base color for background matches the native apps
     theWebView.backgroundColor = [UIColor blackColor];
     
+    /*********************************************************************************************
+     * When web view finishes loading, call startMyELT function of javascript to load MyELT iframe.
+     *********************************************************************************************/
     NSString *javaScript = [NSString stringWithFormat:@"startMyELT('%@', '%@')", [self Username], [self Password], nil];
-    
     [theWebView stringByEvaluatingJavaScriptFromString:javaScript];
+    
+    /***************************************************
+     * Add jsContext to call native code/functions from Javascript
+     ***************************************************/
+    JSContext *jsContext =  [theWebView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    
+    //This function is called from javascript when user logs out from MyELT
+    jsContext[@"NATIVEloadLoginScreen"] = ^() {
+       LoginViewController *loginViewController = [[LoginViewController alloc] init];
+       [self presentViewController:loginViewController animated:NO completion:nil];
+    };
 
     return [super webViewDidFinishLoad:theWebView];
 }

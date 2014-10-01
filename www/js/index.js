@@ -61,7 +61,10 @@
 	var showLoader = function(){
 		ActivityIndicator.show("Loading...");
 	}
-	
+    
+    var loadNativeHomePage = function(){       
+		NATIVEloadLoginScreen();
+	}
 	
 	/******************************************* Helper Functions Ends *********************************************/
 	
@@ -294,6 +297,9 @@
      		}
 			if (event.data.operation == "showLoader") {
 				showLoader();
+     		}
+            if (event.data.operation == "loadNativeHomePage") {				
+                loadNativeHomePage();
      		}
 			
 		});
