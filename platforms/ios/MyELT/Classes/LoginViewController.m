@@ -8,16 +8,20 @@
 
 #import "LoginViewController.h"
 #import "MainViewController.h"
+#import "MBProgressHUD.h"
 
 @interface LoginViewController ()
 
 @property (nonatomic, weak) IBOutlet UITextField *userName;
 @property (nonatomic, weak) IBOutlet UITextField *password;
 @property (nonatomic) NSURLSession *session;
+@property (nonatomic, assign) MBProgressHUD* activityIndicator;
 
 @end
 
 @implementation LoginViewController
+
+
 
 //MyELT Server URL for HTTP/REST calls
 NSString * const SERVER_URL = @"http://myelt3.comprotechnologies.com";
@@ -72,8 +76,23 @@ NSString * const SERVER_URL = @"http://myelt3.comprotechnologies.com";
     [self switchToMainPage];
 }
 
+- (void)showLoader
+{
+    self.activityIndicator = nil;
+    self.activityIndicator = [MBProgressHUD showHUDAddedTo:self.view.superview animated:YES];
+    self.activityIndicator.mode = MBProgressHUDModeIndeterminate;
+    self.activityIndicator.labelText = @"Loading";
+}
+
+- (void)hideLoader
+{
+   [self.activityIndicator hide:YES];
+}
+
 - (void)switchToMainPage
 {
+    [self showLoader];
+    
     NSString *requestURLString = [NSString stringWithFormat:@"%@/ilrn/api/logincheck?u=%@&p=%@", SERVER_URL, self.userName.text, self.password.text];
     
     NSURL *requestURL = [NSURL URLWithString:requestURLString];
@@ -105,6 +124,7 @@ NSString * const SERVER_URL = @"http://myelt3.comprotechnologies.com";
                          if ([responseStatus isEqual:@"success"]) {
                              MainViewController *mainVC = [[MainViewController alloc] initWithUserName:self.userName.text password:self.password.text];
                              [self presentViewController:mainVC animated:NO completion:nil];
+                             [self hideLoader];
                          } else {
                              [self showAlert:@"Incorrect Username or Password." title:@"Error"];
                          }
@@ -121,6 +141,8 @@ NSString * const SERVER_URL = @"http://myelt3.comprotechnologies.com";
 
 - (void)showAlert:(NSString *)messageStr title:(NSString *)titleStr
 {
+    [self hideLoader];
+    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:titleStr
                                                     message:messageStr
                                                    delegate:self
