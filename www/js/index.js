@@ -61,10 +61,14 @@
 	var showLoader = function(){
 		ActivityIndicator.show("Loading...");
 	}
-    
-    var loadNativeHomePage = function(){       
-		NATIVEloadLoginScreen();
+	var loadNativeHomePage = function(){
+		if(isIOSDevice()) {
+			NATIVEloadLoginScreen();
+		} else {
+			window.JSInterface.loadNativeHomePage();
+		}		
 	}
+	
 	
 	/******************************************* Helper Functions Ends *********************************************/
 	
@@ -263,12 +267,12 @@
 	/******************************************* Device Ready Specific Starts *********************************************/
 	
 	var onDeviceReady = function() {
-		ActivityIndicator.show("Loading...");
 		var iframe = document.getElementById('MyELTIframe');
 		iframe.addEventListener("load", 
 		function(event) {
-		     window.frames[0].postMessage({'location' : 'device'},url);
+			 window.frames[0].postMessage({'location' : 'device'},url);
 		     ActivityIndicator.hide();
+		     window.JSInterface.showMyELT();
 		}, false);	
 						
 		//Listens for events via postMessage
@@ -298,8 +302,8 @@
 			if (event.data.operation == "showLoader") {
 				showLoader();
      		}
-            if (event.data.operation == "loadNativeHomePage") {				
-                loadNativeHomePage();
+			if (event.data.operation == "loadNativeHomePage") {
+				loadNativeHomePage();
      		}
 			
 		});

@@ -55,14 +55,13 @@
 		<iframe src='' id='MyELTIframe'></iframe>
 
 		<script type="text/javascript">
-
-		    var url  = "http://myelt3.comprotechnologies.com/ilrn/global/extlogin.do";
-
-            function startMyELT(userName, password) {
+		  
+		    var url;     
+            function startMyELT(loginURL) {
                 var iframe = document.getElementById('MyELTIframe');
-       			var iframeURL = url + "?u=" + userName + "&p=" + password + "&isNative=true";
-		        iframe.src= iframeURL;
-
+		        url = loginURL;
+		        iframe.src= loginURL;	
+		        
             }
         </script>
 
