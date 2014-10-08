@@ -21,10 +21,7 @@
 
 @implementation LoginViewController
 
-
-
-//MyELT Server URL for HTTP/REST calls
-NSString * const SERVER_URL = @"http://myelt3.comprotechnologies.com";
+NSString const * SERVER_URL = @"http://myelt3.comprotechnologies.com";
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
