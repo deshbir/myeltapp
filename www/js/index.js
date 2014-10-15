@@ -63,7 +63,7 @@
 	}
 	var loadNativeHomePage = function(){
 		if(isIOSDevice()) {
-			NATIVEloadLoginScreen();
+			NativeShowLoginView();
 		} else {
 			window.JSInterface.loadNativeHomePage();
 		}		
@@ -269,15 +269,18 @@
 	var onDeviceReady = function() {
 		var iframe = document.getElementById('MyELTIframe');
 		iframe.addEventListener("load", 
-		function(event) {
+		function(event) {            
 			 window.frames[0].postMessage({'location' : 'device'},url);
 		     ActivityIndicator.hide();
-		     window.JSInterface.showMyELT();
+             if(isIOSDevice()) {                
+                 NativeShowMyELTView();
+             } else {
+                 window.JSInterface.showMyELT();
+             }		     
 		}, false);	
 						
 		//Listens for events via postMessage
-		window.addEventListener("message", function(event) {
-			
+		window.addEventListener("message", function(event) {			
 			if (event.data.operation == "recordMedia") {
 				defaultAudioFileName = (event.data.options.fileName.split('/'))[2];
 				if(isIOSDevice()) {
@@ -302,7 +305,7 @@
 			if (event.data.operation == "showLoader") {
 				showLoader();
      		}
-			if (event.data.operation == "loadNativeHomePage") {
+			if (event.data.operation == "loadNativeHomePage") {                
 				loadNativeHomePage();
      		}
 			

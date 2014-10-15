@@ -1,3 +1,5 @@
+
+
 /*
  Licensed to the Apache Software Foundation (ASF) under one
  or more contributor license agreements.  See the NOTICE file
@@ -33,7 +35,7 @@
 
 @implementation AppDelegate
 
-@synthesize window, viewController;
+@synthesize window, viewController, loginVC, mainVC;
 
 - (id)init
 {
@@ -86,13 +88,39 @@
     // NOTE: To customize the view's frame size (which defaults to full screen), override
     // [self.viewController viewWillAppear:] in your view controller.
     
-    LoginViewController *loginVC = [[LoginViewController alloc] init];
-
-    self.window.rootViewController = loginVC;
+    loginVC = [[LoginViewController alloc] init];
+    
+    [self.window addSubview:loginVC.view];
     [self.window makeKeyAndVisible];
-
+    
     return YES;
 }
+
+//Initializes MyELT view in background
+- (void)initMyELTViewWithUserName:(NSString*)userName password:(NSString*)password
+{
+    mainVC = [[MainViewController alloc] initWithUserName:userName password:password];   
+    [self.window addSubview:mainVC.view];
+    [self.window sendSubviewToBack:mainVC.view];
+}
+
+//Show MyELT view and hide Login View
+- (void)showMyELTView
+{
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    mainVC.view.frame = screenRect;
+    [loginVC hideLoader];
+    [loginVC.view removeFromSuperview];
+}
+
+//Show Login view and hide MyELT View
+- (void)showLoginView
+{
+    [mainVC.view removeFromSuperview];
+    [self.window addSubview:loginVC.view];
+}
+
+
 
 // this happens while we are running ( in the background, or from within our own app )
 // only valid if MyELT-Info.plist specifies a protocol to handle

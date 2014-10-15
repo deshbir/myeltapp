@@ -28,6 +28,7 @@
 #import "MainViewController.h"
 #import "LoginViewController.h"
 #import "JavaScriptCore/JavaScriptCore.h"
+#import "AppDelegate.h"
 
 @interface MainViewController ()
 {
@@ -166,10 +167,19 @@
     JSContext *jsContext =  [theWebView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     
     //This function is called from javascript when user logs out from MyELT
-    jsContext[@"NATIVEloadLoginScreen"] = ^() {
-       LoginViewController *loginViewController = [[LoginViewController alloc] init];
-       [self presentViewController:loginViewController animated:NO completion:nil];
+    jsContext[@"NativeShowLoginView"] = ^() {
+       AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+       [appDelegate showLoginView];
+       
     };
+    
+    //This function is called from javascript when user logs out from MyELT
+    jsContext[@"NativeShowMyELTView"] = ^() {
+        AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate showMyELTView];
+    };
+    
+    
 
     return [super webViewDidFinishLoad:theWebView];
 }

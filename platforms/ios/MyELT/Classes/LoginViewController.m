@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "MainViewController.h"
 #import "MBProgressHUD.h"
+#import "AppDelegate.h"
 
 @interface LoginViewController ()
 
@@ -27,7 +28,7 @@ NSString const * SERVER_URL = @"http://myelt3.comprotechnologies.com";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        NSURLSessionConfiguration *config =
+         NSURLSessionConfiguration *config =
         [NSURLSessionConfiguration defaultSessionConfiguration];
         
         //Initialize session with default configuration
@@ -119,9 +120,8 @@ NSString const * SERVER_URL = @"http://myelt3.comprotechnologies.com";
                          NSString *responseStatus  = responseJSON[@"status"];
                          
                          if ([responseStatus isEqual:@"success"]) {
-                             MainViewController *mainVC = [[MainViewController alloc] initWithUserName:self.userName.text password:self.password.text];
-                             [self presentViewController:mainVC animated:NO completion:nil];
-                             [self hideLoader];
+                             AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];                             
+                             [appDelegate initMyELTViewWithUserName:self.userName.text password:self.password.text];
                          } else {
                              [self showAlert:@"Incorrect Username or Password." title:@"Error"];
                          }
