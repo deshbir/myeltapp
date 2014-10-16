@@ -9,6 +9,7 @@
 	var counter = 0;
 	var timeDur = 0;
 	var recordDur = 0;
+    var showMyELTScreen =  true;
 	
 	/******************************************* Helper Functions Starts *********************************************/
 	var isIOSDevice = function() {
@@ -272,11 +273,14 @@
 		function(event) {            
 			 window.frames[0].postMessage({'location' : 'device'},url);
 		     ActivityIndicator.hide();
-             if(isIOSDevice()) {                
-                 NativeShowMyELTView();
-             } else {
-                 window.JSInterface.showMyELT();
-             }		     
+             if (showMyELTScreen) {
+                 showMyELTScreen = false;
+                 if(isIOSDevice()) {                
+                     NativeShowMyELTView();
+                 } else {
+                     window.JSInterface.showMyELT();
+                }	
+             }              	     
 		}, false);	
 						
 		//Listens for events via postMessage
