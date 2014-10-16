@@ -26,6 +26,9 @@
 //
 
 #import "MainViewController.h"
+#import "LoginViewController.h"
+#import "JavaScriptCore/JavaScriptCore.h"
+#import "AppDelegate.h"
 
 @interface MainViewController ()
 {
@@ -150,9 +153,33 @@
     // Black base color for background matches the native apps
     theWebView.backgroundColor = [UIColor blackColor];
     
-    NSString *javaScript = [NSString stringWithFormat:@"startMyELT('%@', '%@')", [self Username], [self Password], nil];
+    /*********************************************************************************************
+     * When web view finishes loading, call startMyELT function of javascript to load MyELT iframe.
+     *********************************************************************************************/
     
+    NSString *myeltURL = [NSString stringWithFormat:@"%@/ilrn/global/extlogin.do?u=%@&p=%@&isNative=true", SERVER_URL, [self Username], [self Password], nil];
+    NSString *javaScript = [NSString stringWithFormat:@"startMyELT('%@')", myeltURL, nil];
     [theWebView stringByEvaluatingJavaScriptFromString:javaScript];
+    
+    /***************************************************
+     * Add jsContext to call native code/functions from Javascript
+     ***************************************************/
+    JSContext *jsContext =  [theWebView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    
+    //This function is called from javascript when user logs out from MyELT
+    jsContext[@"NativeShowLoginView"] = ^() {
+       AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+       [appDelegate showLoginView];
+       
+    };
+    
+    //This function is called from javascript when user logs out from MyELT
+    jsContext[@"NativeShowMyELTView"] = ^() {
+        AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate showMyELTView];
+    };
+    
+    
 
     return [super webViewDidFinishLoad:theWebView];
 }

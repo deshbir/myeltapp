@@ -8,21 +8,33 @@
 
 #import "LoginViewController.h"
 #import "MainViewController.h"
+#import "MBProgressHUD.h"
+#import "AppDelegate.h"
 
 @interface LoginViewController ()
 
 @property (nonatomic, weak) IBOutlet UITextField *userName;
 @property (nonatomic, weak) IBOutlet UITextField *password;
+@property (nonatomic) NSURLSession *session;
+@property (nonatomic, assign) MBProgressHUD* activityIndicator;
 
 @end
 
 @implementation LoginViewController
 
+NSString const * SERVER_URL = @"http://myelt3.comprotechnologies.com";
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+         NSURLSessionConfiguration *config =
+        [NSURLSessionConfiguration defaultSessionConfiguration];
+        
+        //Initialize session with default configuration
+        _session = [NSURLSession sessionWithConfiguration:config
+                                                 delegate:nil
+                                            delegateQueue:nil];
     }
     return self;
 }
@@ -62,11 +74,80 @@
     [self switchToMainPage];
 }
 
+- (void)showLoader
+{
+    self.activityIndicator = nil;
+    self.activityIndicator = [MBProgressHUD showHUDAddedTo:self.view.superview animated:YES];
+    self.activityIndicator.mode = MBProgressHUDModeIndeterminate;
+    self.activityIndicator.labelText = @"Loading";
+}
+
+- (void)hideLoader
+{
+   [self.activityIndicator hide:YES];
+}
+
 - (void)switchToMainPage
 {
-    MainViewController *mainVC = [[MainViewController alloc] initWithUserName:self.userName.text password:self.password.text];
-    [self presentViewController:mainVC animated:NO completion:nil];
+    [self showLoader];
+    
+    NSString *requestURLString = [NSString stringWithFormat:@"%@/ilrn/api/logincheck?u=%@&p=%@", SERVER_URL, self.userName.text, self.password.text];
+    
+    NSURL *requestURL = [NSURL URLWithString:requestURLString];
+    
+    NSURLRequest *loginRequest = [NSURLRequest requestWithURL:requestURL];
+    
+    NSURLSessionDataTask *dataTask =
+    [self.session dataTaskWithRequest:loginRequest
+                    completionHandler:
+     ^(NSData *data, NSURLResponse *response, NSError *error) {
+         //Run this snippet on main UI thread
+         dispatch_async(dispatch_get_main_queue(), ^{
+             if (error) {
+                [self showAlert:@"Something went wrong. Please try again later." title:@"Error"];
+             }
+             else {
+                 if ([data length] > 0) {
+                     
+                     NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+                     
+                     if (statusCode != 200) {
+                         [self showAlert:@"Something went wrong. Please try again later." title:@"Error"];
+                     } else {
+                         NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data                                                                                options:0 error:nil];
+                         
+                         NSDictionary *responseJSON  = jsonObject[@"response"];
+                         NSString *responseStatus  = responseJSON[@"status"];
+                         
+                         if ([responseStatus isEqual:@"success"]) {
+                             AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];                             
+                             [appDelegate initMyELTViewWithUserName:self.userName.text password:self.password.text];
+                         } else {
+                             [self showAlert:@"Incorrect Username or Password." title:@"Error"];
+                         }
+                     }
+                     
+                 } else {
+                     [self showAlert:@"Something went wrong. Please try again later." title:@"Error"];
+                 }
+             }
+         });
+     }];
+    [dataTask resume];
 }
+
+- (void)showAlert:(NSString *)messageStr title:(NSString *)titleStr
+{
+    [self hideLoader];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:titleStr
+                                                    message:messageStr
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
 
 
 

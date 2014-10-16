@@ -10,4 +10,9 @@
 
 @interface LoginViewController : UIViewController
 
+//MyELT Server URL for HTTP/REST calls
+extern NSString const * SERVER_URL;
+
+- (void)hideLoader;
+
 @end
