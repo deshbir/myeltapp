@@ -29,7 +29,7 @@
 
 #import <Cordova/CDVViewController.h>
 #import "LoginViewController.h"
-#import "MainViewController.h"
+#import "MyELTViewController.h"
 
 @interface AppDelegate : NSObject <UIApplicationDelegate>{}
 
@@ -41,7 +41,7 @@
 @property (nonatomic, strong) IBOutlet UIWindow* window;
 @property (nonatomic, strong) IBOutlet CDVViewController* viewController;
 @property (nonatomic, strong) IBOutlet LoginViewController* loginVC;
-@property (nonatomic, strong) IBOutlet MainViewController* mainVC;
+@property (nonatomic, strong) IBOutlet MyELTViewController* myeltVC;
 
 - (void)showMyELTView;
 - (void)showLoginView;

@@ -6,7 +6,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyELT/Classes/LoginViewController.m"
@@ -74,13 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyELT/Classes/MainViewController.m"
-            timestampString = "435065450.065501"
+            timestampString = "436789011.405928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
-            landmarkName = "-webViewDidFinishLoad:"
-            landmarkType = "5">
+            startingLineNumber = "171"
+            endingLineNumber = "171">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -90,13 +88,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyELT/Classes/MainViewController.m"
-            timestampString = "435065450.065501"
+            timestampString = "436789011.405928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
-            landmarkName = "-webViewDidFinishLoad:"
-            landmarkType = "5">
+            startingLineNumber = "165"
+            endingLineNumber = "165">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -106,13 +102,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyELT/Classes/MainViewController.m"
-            timestampString = "435065450.065501"
+            timestampString = "436789011.405928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "-webViewDidFinishLoad:"
-            landmarkType = "5">
+            startingLineNumber = "164"
+            endingLineNumber = "164">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -122,13 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyELT/Classes/MainViewController.m"
-            timestampString = "435065450.065501"
+            timestampString = "436789011.405928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "-webViewDidFinishLoad:"
-            landmarkType = "5">
+            startingLineNumber = "157"
+            endingLineNumber = "157">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -138,13 +130,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyELT/Classes/MainViewController.m"
-            timestampString = "435065450.065501"
+            timestampString = "436789011.405928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "-webViewDidFinishLoad:"
-            landmarkType = "5">
+            startingLineNumber = "159"
+            endingLineNumber = "159">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -154,13 +144,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyELT/Classes/MainViewController.m"
-            timestampString = "435065450.065501"
+            timestampString = "436789011.405928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
-            landmarkName = "-webViewDidFinishLoad:"
-            landmarkType = "5">
+            startingLineNumber = "158"
+            endingLineNumber = "158">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -426,13 +414,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyELT/Classes/MainViewController.m"
-            timestampString = "435069855.05722"
+            timestampString = "436789011.405928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
-            landmarkName = "-webViewDidFinishLoad:"
-            landmarkType = "5">
+            startingLineNumber = "183"
+            endingLineNumber = "183">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -458,13 +444,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyELT/Classes/MainViewController.m"
-            timestampString = "435065450.065501"
+            timestampString = "436789011.405928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "-initWithNibName:bundle:"
-            landmarkType = "5">
+            startingLineNumber = "55"
+            endingLineNumber = "55">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -490,11 +474,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyELT/Classes/AppDelegate.m"
-            timestampString = "435068134.801168"
+            timestampString = "436789947.061522"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "-application:didFinishLaunchingWithOptions:"
             landmarkType = "5">
          </BreakpointContent>
@@ -506,11 +490,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyELT/Classes/AppDelegate.m"
-            timestampString = "435068134.801168"
+            timestampString = "436789947.061522"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "@implementation AppDelegate"
             landmarkType = "3">
          </BreakpointContent>
@@ -538,13 +522,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyELT/Classes/MainViewController.m"
-            timestampString = "435069855.05722"
+            timestampString = "436789011.405928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
-            landmarkName = "-webViewDidFinishLoad:"
-            landmarkType = "5">
+            startingLineNumber = "183"
+            endingLineNumber = "183">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -586,11 +568,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyELT/Classes/AppDelegate.m"
-            timestampString = "435068640.192904"
+            timestampString = "436789947.061522"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "-initMyELTViewWithUserName:password:"
             landmarkType = "5">
          </BreakpointContent>
@@ -602,13 +584,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyELT/Classes/MainViewController.m"
-            timestampString = "435065524.459435"
+            timestampString = "436789011.405928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "-initWithUserName:password:"
-            landmarkType = "5">
+            startingLineNumber = "67"
+            endingLineNumber = "67">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -650,13 +630,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyELT/Classes/MainViewController.m"
-            timestampString = "435069855.05722"
+            timestampString = "436789011.405928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "-webViewDidFinishLoad:"
-            landmarkType = "5">
+            startingLineNumber = "182"
+            endingLineNumber = "182">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -666,19 +644,17 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyELT/Classes/MainViewController.m"
-            timestampString = "435069968.990654"
+            timestampString = "436789011.405928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
-            landmarkName = "-webViewDidFinishLoad:"
-            landmarkType = "5">
+            startingLineNumber = "175"
+            endingLineNumber = "175">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyELT/Classes/LoginViewController.m"
@@ -698,13 +674,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyELT/Classes/MainViewController.m"
-            timestampString = "435134861.099361"
+            timestampString = "436789011.405928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
-            landmarkName = "-webViewDidFinishLoad:"
-            landmarkType = "5">
+            startingLineNumber = "176"
+            endingLineNumber = "176">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -720,6 +694,22 @@
             startingLineNumber = "31"
             endingLineNumber = "31"
             landmarkName = "-initWithNibName:bundle:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyELT/Classes/AppDelegate.m"
+            timestampString = "436789947.061522"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "-application:didFinishLaunchingWithOptions:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

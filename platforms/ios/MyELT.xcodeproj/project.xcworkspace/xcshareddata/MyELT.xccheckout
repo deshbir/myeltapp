@@ -10,29 +10,29 @@
 	<string>MyELT</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>B9D58E0B-BEA7-40F0-BACE-1AB01C7CE17F</key>
-		<string>http://github.com/deshbir/myeltapp</string>
+		<key>8279253E923CEAD108F09DB27D506CBF0E598FD2</key>
+		<string>https://github.com/deshbir/myeltapp</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>platforms/ios/MyELT.xcodeproj/project.xcworkspace</string>
+	<string>platforms/ios/MyELT.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>B9D58E0B-BEA7-40F0-BACE-1AB01C7CE17F</key>
+		<key>8279253E923CEAD108F09DB27D506CBF0E598FD2</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>http://github.com/deshbir/myeltapp</string>
+	<string>https://github.com/deshbir/myeltapp</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>B9D58E0B-BEA7-40F0-BACE-1AB01C7CE17F</string>
+	<string>8279253E923CEAD108F09DB27D506CBF0E598FD2</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>B9D58E0B-BEA7-40F0-BACE-1AB01C7CE17F</string>
+			<string>8279253E923CEAD108F09DB27D506CBF0E598FD2</string>
 			<key>IDESourceControlWCCName</key>
 			<string>myeltapp</string>
 		</dict>

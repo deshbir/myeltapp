@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-#import "MainViewController.h"
+#import "MyELTViewController.h"
 #import "MBProgressHUD.h"
 #import "AppDelegate.h"
 
@@ -145,9 +145,14 @@ NSString const * SERVER_URL = @"http://myelt3.comprotechnologies.com";
                                                    delegate:self
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
+    
     [alert show];
 }
 
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return YES;
+}
 
 
 

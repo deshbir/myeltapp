@@ -28,14 +28,14 @@
 //
 
 #import "AppDelegate.h"
-#import "MainViewController.h"
+#import "MyELTViewController.h"
 #import "LoginViewController.h"
 
 #import <Cordova/CDVPlugin.h>
 
 @implementation AppDelegate
 
-@synthesize window, viewController, loginVC, mainVC;
+@synthesize window, viewController, loginVC, myeltVC;
 
 - (id)init
 {
@@ -75,12 +75,6 @@
 #endif
     self.window.autoresizesSubviews = YES;
 
-//#if __has_feature(objc_arc)
-//        self.viewController = [[MainViewController alloc] init];
-//#else
-//        self.viewController = [[[MainViewController alloc] init] autorelease];
-//#endif
-
     // Set your app's start page by setting the <content src='foo.html' /> tag in config.xml.
     // If necessary, uncomment the line below to override it.
     // self.viewController.startPage = @"index.html";
@@ -99,16 +93,16 @@
 //Initializes MyELT view in background
 - (void)initMyELTViewWithUserName:(NSString*)userName password:(NSString*)password
 {
-    mainVC = [[MainViewController alloc] initWithUserName:userName password:password];   
-    [self.window addSubview:mainVC.view];
-    [self.window sendSubviewToBack:mainVC.view];
+    myeltVC = [[MyELTViewController alloc] initWithUserName:userName password:password];
+    [self.window addSubview:myeltVC.view];
+    [self.window sendSubviewToBack:myeltVC.view];
 }
 
 //Show MyELT view and hide Login View
 - (void)showMyELTView
 {
     CGRect screenRect = [[UIScreen mainScreen] bounds];
-    mainVC.view.frame = screenRect;
+    myeltVC.view.frame = screenRect;
     [loginVC hideLoader];
     [loginVC.view removeFromSuperview];
 }
@@ -116,7 +110,7 @@
 //Show Login view and hide MyELT View
 - (void)showLoginView
 {
-    [mainVC.view removeFromSuperview];
+    [myeltVC.view removeFromSuperview];
     [self.window addSubview:loginVC.view];
 }
 

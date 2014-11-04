@@ -1,36 +1,17 @@
-/*
- Licensed to the Apache Software Foundation (ASF) under one
- or more contributor license agreements.  See the NOTICE file
- distributed with this work for additional information
- regarding copyright ownership.  The ASF licenses this file
- to you under the Apache License, Version 2.0 (the
- "License"); you may not use this file except in compliance
- with the License.  You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing,
- software distributed under the License is distributed on an
- "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- KIND, either express or implied.  See the License for the
- specific language governing permissions and limitations
- under the License.
- */
-
 //
-//  MainViewController.h
+//  MyELTViewController.m
 //  MyELT
 //
-//  Created by ___FULLUSERNAME___ on ___DATE___.
-//  Copyright ___ORGANIZATIONNAME___ ___YEAR___. All rights reserved.
+//  Created by Preeti Gupta on 04/11/14.
+//
 //
 
-#import "MainViewController.h"
+#import "MyELTViewController.h"
 #import "LoginViewController.h"
 #import "JavaScriptCore/JavaScriptCore.h"
 #import "AppDelegate.h"
 
-@interface MainViewController ()
+@interface MyELTViewController ()
 {
     NSString *_username;
     NSString *_password;
@@ -44,7 +25,7 @@
 
 @end
 
-@implementation MainViewController
+@implementation MyELTViewController
 
 - (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil
 {
@@ -104,7 +85,7 @@
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-
+    
     // Release any cached data, images, etc that aren't in use.
 }
 
@@ -114,7 +95,7 @@
 {
     // View defaults to full size.  If you want to customize the view's size, or its subviews (e.g. webView),
     // you can do so here.
-
+    
     [super viewWillAppear:animated];
 }
 
@@ -140,11 +121,11 @@
 /* Comment out the block below to over-ride */
 
 /*
-- (UIWebView*) newCordovaViewWithFrame:(CGRect)bounds
-{
-    return[super newCordovaViewWithFrame:bounds];
-}
-*/
+ - (UIWebView*) newCordovaViewWithFrame:(CGRect)bounds
+ {
+ return[super newCordovaViewWithFrame:bounds];
+ }
+ */
 
 #pragma mark UIWebDelegate implementation
 
@@ -168,9 +149,9 @@
     
     //This function is called from javascript when user logs out from MyELT
     jsContext[@"NativeShowLoginView"] = ^() {
-       AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-       [appDelegate showLoginView];
-       
+        AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate showLoginView];
+        
     };
     
     //This function is called from javascript when user logs out from MyELT
@@ -180,36 +161,36 @@
     };
     
     
-
+    
     return [super webViewDidFinishLoad:theWebView];
 }
 
 /* Comment out the block below to over-ride */
 
 /*
-
-- (void) webViewDidStartLoad:(UIWebView*)theWebView
-{
-    return [super webViewDidStartLoad:theWebView];
-}
-
-- (void) webView:(UIWebView*)theWebView didFailLoadWithError:(NSError*)error
-{
-    return [super webView:theWebView didFailLoadWithError:error];
-}
-
-- (BOOL) webView:(UIWebView*)theWebView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    return [super webView:theWebView shouldStartLoadWithRequest:request navigationType:navigationType];
-}
-*/
+ 
+ - (void) webViewDidStartLoad:(UIWebView*)theWebView
+ {
+ return [super webViewDidStartLoad:theWebView];
+ }
+ 
+ - (void) webView:(UIWebView*)theWebView didFailLoadWithError:(NSError*)error
+ {
+ return [super webView:theWebView didFailLoadWithError:error];
+ }
+ 
+ - (BOOL) webView:(UIWebView*)theWebView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
+ {
+ return [super webView:theWebView shouldStartLoadWithRequest:request navigationType:navigationType];
+ }
+ */
 
 @end
 
 @implementation MainCommandDelegate
 
 /* To override the methods, uncomment the line in the init function(s)
-   in MainViewController.m
+ in MainViewController.m
  */
 
 #pragma mark CDVCommandDelegate implementation
@@ -220,10 +201,10 @@
 }
 
 /*
-   NOTE: this will only inspect execute calls coming explicitly from native plugins,
-   not the commandQueue (from JavaScript). To see execute calls from JavaScript, see
-   MainCommandQueue below
-*/
+ NOTE: this will only inspect execute calls coming explicitly from native plugins,
+ not the commandQueue (from JavaScript). To see execute calls from JavaScript, see
+ MainCommandQueue below
+ */
 - (BOOL)execute:(CDVInvokedUrlCommand*)command
 {
     return [super execute:command];
@@ -239,7 +220,7 @@
 @implementation MainCommandQueue
 
 /* To override, uncomment the line in the init function(s)
-   in MainViewController.m
+ in MainViewController.m
  */
 - (BOOL)execute:(CDVInvokedUrlCommand*)command
 {
