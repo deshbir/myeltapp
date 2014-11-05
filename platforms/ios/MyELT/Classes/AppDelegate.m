@@ -84,7 +84,7 @@
     
     loginVC = [[LoginViewController alloc] init];
     
-    [self.window addSubview:loginVC.view];
+    [self.window setRootViewController:loginVC];
     [self.window makeKeyAndVisible];
     
     return YES;
@@ -105,6 +105,8 @@
     myeltVC.view.frame = screenRect;
     [loginVC hideLoader];
     [loginVC.view removeFromSuperview];
+    [self.window setRootViewController:myeltVC];
+    
 }
 
 //Show Login view and hide MyELT View
@@ -112,6 +114,7 @@
 {
     [myeltVC.view removeFromSuperview];
     [self.window addSubview:loginVC.view];
+    [self.window setRootViewController:loginVC];
 }
 
 
