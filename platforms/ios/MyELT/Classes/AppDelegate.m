@@ -35,7 +35,7 @@
 
 @implementation AppDelegate
 
-@synthesize window, viewController, loginVC, myeltVC;
+@synthesize window, viewController, loginVC, myeltVC, myeltWrapperVC;
 
 - (id)init
 {
@@ -93,19 +93,25 @@
 //Initializes MyELT view in background
 - (void)initMyELTViewWithUserName:(NSString*)userName password:(NSString*)password
 {
+    myeltWrapperVC = [[MyELTWrapperViewController alloc] init];
+    [self.window addSubview:myeltWrapperVC.view];
+    [self.window sendSubviewToBack:myeltWrapperVC.view];
+
     myeltVC = [[MyELTViewController alloc] initWithUserName:userName password:password];
-    [self.window addSubview:myeltVC.view];
-    [self.window sendSubviewToBack:myeltVC.view];
+    myeltVC.view.frame = myeltWrapperVC.body.bounds;
+    [myeltWrapperVC.body addSubview:myeltVC.view];
 }
 
 //Show MyELT view and hide Login View
 - (void)showMyELTView
 {
     CGRect screenRect = [[UIScreen mainScreen] bounds];
-    myeltVC.view.frame = screenRect;
+    myeltWrapperVC.view.frame = screenRect;
     [loginVC hideLoader];
     [loginVC.view removeFromSuperview];
-    [self.window setRootViewController:myeltVC];
+    //[self.window bringSubviewToFront:myeltWrapperVC.view];
+    //[myeltWrapperVC.body bringSubviewToFront:myeltVC.view];
+    [self.window setRootViewController:myeltWrapperVC];
     
 }
 
