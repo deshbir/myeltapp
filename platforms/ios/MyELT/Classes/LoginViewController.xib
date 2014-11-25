@@ -58,44 +58,52 @@
                         <action selector="login:" destination="-1" eventType="touchUpInside" id="d7t-7s-5af"/>
                     </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up for MyELT        Need Help?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOj-qR-Brr">
-                    <rect key="frame" x="470" y="983" width="273" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Your Password?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2K4-Lf-g6Z">
                     <rect key="frame" x="294" y="464" width="180" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ngl_logo.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="GDw-xh-Tn2">
-                    <rect key="frame" x="20" y="934" width="150" height="70"/>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ngllogo.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="GDw-xh-Tn2">
+                    <rect key="frame" x="15" y="944" width="150" height="70"/>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Need Help?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhx-BW-wdE">
+                    <rect key="frame" x="662" y="983" width="91" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up for MyELT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOj-qR-Brr">
+                    <rect key="frame" x="458" y="983" width="144" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="GDw-xh-Tn2" secondAttribute="bottom" constant="10" id="2Ye-dc-emW"/>
+                <constraint firstItem="uhx-BW-wdE" firstAttribute="leading" secondItem="DOj-qR-Brr" secondAttribute="trailing" constant="60" id="2Yp-f5-x92"/>
                 <constraint firstItem="jcd-g0-Ioe" firstAttribute="top" secondItem="vDY-Q6-OBD" secondAttribute="bottom" constant="60" id="8ab-6P-0WI"/>
                 <constraint firstAttribute="centerX" secondItem="hAj-FW-UoD" secondAttribute="centerX" id="9jz-rO-V8a"/>
-                <constraint firstItem="GDw-xh-Tn2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="Abz-Dp-y3S"/>
                 <constraint firstItem="hAj-FW-UoD" firstAttribute="top" secondItem="jcd-g0-Ioe" secondAttribute="bottom" constant="10" id="GhF-gP-CFR"/>
-                <constraint firstAttribute="bottom" secondItem="DOj-qR-Brr" secondAttribute="bottom" constant="20" id="Mlb-uo-jl1"/>
-                <constraint firstAttribute="bottom" secondItem="GDw-xh-Tn2" secondAttribute="bottom" constant="20" id="RY6-dE-Uf3"/>
-                <constraint firstAttribute="trailing" secondItem="DOj-qR-Brr" secondAttribute="trailing" constant="25" id="V1L-gI-Dud"/>
+                <constraint firstAttribute="trailing" secondItem="uhx-BW-wdE" secondAttribute="trailing" constant="15" id="chs-hD-88x"/>
                 <constraint firstAttribute="centerX" secondItem="vDY-Q6-OBD" secondAttribute="centerX" id="f7G-Ad-nJg"/>
                 <constraint firstAttribute="centerX" secondItem="jcd-g0-Ioe" secondAttribute="centerX" id="gpD-wf-b5S"/>
+                <constraint firstAttribute="bottom" secondItem="uhx-BW-wdE" secondAttribute="bottom" constant="20" id="hPs-XF-vOO"/>
                 <constraint firstAttribute="centerX" secondItem="2K4-Lf-g6Z" secondAttribute="centerX" id="lGy-J9-vvv"/>
                 <constraint firstItem="5yZ-fo-cM0" firstAttribute="top" secondItem="hAj-FW-UoD" secondAttribute="bottom" constant="25" id="mMB-Ej-xbE"/>
                 <constraint firstAttribute="centerX" secondItem="5yZ-fo-cM0" secondAttribute="centerX" id="nqc-6n-SJL"/>
+                <constraint firstItem="GDw-xh-Tn2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="rOg-h4-UqF"/>
                 <constraint firstItem="2K4-Lf-g6Z" firstAttribute="top" secondItem="5yZ-fo-cM0" secondAttribute="bottom" constant="25" id="ru9-ih-0kw"/>
+                <constraint firstAttribute="bottom" secondItem="DOj-qR-Brr" secondAttribute="bottom" constant="20" id="uEj-6n-ZyE"/>
                 <constraint firstItem="vDY-Q6-OBD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="150" id="yFo-MN-SfL"/>
             </constraints>
         </view>
     </objects>
     <resources>
         <image name="icon-185.png" width="185" height="64"/>
-        <image name="ngl_logo.jpg" width="150" height="70"/>
+        <image name="ngllogo.jpg" width="150" height="70"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

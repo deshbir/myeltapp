@@ -26,13 +26,13 @@
 		308D05391370CCF300D202BF /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 308D05301370CCF300D202BF /* icon@2x.png */; };
 		30A0434814DC770100060A13 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 30A0434314DC770100060A13 /* Localizable.strings */; };
 		30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FC414816E50CA1004E6F35 /* icon-72@2x.png */; };
+		522CC5201A248FEF00560FBD /* ngllogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 522CC51F1A248FEF00560FBD /* ngllogo.jpg */; };
 		52756FBB19A48D8D00D581F7 /* icon-132.png in Resources */ = {isa = PBXBuildFile; fileRef = 52756FBA19A48D8D00D581F7 /* icon-132.png */; };
 		52756FBF19A4927A00D581F7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52756FBD19A4927A00D581F7 /* LoginViewController.m */; };
 		52756FC019A4927A00D581F7 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52756FBE19A4927A00D581F7 /* LoginViewController.xib */; };
 		52756FC219A4C47100D581F7 /* icon-264.png in Resources */ = {isa = PBXBuildFile; fileRef = 52756FC119A4C47100D581F7 /* icon-264.png */; };
 		52767BC419A60B6B007D3B7F /* icon-211.png in Resources */ = {isa = PBXBuildFile; fileRef = 52767BC319A60B6B007D3B7F /* icon-211.png */; };
 		52767BC619A60B77007D3B7F /* icon-185.png in Resources */ = {isa = PBXBuildFile; fileRef = 52767BC519A60B77007D3B7F /* icon-185.png */; };
-		52767BC819A60B80007D3B7F /* ngl_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 52767BC719A60B80007D3B7F /* ngl_logo.jpg */; };
 		529C83C719DBFFCB00F6D590 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 529C83C619DBFFCB00F6D590 /* JavaScriptCore.framework */; };
 		52EF32611A08D902004CA8E9 /* MyELTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EF32601A08D902004CA8E9 /* MyELTViewController.m */; };
 		5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE5B34173C68D80009041E /* CoreLocation.framework */; };
@@ -98,6 +98,7 @@
 		30A0434714DC770100060A13 /* se */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = se; path = Localizable.strings; sourceTree = "<group>"; };
 		30FC414816E50CA1004E6F35 /* icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72@2x.png"; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* MyELT-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MyELT-Prefix.pch"; sourceTree = "<group>"; };
+		522CC51F1A248FEF00560FBD /* ngllogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ngllogo.jpg; sourceTree = "<group>"; };
 		52756FBA19A48D8D00D581F7 /* icon-132.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-132.png"; sourceTree = "<group>"; };
 		52756FBC19A4927A00D581F7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		52756FBD19A4927A00D581F7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -105,7 +106,6 @@
 		52756FC119A4C47100D581F7 /* icon-264.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-264.png"; path = "../../../../../../Downloads/icon-264.png"; sourceTree = "<group>"; };
 		52767BC319A60B6B007D3B7F /* icon-211.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-211.png"; sourceTree = "<group>"; };
 		52767BC519A60B77007D3B7F /* icon-185.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-185.png"; sourceTree = "<group>"; };
-		52767BC719A60B80007D3B7F /* ngl_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ngl_logo.jpg; sourceTree = "<group>"; };
 		529C83C619DBFFCB00F6D590 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		52EF325F1A08D902004CA8E9 /* MyELTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyELTViewController.h; sourceTree = "<group>"; };
 		52EF32601A08D902004CA8E9 /* MyELTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyELTViewController.m; sourceTree = "<group>"; };
@@ -289,8 +289,8 @@
 				7E7966D51810823500FA85AD /* icon-40@2x.png */,
 				7E7966D61810823500FA85AD /* icon-50.png */,
 				52767BC519A60B77007D3B7F /* icon-185.png */,
+				522CC51F1A248FEF00560FBD /* ngllogo.jpg */,
 				52756FC119A4C47100D581F7 /* icon-264.png */,
-				52767BC719A60B80007D3B7F /* ngl_logo.jpg */,
 				7E7966D71810823500FA85AD /* icon-50@2x.png */,
 				7E7966D81810823500FA85AD /* icon-60.png */,
 				52767BC319A60B6B007D3B7F /* icon-211.png */,
@@ -437,7 +437,7 @@
 				7E7966E01810823500FA85AD /* icon-50.png in Resources */,
 				7E7966E31810823500FA85AD /* icon-60@2x.png in Resources */,
 				30A0434814DC770100060A13 /* Localizable.strings in Resources */,
-				52767BC819A60B80007D3B7F /* ngl_logo.jpg in Resources */,
+				522CC5201A248FEF00560FBD /* ngllogo.jpg in Resources */,
 				52756FC219A4C47100D581F7 /* icon-264.png in Resources */,
 				7E7966E61810823500FA85AD /* icon-small.png in Resources */,
 				3088BBBD154F3926009F9C59 /* Default-Landscape@2x~ipad.png in Resources */,
