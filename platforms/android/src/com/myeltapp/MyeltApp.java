@@ -28,10 +28,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
@@ -94,13 +96,15 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
     
     public void showMyELTWebView() {    
     	
-    	activityIndicator.dismiss();
-    	
+    	LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    	final View mainView = inflater.inflate(R.layout.myelt_content_layout, null);
     	final LinearLayout rootLayout = this.root;
-    	
+    	RelativeLayout contentLayout = (RelativeLayout)mainView.findViewById(R.id.content_layout);
+    	contentLayout.addView(rootLayout);
+    	activityIndicator.dismiss();
     	this.runOnUiThread(new Runnable() {
 			public void run() {
-				setContentView(rootLayout);
+				setContentView(mainView);
 			}
 		});
     }

@@ -1,0 +1,25 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout 
+	  android:id="@+id/header"
+	  android:layout_width="match_parent"
+	  android:layout_height="wrap_content"
+	  android:layout_alignParentTop="true"
+	  android:background="@color/headerBackground">
+	 
+	  <ImageView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:contentDescription="@string/app_name"
+	    android:layout_margin="8dp"
+	    android:src="@drawable/myelticon"
+	    android:layout_alignParentRight="true"/>
+	</RelativeLayout>
+    <RelativeLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:background="@color/bodyBackground"
+	    android:layout_below="@id/header"
+	    android:id="@+id/content_layout">
+	    
+	</RelativeLayout>
+</RelativeLayout>
