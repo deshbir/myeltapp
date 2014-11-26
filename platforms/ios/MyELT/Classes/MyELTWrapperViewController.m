@@ -7,6 +7,7 @@
 //
 
 #import "MyELTWrapperViewController.h"
+#import "LoginViewController.h"
 
 @interface MyELTWrapperViewController ()
 
@@ -22,6 +23,16 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+//function to return to HomePage
+- (IBAction)home:(id)sender
+{
+    UIWebView *webview = [[[[self.body subviews] objectAtIndex:0] subviews] objectAtIndex:0];
+    NSString *homepageURL = [NSString stringWithFormat:@"%@/ilrn/course/course.do?isNative=true", SERVER_URL, nil];
+    NSString *javaScript = [NSString stringWithFormat:@"startMyELT('%@')", homepageURL, nil];
+    [webview stringByEvaluatingJavaScriptFromString:javaScript];
+    
 }
 
 /*

@@ -33,6 +33,10 @@
 		5273ED161A25B4E900AE8460 /* ngllogo_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 5273ED151A25B4E900AE8460 /* ngllogo_iphone.png */; };
 		5273ED1A1A25B82600AE8460 /* MyELTWrapperViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5273ED191A25B82600AE8460 /* MyELTWrapperViewController~iphone.xib */; };
 		5273ED1E1A25BABB00AE8460 /* icon-99.png in Resources */ = {isa = PBXBuildFile; fileRef = 5273ED1D1A25BABB00AE8460 /* icon-99.png */; };
+		5273ED211A25EABC00AE8460 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 5273ED201A25EABC00AE8460 /* home.png */; };
+		5273ED241A25FC1900AE8460 /* home_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 5273ED231A25FC1900AE8460 /* home_iphone.png */; };
+		5273ED271A25FC2900AE8460 /* menu_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 5273ED251A25FC2900AE8460 /* menu_iphone.png */; };
+		5273ED281A25FC2900AE8460 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 5273ED261A25FC2900AE8460 /* menu.png */; };
 		52756FBB19A48D8D00D581F7 /* icon-132.png in Resources */ = {isa = PBXBuildFile; fileRef = 52756FBA19A48D8D00D581F7 /* icon-132.png */; };
 		52756FBF19A4927A00D581F7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52756FBD19A4927A00D581F7 /* LoginViewController.m */; };
 		52756FC019A4927A00D581F7 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52756FBE19A4927A00D581F7 /* LoginViewController.xib */; };
@@ -112,6 +116,10 @@
 		5273ED151A25B4E900AE8460 /* ngllogo_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ngllogo_iphone.png; sourceTree = "<group>"; };
 		5273ED191A25B82600AE8460 /* MyELTWrapperViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyELTWrapperViewController~iphone.xib"; sourceTree = "<group>"; };
 		5273ED1D1A25BABB00AE8460 /* icon-99.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-99.png"; sourceTree = "<group>"; };
+		5273ED201A25EABC00AE8460 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		5273ED231A25FC1900AE8460 /* home_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_iphone.png; sourceTree = "<group>"; };
+		5273ED251A25FC2900AE8460 /* menu_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_iphone.png; sourceTree = "<group>"; };
+		5273ED261A25FC2900AE8460 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		52756FBA19A48D8D00D581F7 /* icon-132.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-132.png"; sourceTree = "<group>"; };
 		52756FBC19A4927A00D581F7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		52756FBD19A4927A00D581F7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -305,8 +313,12 @@
 			children = (
 				7E7966D41810823500FA85AD /* icon-40.png */,
 				7E7966D51810823500FA85AD /* icon-40@2x.png */,
+				5273ED231A25FC1900AE8460 /* home_iphone.png */,
+				5273ED251A25FC2900AE8460 /* menu_iphone.png */,
+				5273ED261A25FC2900AE8460 /* menu.png */,
 				5273ED1D1A25BABB00AE8460 /* icon-99.png */,
 				7E7966D61810823500FA85AD /* icon-50.png */,
+				5273ED201A25EABC00AE8460 /* home.png */,
 				52767BC519A60B77007D3B7F /* icon-185.png */,
 				522CC51F1A248FEF00560FBD /* ngllogo.jpg */,
 				5273ED151A25B4E900AE8460 /* ngllogo_iphone.png */,
@@ -458,10 +470,13 @@
 				7E7966E01810823500FA85AD /* icon-50.png in Resources */,
 				7E7966E31810823500FA85AD /* icon-60@2x.png in Resources */,
 				30A0434814DC770100060A13 /* Localizable.strings in Resources */,
+				5273ED281A25FC2900AE8460 /* menu.png in Resources */,
 				522CC5201A248FEF00560FBD /* ngllogo.jpg in Resources */,
+				5273ED241A25FC1900AE8460 /* home_iphone.png in Resources */,
 				52756FC219A4C47100D581F7 /* icon-264.png in Resources */,
 				7E7966E61810823500FA85AD /* icon-small.png in Resources */,
 				522CC52A1A24A64F00560FBD /* MyELTWrapperViewController.xib in Resources */,
+				5273ED211A25EABC00AE8460 /* home.png in Resources */,
 				3088BBBD154F3926009F9C59 /* Default-Landscape@2x~ipad.png in Resources */,
 				3088BBBE154F3926009F9C59 /* Default-Landscape~ipad.png in Resources */,
 				3088BBBF154F3926009F9C59 /* Default-Portrait@2x~ipad.png in Resources */,
@@ -478,6 +493,7 @@
 				52756FC019A4927A00D581F7 /* LoginViewController.xib in Resources */,
 				7E7966E11810823500FA85AD /* icon-50@2x.png in Resources */,
 				5273ED1A1A25B82600AE8460 /* MyELTWrapperViewController~iphone.xib in Resources */,
+				5273ED271A25FC2900AE8460 /* menu_iphone.png in Resources */,
 				7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */,
 				30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */,
 			);
