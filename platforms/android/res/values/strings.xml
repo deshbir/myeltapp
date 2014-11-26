@@ -5,6 +5,6 @@
     <string name="password">Password</string>
     <string name="button_login">Log In</string>
     <string name="forgot_password">Forgot Your Password?</string>
-    <string name="signup">Sign Up for MyELT</string>
+    <string name="signup">Sign Up</string>
     <string name="needhelp">Need Help?</string>
 </resources>

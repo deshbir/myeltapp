@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+	<dimen name="myelt_logo_margin_top">20dp</dimen>
+   	<dimen name="login_input_margin_top">20dp</dimen>
+   	<dimen name="footer_text_width">140dp</dimen>
+</resources>
