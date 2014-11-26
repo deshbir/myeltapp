@@ -29,6 +29,10 @@
 		522CC5201A248FEF00560FBD /* ngllogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 522CC51F1A248FEF00560FBD /* ngllogo.jpg */; };
 		522CC5291A24A64F00560FBD /* MyELTWrapperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522CC5271A24A64F00560FBD /* MyELTWrapperViewController.m */; };
 		522CC52A1A24A64F00560FBD /* MyELTWrapperViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 522CC5281A24A64F00560FBD /* MyELTWrapperViewController.xib */; };
+		5273ED141A25B09A00AE8460 /* LoginViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5273ED131A25B09A00AE8460 /* LoginViewController~iphone.xib */; };
+		5273ED161A25B4E900AE8460 /* ngllogo_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 5273ED151A25B4E900AE8460 /* ngllogo_iphone.png */; };
+		5273ED1A1A25B82600AE8460 /* MyELTWrapperViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5273ED191A25B82600AE8460 /* MyELTWrapperViewController~iphone.xib */; };
+		5273ED1E1A25BABB00AE8460 /* icon-99.png in Resources */ = {isa = PBXBuildFile; fileRef = 5273ED1D1A25BABB00AE8460 /* icon-99.png */; };
 		52756FBB19A48D8D00D581F7 /* icon-132.png in Resources */ = {isa = PBXBuildFile; fileRef = 52756FBA19A48D8D00D581F7 /* icon-132.png */; };
 		52756FBF19A4927A00D581F7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52756FBD19A4927A00D581F7 /* LoginViewController.m */; };
 		52756FC019A4927A00D581F7 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52756FBE19A4927A00D581F7 /* LoginViewController.xib */; };
@@ -104,6 +108,10 @@
 		522CC5261A24A64F00560FBD /* MyELTWrapperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyELTWrapperViewController.h; sourceTree = "<group>"; };
 		522CC5271A24A64F00560FBD /* MyELTWrapperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyELTWrapperViewController.m; sourceTree = "<group>"; };
 		522CC5281A24A64F00560FBD /* MyELTWrapperViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyELTWrapperViewController.xib; sourceTree = "<group>"; };
+		5273ED131A25B09A00AE8460 /* LoginViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~iphone.xib"; sourceTree = "<group>"; };
+		5273ED151A25B4E900AE8460 /* ngllogo_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ngllogo_iphone.png; sourceTree = "<group>"; };
+		5273ED191A25B82600AE8460 /* MyELTWrapperViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyELTWrapperViewController~iphone.xib"; sourceTree = "<group>"; };
+		5273ED1D1A25BABB00AE8460 /* icon-99.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-99.png"; sourceTree = "<group>"; };
 		52756FBA19A48D8D00D581F7 /* icon-132.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-132.png"; sourceTree = "<group>"; };
 		52756FBC19A4927A00D581F7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		52756FBD19A4927A00D581F7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -171,9 +179,11 @@
 				52756FBC19A4927A00D581F7 /* LoginViewController.h */,
 				52756FBD19A4927A00D581F7 /* LoginViewController.m */,
 				52756FBE19A4927A00D581F7 /* LoginViewController.xib */,
+				5273ED131A25B09A00AE8460 /* LoginViewController~iphone.xib */,
 				522CC5261A24A64F00560FBD /* MyELTWrapperViewController.h */,
 				522CC5271A24A64F00560FBD /* MyELTWrapperViewController.m */,
 				522CC5281A24A64F00560FBD /* MyELTWrapperViewController.xib */,
+				5273ED191A25B82600AE8460 /* MyELTWrapperViewController~iphone.xib */,
 				52EF325F1A08D902004CA8E9 /* MyELTViewController.h */,
 				52EF32601A08D902004CA8E9 /* MyELTViewController.m */,
 			);
@@ -295,9 +305,11 @@
 			children = (
 				7E7966D41810823500FA85AD /* icon-40.png */,
 				7E7966D51810823500FA85AD /* icon-40@2x.png */,
+				5273ED1D1A25BABB00AE8460 /* icon-99.png */,
 				7E7966D61810823500FA85AD /* icon-50.png */,
 				52767BC519A60B77007D3B7F /* icon-185.png */,
 				522CC51F1A248FEF00560FBD /* ngllogo.jpg */,
+				5273ED151A25B4E900AE8460 /* ngllogo_iphone.png */,
 				52756FC119A4C47100D581F7 /* icon-264.png */,
 				7E7966D71810823500FA85AD /* icon-50@2x.png */,
 				7E7966D81810823500FA85AD /* icon-60.png */,
@@ -440,6 +452,7 @@
 				308D05371370CCF300D202BF /* icon-72.png in Resources */,
 				308D05381370CCF300D202BF /* icon.png in Resources */,
 				308D05391370CCF300D202BF /* icon@2x.png in Resources */,
+				5273ED1E1A25BABB00AE8460 /* icon-99.png in Resources */,
 				1F766FE113BBADB100FB74C0 /* Localizable.strings in Resources */,
 				52756FBB19A48D8D00D581F7 /* icon-132.png in Resources */,
 				7E7966E01810823500FA85AD /* icon-50.png in Resources */,
@@ -459,9 +472,12 @@
 				7E7966E21810823500FA85AD /* icon-60.png in Resources */,
 				3088BBC2154F3926009F9C59 /* Default~iphone.png in Resources */,
 				52767BC619A60B77007D3B7F /* icon-185.png in Resources */,
+				5273ED161A25B4E900AE8460 /* ngllogo_iphone.png in Resources */,
+				5273ED141A25B09A00AE8460 /* LoginViewController~iphone.xib in Resources */,
 				D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */,
 				52756FC019A4927A00D581F7 /* LoginViewController.xib in Resources */,
 				7E7966E11810823500FA85AD /* icon-50@2x.png in Resources */,
+				5273ED1A1A25B82600AE8460 /* MyELTWrapperViewController~iphone.xib in Resources */,
 				7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */,
 				30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */,
 			);
@@ -559,6 +575,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -583,6 +600,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = MyELT;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -593,6 +611,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyELT/MyELT-Prefix.pch";
@@ -615,6 +634,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = MyELT;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

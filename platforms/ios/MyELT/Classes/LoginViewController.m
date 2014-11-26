@@ -15,9 +15,11 @@
 
 @property (nonatomic, weak) IBOutlet UITextField *userName;
 @property (nonatomic, weak) IBOutlet UITextField *password;
+@property (nonatomic, weak) IBOutlet UIImageView *appIcon;
 @property (nonatomic) NSURLSession *session;
 @property (nonatomic, assign) MBProgressHUD* activityIndicator;
-
+@property (nonatomic) NSArray *verticalConstraintsLand;
+@property (nonatomic) NSArray *verticalConstraintsPort;
 @end
 
 @implementation LoginViewController
@@ -50,6 +52,14 @@ NSString const * SERVER_URL = @"http://myelt3.comprotechnologies.com";
     UIView *passwordPaddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 8, 8)];
     [self password].leftViewMode = UITextFieldViewModeAlways;
     [self password].leftView = passwordPaddingView;
+    
+    //Initialize constraints for Iphone
+    if ( UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad )
+    {
+        NSDictionary *nameMap = @{@"userName":_userName, @"appIcon":_appIcon};
+        _verticalConstraintsLand = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[appIcon]-10-[userName]" options:0 metrics:nil      views:nameMap];
+        _verticalConstraintsPort = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-75-[appIcon]-40-[userName]" options:0 metrics:nil views:nameMap];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -152,6 +162,29 @@ NSString const * SERVER_URL = @"http://myelt3.comprotechnologies.com";
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return YES;
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    //Update constraints for Iphone
+    if ( UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad )
+    {
+      
+        if (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+            toInterfaceOrientation == UIInterfaceOrientationLandscapeRight)
+        {
+            
+            [self.view removeConstraints:_verticalConstraintsPort];
+            [self.view addConstraints:_verticalConstraintsLand];
+                                            
+        }
+        else if (toInterfaceOrientation == UIInterfaceOrientationPortrait ||
+                 toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+        {
+            [self.view removeConstraints:_verticalConstraintsLand];
+            [self.view addConstraints:_verticalConstraintsPort];
+        }
+    }
 }
 
 

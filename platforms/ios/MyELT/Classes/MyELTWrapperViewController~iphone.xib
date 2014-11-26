@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -17,21 +17,21 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8FI-Fr-8wb">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="75"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-132.png" translatesAutoresizingMaskIntoConstraints="NO" id="isB-AB-rs4">
-                            <rect key="frame" x="448" y="20" width="132" height="46"/>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-99.png" translatesAutoresizingMaskIntoConstraints="NO" id="isB-AB-rs4">
+                            <rect key="frame" x="491" y="20" width="99" height="35"/>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="isB-AB-rs4" firstAttribute="top" secondItem="8FI-Fr-8wb" secondAttribute="top" constant="20" id="JIp-8P-VNu"/>
-                        <constraint firstAttribute="height" constant="75" id="Rx8-2A-H8Y"/>
-                        <constraint firstAttribute="trailing" secondItem="isB-AB-rs4" secondAttribute="trailing" constant="20" id="gVK-6e-orL"/>
+                        <constraint firstAttribute="height" constant="60" id="UsM-Qc-UEs"/>
+                        <constraint firstAttribute="trailing" secondItem="isB-AB-rs4" secondAttribute="trailing" constant="10" id="tEh-9f-3vo"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTI-3b-VOY">
-                    <rect key="frame" x="0.0" y="75" width="600" height="525"/>
+                    <rect key="frame" x="0.0" y="60" width="600" height="540"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
@@ -48,6 +48,6 @@
         </view>
     </objects>
     <resources>
-        <image name="icon-132.png" width="132" height="46"/>
+        <image name="icon-99.png" width="99" height="35"/>
     </resources>
 </document>

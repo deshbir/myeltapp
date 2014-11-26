@@ -108,11 +108,10 @@
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     myeltWrapperVC.view.frame = screenRect;
     [loginVC hideLoader];
-    [loginVC.view removeFromSuperview];
-    //[self.window bringSubviewToFront:myeltWrapperVC.view];
-    //[myeltWrapperVC.body bringSubviewToFront:myeltVC.view];
-    [self.window setRootViewController:myeltWrapperVC];
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [loginVC.view removeFromSuperview];
+        [self.window setRootViewController:myeltWrapperVC];
+    });
 }
 
 //Show Login view and hide MyELT View
