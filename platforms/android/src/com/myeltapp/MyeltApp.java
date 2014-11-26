@@ -94,6 +94,11 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
         return super.onMessage(id, data);       
     }
     
+    //function to return to HomePage
+    public void returnToHome(View view){
+    	String js = String.format("startMyELT('%s');",SERVER_URL + "/ilrn/course/course.do?isNative=true");
+    	this.sendJavascript(js);
+    }
     public void showMyELTWebView() {    
     	
     	LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);

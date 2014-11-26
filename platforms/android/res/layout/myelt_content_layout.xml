@@ -6,6 +6,26 @@
 	  android:layout_alignParentTop="true"
 	  android:background="@color/headerBackground">
 	 
+      <ImageView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:id="@+id/home"
+	    android:contentDescription="@string/menu"
+	    android:layout_margin="8dp"
+	    android:src="@drawable/menu"
+	    android:layout_alignParentLeft="true"/>
+        	
+      <ImageView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_toRightOf="@id/home"
+	    android:contentDescription="@string/home_button"
+	    android:layout_marginTop="8dp"
+	    android:layout_marginBottom="10dp"
+	    android:src="@drawable/home"
+	    android:clickable="true"
+	    android:onClick="returnToHome"/>
+        
 	  <ImageView
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"

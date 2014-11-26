@@ -7,4 +7,6 @@
     <string name="forgot_password">Forgot Your Password?</string>
     <string name="signup">Sign Up</string>
     <string name="needhelp">Need Help?</string>
+    <string name="home_button">Home icon</string>
+    <string name="menu">Menu collapse icon</string>
 </resources>
