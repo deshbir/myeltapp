@@ -25,6 +25,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -50,26 +52,36 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
 	AndroidProgressHUD activityIndicator = null;
 	
 	boolean firstLaunch = true;
+	SharedPreferences pref;
+	Editor editor;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState)
     {
     	super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		
-		password = (EditText) findViewById(R.id.password);
-		
-		/*login into MyELT application when user clicks on done button on keyboard */
-		password.setOnEditorActionListener(new OnEditorActionListener(){
-			@Override
-			public boolean onEditorAction(TextView v, int actionId,
-					KeyEvent event) {
-				if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
-					login(null);
-				}    
-	            return false;
-			}
-		});
+    	pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+    	editor = pref.edit();
+    	if(pref.getBoolean("firstLogin",true)){
+    		setContentView(R.layout.activity_main);
+    		password = (EditText) findViewById(R.id.password);
+    		//login into MyELT application when user clicks on done button on keyboard 
+    		password.setOnEditorActionListener(new OnEditorActionListener(){
+    			@Override
+    			public boolean onEditorAction(TextView v, int actionId,
+    					KeyEvent event) {
+    				if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+    					login(null);
+    				}    
+    	            return false;
+    			}
+    		});
+    	}else{
+    		super.init();
+			JavaScriptInterface jsInterface = new JavaScriptInterface(this);
+			appView.addJavascriptInterface(jsInterface, "JSInterface");
+			super.loadUrl("file:///android_asset/www/index.html");
+			showMyELTWebView();
+    	}
     }
 	
 	/** Called when user clicks the Login button */
@@ -87,6 +99,8 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
     public Object onMessage(String id, Object data) {   
     	
         if("onPageFinished".equals(id)) {
+        	this.usernameStr=pref.getString("username","none");
+        	this.passwordStr=pref.getString("password","none");
         	String js = String.format("startMyELT('%s');",SERVER_URL + "/ilrn/global/extlogin.do?u=" + usernameStr + "&p=" + passwordStr + "&isNative=true");
         	this.sendJavascript(js);
         }
@@ -106,7 +120,12 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
     	final LinearLayout rootLayout = this.root;
     	RelativeLayout contentLayout = (RelativeLayout)mainView.findViewById(R.id.content_layout);
     	contentLayout.addView(rootLayout);
+        if(pref.getBoolean("firstLogin", true)){
     	activityIndicator.dismiss();
+		editor.putBoolean("firstLogin", false);
+		editor.commit();
+        }
+		
     	this.runOnUiThread(new Runnable() {
 			public void run() {
 				setContentView(mainView);
@@ -119,7 +138,7 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
 			public void run() {
 				setContentView(R.layout.activity_main);
 				password = (EditText) findViewById(R.id.password);
-				/*login into MyELT application when user clicks on done button on keyboard */
+				//login into MyELT application when user clicks on done button on keyboard 
 				password.setOnEditorActionListener(new OnEditorActionListener(){
 					@Override
 					public boolean onEditorAction(TextView v, int actionId,
@@ -145,6 +164,9 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
    			if(result != null) {
    				JSONObject statusJson = new JSONObject(result);
    				if(((JSONObject)statusJson.get("response")).get("status").equals("success")){
+   					editor.putString("username",usernameStr);
+   					editor.putString("password",passwordStr);
+   					editor.commit();
    					if (firstLaunch) {
    						super.init();
    						firstLaunch = false;
