@@ -19,6 +19,10 @@
 
 package com.myeltapp;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import org.apache.cordova.CordovaActivity;
 import org.apache.cordova.plugin.AndroidProgressHUD;
 import org.json.JSONException;
@@ -28,12 +32,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -48,9 +55,12 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
 	String passwordStr;
 	EditText password;
 	EditText username;
-	
+	DrawerLayout mDrawerLayout;
 	AndroidProgressHUD activityIndicator = null;
-	
+	ExpandableListAdapter listAdapter;
+    private ExpandableListView expListView;
+    List<String> listDataHeader;
+    HashMap<String, List<String>> listDataChild;
 	boolean firstLaunch = true;
 	SharedPreferences pref;
 	Editor editor;
@@ -59,9 +69,6 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
     public void onCreate(Bundle savedInstanceState)
     {
     	super.onCreate(savedInstanceState);
-    	pref = getApplicationContext().getSharedPreferences("MyPref", 0);
-    	editor = pref.edit();
-    	if(pref.getBoolean("firstLogin",true)){
     		setContentView(R.layout.activity_main);
     		password = (EditText) findViewById(R.id.password);
     		//login into MyELT application when user clicks on done button on keyboard 
@@ -75,13 +82,6 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
     	            return false;
     			}
     		});
-    	}else{
-    		super.init();
-			JavaScriptInterface jsInterface = new JavaScriptInterface(this);
-			appView.addJavascriptInterface(jsInterface, "JSInterface");
-			super.loadUrl("file:///android_asset/www/index.html");
-			showMyELTWebView();
-    	}
     }
 	
 	/** Called when user clicks the Login button */
@@ -99,8 +99,6 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
     public Object onMessage(String id, Object data) {   
     	
         if("onPageFinished".equals(id)) {
-        	this.usernameStr=pref.getString("username","none");
-        	this.passwordStr=pref.getString("password","none");
         	String js = String.format("startMyELT('%s');",SERVER_URL + "/ilrn/global/extlogin.do?u=" + usernameStr + "&p=" + passwordStr + "&isNative=true");
         	this.sendJavascript(js);
         }
@@ -117,22 +115,81 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
     	
     	LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     	final View mainView = inflater.inflate(R.layout.myelt_content_layout, null);
-    	final LinearLayout rootLayout = this.root;
+    	final View navigationDrawer = inflater.inflate(R.layout.navigationdrawer, null);
+    	mDrawerLayout = (DrawerLayout) navigationDrawer.findViewById(R.id.drawer_layout);
+    	expListView = (ExpandableListView) navigationDrawer.findViewById(R.id.left_drawer);
+    	prepareListData();
+   	 	listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild); 
+        // setting list adapter
+        expListView.setAdapter(listAdapter);
+ 
+        // Listview Group click listener
+        expListView.setOnGroupClickListener(new OnGroupClickListener() {
+ 
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v,
+                    int groupPosition, long id) {
+	           	 if(listDataHeader.get(groupPosition)== "Help"){
+	           		 loadHelpPage();
+	           	 }else if(listDataHeader.get(groupPosition)== "Sign Out"){
+	           		 signOut();
+	           	 }
+	           	 return false;
+            }
+        });
+     	final LinearLayout rootLayout = this.root;
     	RelativeLayout contentLayout = (RelativeLayout)mainView.findViewById(R.id.content_layout);
     	contentLayout.addView(rootLayout);
-        if(pref.getBoolean("firstLogin", true)){
+    	final LinearLayout navigationLayout = (LinearLayout)navigationDrawer.findViewById(R.id.content_frame); 
+    	navigationLayout.addView(mainView);
     	activityIndicator.dismiss();
-		editor.putBoolean("firstLogin", false);
-		editor.commit();
-        }
 		
     	this.runOnUiThread(new Runnable() {
 			public void run() {
-				setContentView(mainView);
+				setContentView(navigationDrawer);
 			}
 		});
     }
-    
+    private void prepareListData() {
+    	listDataHeader = new ArrayList<String>();
+        listDataChild = new HashMap<String, List<String>>();
+ 
+        // Adding child data
+        listDataHeader.add("Languages");
+        listDataHeader.add("Help");
+        listDataHeader.add("Sign Out");
+ 
+        // Adding child data
+        List<String> languages = new ArrayList<String>();
+        languages.add("English");
+        languages.add("Portugese");
+        languages.add("Spanish");
+        languages.add("Japanese");
+        languages.add("Korean");
+        languages.add("Chinese");
+        languages.add("Chinese Traditional");
+        languages.add("Arabic");
+        languages.add("Vietnamese");
+        
+        List<String> help = new ArrayList<String>();
+        List<String> signout = new ArrayList<String>();
+        
+        listDataChild.put(listDataHeader.get(0), languages); // Header, Child data
+        listDataChild.put(listDataHeader.get(1), help);
+        listDataChild.put(listDataHeader.get(2), signout);
+    	
+    }
+    public void loadHelpPage(){
+    	String js = String.format("startMyELT('%s');",SERVER_URL+"/ilrn/global/myeltHelp.do?isNative=true");
+    	this.sendJavascript(js);
+    }
+    public void toggleSideMenu(View view){
+    	mDrawerLayout.openDrawer(Gravity.LEFT);
+    }
+    public void signOut(){
+    	String js = String.format("startMyELT('%s');",SERVER_URL+"/ilrn/accounts/logout.do?isNative=true");
+    	this.sendJavascript(js);
+    }
     public void showNativeLoginScreen() {
     	this.runOnUiThread(new Runnable() {
 			public void run() {
@@ -164,9 +221,6 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
    			if(result != null) {
    				JSONObject statusJson = new JSONObject(result);
    				if(((JSONObject)statusJson.get("response")).get("status").equals("success")){
-   					editor.putString("username",usernameStr);
-   					editor.putString("password",passwordStr);
-   					editor.commit();
    					if (firstLaunch) {
    						super.init();
    						firstLaunch = false;
@@ -197,6 +251,7 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
 			toast.show();
    			e.printStackTrace();
    		}
+   		
    	}
 }
 

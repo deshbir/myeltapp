@@ -13,7 +13,9 @@
 	    android:contentDescription="@string/menu"
 	    android:layout_margin="8dp"
 	    android:src="@drawable/menu"
-	    android:layout_alignParentLeft="true"/>
+	    android:layout_alignParentLeft="true"
+	    android:clickable="true"
+	    android:onClick="toggleSideMenu"/>
         	
       <ImageView
 	    android:layout_width="wrap_content"
