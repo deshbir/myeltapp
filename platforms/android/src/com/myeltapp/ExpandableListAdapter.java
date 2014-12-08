@@ -67,10 +67,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public int getChildrenCount(int groupPosition) {
     	int count=this._listDataChild.get(this._listDataHeader.get(groupPosition))
                 .size();
-    	if(count==0){
-    		
-    	}
-        return count;
+    	return count;
     }
  
     @Override
@@ -101,6 +98,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView lblListHeader = (TextView) convertView
                 .findViewById(R.id.lblListHeader);
         ImageView indicator=(ImageView) convertView.findViewById(R.id.explist_indicator);
+        ImageView list_icons=(ImageView) convertView.findViewById(R.id.list_icons);
+        if(groupPosition == 0){
+        	list_icons.setImageResource(R.drawable.languages128);
+        }else if(groupPosition == 1){
+        	list_icons.setImageResource(R.drawable.help128);
+		}else {
+			list_icons.setImageResource(R.drawable.logout128);
+		}
+        
         if( getChildrenCount( groupPosition ) == 0 ) {
 			indicator.setVisibility( View.INVISIBLE );
 		} else {

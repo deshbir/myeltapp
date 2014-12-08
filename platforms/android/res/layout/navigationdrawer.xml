@@ -35,14 +35,12 @@
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:orientation="vertical" >
+        android:orientation="vertical" 
+        android:background="#eeeeee">
 
         <LinearLayout
-            android:id="@+id/drawer"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:background="@color/bodyBackground"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
@@ -57,7 +55,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:background="@color/bodyBackground"
                 android:orientation="vertical" >
 
                 <TextView
@@ -65,6 +62,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Mohit Gupta"
+                    android:textColor="#000000"
                     android:textSize="14sp" />
 
                 <TextView
@@ -73,6 +71,7 @@
                     android:layout_marginTop="5dp"
                     android:gravity="center"
                     android:text="test@gmail.com"
+                    android:textColor="#000000"
                     android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
@@ -91,7 +90,7 @@
         android:choiceMode="singleChoice"
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp"
-        android:background="#111"
+        android:background="#ffffff"
         android:groupIndicator="@android:color/transparent"
         />
     </LinearLayout>
