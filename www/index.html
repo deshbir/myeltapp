@@ -63,6 +63,9 @@
 		        iframe.src= loginURL;	
 		        
             }
+            function changeLocaleNative(locale){
+			window.frames[0].postMessage({'location' : 'device','locale' : locale},url);
+		}
         </script>
 
         <script src="js/index.js"></script>

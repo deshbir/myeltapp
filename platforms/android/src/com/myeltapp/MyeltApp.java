@@ -40,6 +40,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -137,6 +138,36 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
 	           	 return false;
             }
         });
+        // Listview on child click listener
+        expListView.setOnChildClickListener(new OnChildClickListener() {
+ 
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v,
+                    int groupPosition, int childPosition, long id) {
+                if(childPosition == 0){
+                	changeLocaleNative("0");
+                }else if(childPosition == 1){
+                	changeLocaleNative("2");
+                }else if(childPosition == 2){
+                	changeLocaleNative("5");
+                }else if(childPosition == 3){
+                	changeLocaleNative("3");
+                }else if(childPosition == 4){
+                	changeLocaleNative("4");
+                }else if(childPosition == 5){
+                	changeLocaleNative("6");
+                }else if(childPosition == 6){
+                	changeLocaleNative("7");
+                }else if(childPosition == 7){
+                	changeLocaleNative("9");
+                }else if(childPosition == 8){
+                	changeLocaleNative("8");
+                }
+                return false;
+            }
+        });
+       // set up the drawer's list view with items and click listener
+       
      	final LinearLayout rootLayout = this.root;
     	RelativeLayout contentLayout = (RelativeLayout)mainView.findViewById(R.id.content_layout);
     	contentLayout.addView(rootLayout);
@@ -168,8 +199,8 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
         languages.add("Korean");
         languages.add("Chinese");
         languages.add("Chinese Traditional");
-        languages.add("Arabic");
         languages.add("Vietnamese");
+        languages.add("Arabic");
         
         List<String> help = new ArrayList<String>();
         List<String> signout = new ArrayList<String>();
@@ -178,6 +209,10 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
         listDataChild.put(listDataHeader.get(1), help);
         listDataChild.put(listDataHeader.get(2), signout);
     	
+    }
+    public void changeLocaleNative(String locale){
+    	String js = String.format("changeLocaleNative('%s');",locale);
+    	this.sendJavascript(js);
     }
     public void loadHelpPage(){
     	String js = String.format("startMyELT('%s');",SERVER_URL+"/ilrn/global/myeltHelp.do?isNative=true");
