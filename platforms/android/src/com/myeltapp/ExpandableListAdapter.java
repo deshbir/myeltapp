@@ -101,9 +101,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         ImageView list_icons=(ImageView) convertView.findViewById(R.id.list_icons);
         if(groupPosition == 0){
         	list_icons.setImageResource(R.drawable.languages128);
-        }else if(groupPosition == 1){
-        	list_icons.setImageResource(R.drawable.help128);
-		}else {
+        }else {
 			list_icons.setImageResource(R.drawable.logout128);
 		}
         

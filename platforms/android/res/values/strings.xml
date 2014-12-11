@@ -9,4 +9,9 @@
     <string name="needhelp">Need Help?</string>
     <string name="home_button">Home icon</string>
     <string name="menu">Menu collapse icon</string>
+    <string name="user">Demo User</string>
+    <string name="email">test@test.com</string>
+    <string name="settings">Settings</string>
+    <string name="user_image">User Image</string>
+    
 </resources>

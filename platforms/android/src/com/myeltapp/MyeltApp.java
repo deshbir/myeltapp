@@ -22,28 +22,26 @@ package com.myeltapp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import org.apache.cordova.CordovaActivity;
 import org.apache.cordova.plugin.AndroidProgressHUD;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
@@ -52,25 +50,26 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
 {
 	public final static String SERVER_URL = "http://myelt3.comprotechnologies.com";
 	
-	String usernameStr;
-	String passwordStr;
-	EditText password;
-	EditText username;
-	DrawerLayout mDrawerLayout;
-	AndroidProgressHUD activityIndicator = null;
-	ExpandableListAdapter listAdapter;
+	private String usernameStr;
+	private String passwordStr;
+	private EditText password;
+	private EditText username;
+	private DrawerLayout mDrawerLayout;
+	private AndroidProgressHUD activityIndicator = null;
+	private ExpandableListAdapter expandableListAdapter;
+	private SimpleListAdapter simpleListAdapter;
+	private ListView simpleListView;
     private ExpandableListView expListView;
-    List<String> listDataHeader;
-    HashMap<String, List<String>> listDataChild;
-	boolean firstLaunch = true;
-	SharedPreferences pref;
-	Editor editor;
-	
+    private List<String> links;
+    private List<String> settings;
+    private HashMap<String, List<String>> settingsDataChild;
+    private boolean firstLaunch = true;
+    private boolean isDrawerOpen = false;
 	@Override
     public void onCreate(Bundle savedInstanceState)
     {
     	super.onCreate(savedInstanceState);
-    		setContentView(R.layout.activity_main);
+    		setContentView(R.layout.login_view);
     		password = (EditText) findViewById(R.id.password);
     		//login into MyELT application when user clicks on done button on keyboard 
     		password.setOnEditorActionListener(new OnEditorActionListener(){
@@ -108,39 +107,55 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
     }
     
     //function to return to HomePage
-    public void returnToHome(View view){
+    public void loadHomePage(View view){
     	String js = String.format("startMyELT('%s');",SERVER_URL + "/ilrn/course/course.do?isNative=true");
     	this.sendJavascript(js);
     }
     public void showMyELTWebView() {    
-    	
     	LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    	final View mainView = inflater.inflate(R.layout.myelt_content_layout, null);
-    	final View navigationDrawer = inflater.inflate(R.layout.navigationdrawer, null);
-    	mDrawerLayout = (DrawerLayout) navigationDrawer.findViewById(R.id.drawer_layout);
-    	expListView = (ExpandableListView) navigationDrawer.findViewById(R.id.left_drawer);
+    	final View myeltView = inflater.inflate(R.layout.myelt_view, null);
+    	mDrawerLayout = (DrawerLayout) myeltView.findViewById(R.id.drawer_layout);
+    	mDrawerLayout.setScrimColor(getResources().getColor(android.R.color.transparent));
+    	mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,GravityCompat.START);
+    	simpleListView = (ListView) myeltView.findViewById(R.id.simple_list_view);
+    	expListView = (ExpandableListView) myeltView.findViewById(R.id.expandable_list_view);
     	prepareListData();
-   	 	listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild); 
+    	simpleListAdapter = new SimpleListAdapter(this,links);
+    	expandableListAdapter = new ExpandableListAdapter(this, settings, settingsDataChild); 
         // setting list adapter
-        expListView.setAdapter(listAdapter);
- 
-        // Listview Group click listener
+    	simpleListView.setAdapter(simpleListAdapter);
+        expListView.setAdapter(expandableListAdapter);
+        
+        //Simple ListView Item click listener
+        simpleListView.setOnItemClickListener(new ListView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            	if(position == 0){
+            		loadHomePage(view);
+            	}else if(position == 1){
+            		loadProfilePage();
+            	}else if(position == 2){
+            		loadMessagesPage();
+            	}else if(position == 3){
+            		loadHelpPage();
+            	}
+            }
+        });
+        
+        // ListView Group click listener
         expListView.setOnGroupClickListener(new OnGroupClickListener() {
  
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v,
                     int groupPosition, long id) {
-	           	 if(listDataHeader.get(groupPosition)== "Help"){
-	           		 loadHelpPage();
-	           	 }else if(listDataHeader.get(groupPosition)== "Sign Out"){
+	           	 if(settings.get(groupPosition)== "Sign Out"){
 	           		 signOut();
 	           	 }
 	           	 return false;
             }
         });
-        // Listview on child click listener
+        // ListView on child click listener
         expListView.setOnChildClickListener(new OnChildClickListener() {
- 
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                     int groupPosition, int childPosition, long id) {
@@ -169,27 +184,26 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
        // set up the drawer's list view with items and click listener
        
      	final LinearLayout rootLayout = this.root;
-    	RelativeLayout contentLayout = (RelativeLayout)mainView.findViewById(R.id.content_layout);
-    	contentLayout.addView(rootLayout);
-    	final LinearLayout navigationLayout = (LinearLayout)navigationDrawer.findViewById(R.id.content_frame); 
-    	navigationLayout.addView(mainView);
+    	LinearLayout body = (LinearLayout)myeltView.findViewById(R.id.body);
+    	body.addView(rootLayout);
     	activityIndicator.dismiss();
 		
     	this.runOnUiThread(new Runnable() {
 			public void run() {
-				setContentView(navigationDrawer);
+				setContentView(myeltView);
 			}
 		});
     }
     private void prepareListData() {
-    	listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
- 
-        // Adding child data
-        listDataHeader.add("Languages");
-        listDataHeader.add("Help");
-        listDataHeader.add("Sign Out");
- 
+    	links = new ArrayList<String>();
+    	links.add("Home");
+    	links.add("Profile");
+    	links.add("Messages");
+    	links.add("Help");
+    	settings = new ArrayList<String>();
+    	settings.add("Languages");
+        settings.add("Sign Out");
+        
         // Adding child data
         List<String> languages = new ArrayList<String>();
         languages.add("English");
@@ -202,16 +216,21 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
         languages.add("Vietnamese");
         languages.add("Arabic");
         
-        List<String> help = new ArrayList<String>();
         List<String> signout = new ArrayList<String>();
-        
-        listDataChild.put(listDataHeader.get(0), languages); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), help);
-        listDataChild.put(listDataHeader.get(2), signout);
-    	
+        settingsDataChild = new HashMap<String, List<String>>();
+        settingsDataChild.put(settings.get(0), languages); // Header, Child data
+        settingsDataChild.put(settings.get(1), signout);
     }
     public void changeLocaleNative(String locale){
     	String js = String.format("changeLocaleNative('%s');",locale);
+    	this.sendJavascript(js);
+    }
+    public void loadProfilePage(){
+    	String js = String.format("startMyELT('%s');",SERVER_URL+"/ilrn/global/changeAccount.do?isNative=true");
+    	this.sendJavascript(js);
+    }
+    public void loadMessagesPage(){
+    	String js = String.format("startMyELT('%s');",SERVER_URL+"/ilrn/global/announcements.do?isNative=true");
     	this.sendJavascript(js);
     }
     public void loadHelpPage(){
@@ -219,7 +238,13 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
     	this.sendJavascript(js);
     }
     public void toggleSideMenu(View view){
-    	mDrawerLayout.openDrawer(Gravity.LEFT);
+    	if(isDrawerOpen == true){
+    		mDrawerLayout.closeDrawer(Gravity.LEFT);
+    		isDrawerOpen = false;
+    	}else{
+    		mDrawerLayout.openDrawer(Gravity.LEFT);	
+    		isDrawerOpen = true;
+    	}
     }
     public void signOut(){
     	String js = String.format("startMyELT('%s');",SERVER_URL+"/ilrn/accounts/logout.do?isNative=true");
@@ -228,7 +253,7 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
     public void showNativeLoginScreen() {
     	this.runOnUiThread(new Runnable() {
 			public void run() {
-				setContentView(R.layout.activity_main);
+				setContentView(R.layout.login_view);
 				password = (EditText) findViewById(R.id.password);
 				//login into MyELT application when user clicks on done button on keyboard 
 				password.setOnEditorActionListener(new OnEditorActionListener(){
@@ -286,7 +311,6 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
 			toast.show();
    			e.printStackTrace();
    		}
-   		
    	}
 }
 
