@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import android.content.Context;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +17,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
     private HashMap<String, List<String>> _listDataChild;
-	private static final int[] EMPTY_STATE_SET = {};
-    private static final int[] GROUP_EXPANDED_STATE_SET =
-            {android.R.attr.state_expanded};
-    private static final int[][] GROUP_STATE_SETS = {
-        EMPTY_STATE_SET, // 0
-        GROUP_EXPANDED_STATE_SET // 1
-	};
- 
     public ExpandableListAdapter(Context context, List<String> listDataHeader,
             HashMap<String, List<String>> listChildData) {
         this._context = context;
@@ -54,6 +45,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.drawer_list_item, null);
+            
         }
  
         TextView txtListChild = (TextView) convertView
@@ -104,15 +96,17 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }else {
 			list_icons.setImageResource(R.drawable.logout128);
 		}
-        
-        if( getChildrenCount( groupPosition ) == 0 ) {
-			indicator.setVisibility( View.INVISIBLE );
-		} else {
-			indicator.setVisibility( View.VISIBLE );
-			int stateSetIndex = ( isExpanded ? 1 : 0) ;
-			Drawable drawable = indicator.getDrawable();
-			drawable.setState(GROUP_STATE_SETS[stateSetIndex]);
-		}	
+        if(groupPosition==0){
+        	indicator.setVisibility( View.VISIBLE );
+        	if(isExpanded){
+        	indicator.setImageResource(R.drawable.expander_ic_maximized);
+        	}
+        	else{
+       		indicator.setImageResource(R.drawable.expander_ic_minimized);
+        	}
+        }else{
+        	indicator.setVisibility( View.INVISIBLE );
+        }
         lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerTitle);
  

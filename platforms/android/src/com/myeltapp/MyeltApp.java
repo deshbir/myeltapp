@@ -121,9 +121,12 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
     	expListView = (ExpandableListView) myeltView.findViewById(R.id.expandable_list_view);
     	prepareListData();
     	simpleListAdapter = new SimpleListAdapter(this,links);
-    	expandableListAdapter = new ExpandableListAdapter(this, settings, settingsDataChild); 
+    	
         // setting list adapter
     	simpleListView.setAdapter(simpleListAdapter);
+    	simpleListView.setItemChecked(0,true);
+    	//simpleListView.setSelection(1);
+    	expandableListAdapter = new ExpandableListAdapter(this, settings, settingsDataChild); 
         expListView.setAdapter(expandableListAdapter);
         
         //Simple ListView Item click listener
@@ -145,10 +148,11 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
         // ListView Group click listener
         expListView.setOnGroupClickListener(new OnGroupClickListener() {
  
-            @Override
+			@Override
             public boolean onGroupClick(ExpandableListView parent, View v,
                     int groupPosition, long id) {
 	           	 if(settings.get(groupPosition)== "Sign Out"){
+	           		v.setBackgroundColor(getResources().getColor(R.color.gray));
 	           		 signOut();
 	           	 }
 	           	 return false;
@@ -156,10 +160,12 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
         });
         // ListView on child click listener
         expListView.setOnChildClickListener(new OnChildClickListener() {
-            @Override
+        	@Override
             public boolean onChildClick(ExpandableListView parent, View v,
                     int groupPosition, int childPosition, long id) {
-                if(childPosition == 0){
+        		  int index = parent.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
+        		    parent.setItemChecked(index, true);
+        	    if(childPosition == 0){
                 	changeLocaleNative("0");
                 }else if(childPosition == 1){
                 	changeLocaleNative("2");

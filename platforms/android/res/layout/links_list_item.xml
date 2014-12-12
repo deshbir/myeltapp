@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="8dp"
-    android:background="#ffffff">
+    android:background="@drawable/links_selector"
+    >
  <ImageView
      android:id="@+id/links_list_icons"
      android:layout_width="40dp"
