@@ -22,11 +22,15 @@ package com.myeltapp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import org.apache.cordova.CordovaActivity;
 import org.apache.cordova.plugin.AndroidProgressHUD;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -65,10 +69,29 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
     private HashMap<String, List<String>> settingsDataChild;
     private boolean firstLaunch = true;
     private boolean isDrawerOpen = false;
+    private static final String ENGLISH = "0";
+    private static final String SPANISH = "2";
+    private static final String PORTUGESE = "5";
+    private static final String JAPANESE = "3";
+    private static final String KOREAN = "4";
+    private static final String CHINESE = "6";
+    private static final String CHINESE_TRADITIONAL = "7";
+    private static final String VIETNAMESE = "9";
+    private static final String ARABIC = "8";
+    public static final String KEY_FIRST_LOGIN = "firstLogin";
+    public static final String KEY_USERNAME = "username";
+    public static final String KEY_PASSWORD = "password";
+    public static final String KEY_SELECTED_LOCALE = "selectedLocale";
+    
+    SharedPreferences userPreferences;
+	Editor editor;
 	@Override
     public void onCreate(Bundle savedInstanceState)
     {
     	super.onCreate(savedInstanceState);
+    	userPreferences = getApplicationContext().getSharedPreferences("UserPreferences", 0);
+    	editor = userPreferences.edit();
+    	if(userPreferences.getBoolean(KEY_FIRST_LOGIN,true)){
     		setContentView(R.layout.login_view);
     		password = (EditText) findViewById(R.id.password);
     		//login into MyELT application when user clicks on done button on keyboard 
@@ -82,6 +105,14 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
     	            return false;
     			}
     		});
+    	}else{
+    		super.init();
+			JavaScriptInterface jsInterface = new JavaScriptInterface(this);
+			appView.addJavascriptInterface(jsInterface, "JSInterface");
+			setContentView(R.layout.splash);
+			super.loadUrl("file:///android_asset/www/index.html");
+    	}
+	
     }
 	
 	/** Called when user clicks the Login button */
@@ -99,7 +130,9 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
     public Object onMessage(String id, Object data) {   
     	
         if("onPageFinished".equals(id)) {
-        	String js = String.format("startMyELT('%s');",SERVER_URL + "/ilrn/global/extlogin.do?u=" + usernameStr + "&p=" + passwordStr + "&isNative=true");
+        	this.usernameStr=userPreferences.getString(KEY_USERNAME,null);
+        	this.passwordStr=userPreferences.getString(KEY_PASSWORD,null);
+        	String js = String.format("startMyELT('%s');",SERVER_URL + "/ilrn/global/extlogin.do?u=" + usernameStr + "&p=" + passwordStr + "&isNative=true&locale="+userPreferences.getString(KEY_SELECTED_LOCALE, ENGLISH));
         	this.sendJavascript(js);
         }
         
@@ -166,24 +199,43 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
         		  int index = parent.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
         		    parent.setItemChecked(index, true);
         	    if(childPosition == 0){
-                	changeLocaleNative("0");
+        	    	editor.putString(KEY_SELECTED_LOCALE, ENGLISH);
+        	    	editor.commit();
+                	changeLocaleNative(userPreferences.getString(KEY_SELECTED_LOCALE, ENGLISH));
                 }else if(childPosition == 1){
-                	changeLocaleNative("2");
+                	editor.putString(KEY_SELECTED_LOCALE, SPANISH);
+                	editor.commit();
+                	changeLocaleNative(userPreferences.getString(KEY_SELECTED_LOCALE, ENGLISH));
                 }else if(childPosition == 2){
-                	changeLocaleNative("5");
+                	editor.putString(KEY_SELECTED_LOCALE, PORTUGESE);
+                	editor.commit();
+                	changeLocaleNative(userPreferences.getString(KEY_SELECTED_LOCALE, ENGLISH));
                 }else if(childPosition == 3){
-                	changeLocaleNative("3");
+                	editor.putString(KEY_SELECTED_LOCALE, JAPANESE);
+                	editor.commit();
+                	changeLocaleNative(userPreferences.getString(KEY_SELECTED_LOCALE, ENGLISH));
                 }else if(childPosition == 4){
-                	changeLocaleNative("4");
+                	editor.putString(KEY_SELECTED_LOCALE, KOREAN);
+                	editor.commit();
+                	changeLocaleNative(userPreferences.getString(KEY_SELECTED_LOCALE, ENGLISH));
                 }else if(childPosition == 5){
-                	changeLocaleNative("6");
+                	editor.putString(KEY_SELECTED_LOCALE, CHINESE);
+                	editor.commit();
+                	changeLocaleNative(userPreferences.getString(KEY_SELECTED_LOCALE, ENGLISH));
                 }else if(childPosition == 6){
-                	changeLocaleNative("7");
+                	editor.putString(KEY_SELECTED_LOCALE, CHINESE_TRADITIONAL);
+                	editor.commit();
+                	changeLocaleNative(userPreferences.getString(KEY_SELECTED_LOCALE, ENGLISH));
                 }else if(childPosition == 7){
-                	changeLocaleNative("9");
+                	editor.putString(KEY_SELECTED_LOCALE, VIETNAMESE);
+                	editor.commit();
+                	changeLocaleNative(userPreferences.getString(KEY_SELECTED_LOCALE, ENGLISH));
                 }else if(childPosition == 8){
-                	changeLocaleNative("8");
+                	editor.putString(KEY_SELECTED_LOCALE, ARABIC);
+                	editor.commit();
+                	changeLocaleNative(userPreferences.getString(KEY_SELECTED_LOCALE, ENGLISH));
                 }
+        	    
                 return false;
             }
         });
@@ -192,8 +244,11 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
      	final LinearLayout rootLayout = this.root;
     	LinearLayout body = (LinearLayout)myeltView.findViewById(R.id.body);
     	body.addView(rootLayout);
-    	activityIndicator.dismiss();
-		
+    	if(userPreferences.getBoolean(KEY_FIRST_LOGIN, true)){
+        	activityIndicator.dismiss();
+    		editor.putBoolean(KEY_FIRST_LOGIN, false);
+    		editor.commit();
+    	}
     	this.runOnUiThread(new Runnable() {
 			public void run() {
 				setContentView(myeltView);
@@ -255,6 +310,9 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
     public void signOut(){
     	String js = String.format("startMyELT('%s');",SERVER_URL+"/ilrn/accounts/logout.do?isNative=true");
     	this.sendJavascript(js);
+    	editor.clear();
+    	editor.commit();
+          
     }
     public void showNativeLoginScreen() {
     	this.runOnUiThread(new Runnable() {
@@ -287,6 +345,9 @@ public class MyeltApp extends CordovaActivity implements LoginAsyncResponse
    			if(result != null) {
    				JSONObject statusJson = new JSONObject(result);
    				if(((JSONObject)statusJson.get("response")).get("status").equals("success")){
+   					editor.putString(KEY_USERNAME,usernameStr);
+   					editor.putString(KEY_PASSWORD,passwordStr);
+   					editor.commit();
    					if (firstLaunch) {
    						super.init();
    						firstLaunch = false;
