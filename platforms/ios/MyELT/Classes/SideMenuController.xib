@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SideMenuController">
+            <connections>
+                <outlet property="tableView" destination="lEZ-X4-lgs" id="5bA-uc-0AA"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="8yV-YO-5eA"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lEZ-X4-lgs">
+                    <rect key="frame" x="0.0" y="110" width="600" height="924"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="600" id="Jwz-DE-3WS"/>
+                        <constraint firstAttribute="height" constant="924" id="kGc-LG-Ckj"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="1by-hI-JmY"/>
+                        <outlet property="delegate" destination="-1" id="lpz-El-b6O"/>
+                    </connections>
+                </tableView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user.png" translatesAutoresizingMaskIntoConstraints="NO" id="j7o-SE-h04">
+                    <rect key="frame" x="0.0" y="10" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="SS2-ar-KsR"/>
+                        <constraint firstAttribute="height" constant="100" id="kGM-he-jit"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="test@gmail.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IiU-83-0gy">
+                    <rect key="frame" x="108" y="63" width="127" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="demo_user" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2P-LA-Enq">
+                    <rect key="frame" x="108" y="39" width="92" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="lEZ-X4-lgs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2wf-lT-mjP"/>
+                <constraint firstItem="j7o-SE-h04" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="MIy-J4-4p3"/>
+                <constraint firstItem="lEZ-X4-lgs" firstAttribute="top" secondItem="j7o-SE-h04" secondAttribute="bottom" id="ons-j4-wut"/>
+                <constraint firstItem="j7o-SE-h04" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="pSg-GK-bao"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="user.png" width="256" height="256"/>
+    </resources>
+</document>

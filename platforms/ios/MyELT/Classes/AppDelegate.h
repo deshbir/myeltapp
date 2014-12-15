@@ -26,11 +26,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
-#import <Cordova/CDVViewController.h>
 #import "LoginViewController.h"
 #import "MyELTViewController.h"
 #import "MyELTWrapperViewController.h"
+#import "SideMenuController.h"
+#import "MFSideMenu.h"
 
 @interface AppDelegate : NSObject <UIApplicationDelegate>{}
 
@@ -39,14 +39,29 @@
 // a simple tutorial can be found here :
 // http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
 
+//UIWIndow Object
 @property (nonatomic, strong) IBOutlet UIWindow* window;
-@property (nonatomic, strong) IBOutlet CDVViewController* viewController;
+
+//ViewController for Login Page
 @property (nonatomic, strong) LoginViewController* loginVC;
+
+//ViewController for MyELT Cordova view(MyELT is launched inside this VC)
 @property (nonatomic, strong) MyELTViewController* myeltVC;
+
+//Top ViewController containing fixed header and MyELT Cordova view
 @property (nonatomic, strong) MyELTWrapperViewController* myeltWrapperVC;
+
+//ViewController for Side Menu
+@property (nonatomic, strong) SideMenuController* sideMenuVC;
+
+//ViewController containing both myeltWrapperVC and sideMenuVC. This is needed for side menu functionality.
+@property (nonatomic, strong) MFSideMenuContainerViewController* layoutContainer;
 
 - (void)showMyELTView;
 - (void)showLoginView;
+- (void)initLayoutForSideMenu;
+- (void)toggleSideMenu;
+- (void)loadHelpPage;
 - (void)initMyELTViewWithUserName:(NSString*)userName password:(NSString*)password;
 
 @end

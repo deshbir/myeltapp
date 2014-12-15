@@ -8,6 +8,8 @@
 
 #import "MyELTWrapperViewController.h"
 #import "LoginViewController.h"
+#import "SideMenuController.h"
+#import "AppDelegate.h"
 
 @interface MyELTWrapperViewController ()
 
@@ -15,9 +17,17 @@
 
 @implementation MyELTWrapperViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
+}
+
+//Hide navigation bar
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,16 +35,26 @@
     // Dispose of any resources that can be recreated.
 }
 
-//function to return to HomePage
+//Function to Load HomePage
 - (IBAction)home:(id)sender
 {
-    UIWebView *webview = [[[[self.body subviews] objectAtIndex:0] subviews] objectAtIndex:0];
-    NSString *homepageURL = [NSString stringWithFormat:@"%@/ilrn/course/course.do?isNative=true", SERVER_URL, nil];
-    NSString *javaScript = [NSString stringWithFormat:@"startMyELT('%@')", homepageURL, nil];
-    [webview stringByEvaluatingJavaScriptFromString:javaScript];
-    
+    [self loadUrlInWebView:@"/ilrn/course/course.do"];
 }
 
+//Function to change URL in WebView
+- (void)loadUrlInWebView:(NSString*) url{
+    UIWebView *webview = [[[[self.body subviews] objectAtIndex:0] subviews] objectAtIndex:0];
+    NSString *URL = [NSString stringWithFormat:@"%@%@?isNative=true", SERVER_URL, url, nil];
+    NSString *javaScript = [NSString stringWithFormat:@"startMyELT('%@')", URL, nil];
+    [webview stringByEvaluatingJavaScriptFromString:javaScript];
+}
+
+//Function to toggle side menu
+- (IBAction)toggleSideMenu :(id)sender
+{
+    AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate toggleSideMenu];
+}
 /*
 #pragma mark - Navigation
 

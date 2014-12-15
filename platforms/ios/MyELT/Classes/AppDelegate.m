@@ -30,12 +30,12 @@
 #import "AppDelegate.h"
 #import "MyELTViewController.h"
 #import "LoginViewController.h"
-
+#import "MFSideMenu.h"
 #import <Cordova/CDVPlugin.h>
 
 @implementation AppDelegate
 
-@synthesize window, viewController, loginVC, myeltVC, myeltWrapperVC;
+@synthesize window, loginVC, myeltVC, myeltWrapperVC,sideMenuVC, layoutContainer;
 
 - (id)init
 {
@@ -82,18 +82,41 @@
     // NOTE: To customize the view's frame size (which defaults to full screen), override
     // [self.viewController viewWillAppear:] in your view controller.
     
+    //Initialize and Show Login Page/VC on App startup
     loginVC = [[LoginViewController alloc] init];
-    
     [self.window setRootViewController:loginVC];
     [self.window makeKeyAndVisible];
     
     return YES;
 }
 
-//Initializes MyELT view in background
+//Initializes layoutContainer using MFSideMenu for SideMenu functionality
+-(void) initLayoutForSideMenu{
+    myeltWrapperVC = [[MyELTWrapperViewController alloc] init];
+    sideMenuVC = [[SideMenuController alloc] init];
+    UINavigationController *myeltWrapperNavigationController = [[UINavigationController alloc] initWithRootViewController:myeltWrapperVC];
+    layoutContainer = [MFSideMenuContainerViewController
+                                                    containerWithCenterViewController:myeltWrapperNavigationController
+                                                    leftMenuViewController:sideMenuVC
+                                                    rightMenuViewController:NULL];
+    self.window.rootViewController = layoutContainer;
+    [self.window makeKeyAndVisible];
+}
+
+//Function to toggle side menu
+-(void) toggleSideMenu {
+    [layoutContainer toggleLeftSideMenuCompletion:^{}];
+}
+
+//Function to load help page
+-(void) loadHelpPage{
+    [myeltWrapperVC loadUrlInWebView:@"/ilrn/global/myeltHelp.do"];    
+}
+
+//Initializes MyELT CordovaView in background
 - (void)initMyELTViewWithUserName:(NSString*)userName password:(NSString*)password
 {
-    myeltWrapperVC = [[MyELTWrapperViewController alloc] init];
+    [self initLayoutForSideMenu];
     [self.window addSubview:myeltWrapperVC.view];
     [self.window sendSubviewToBack:myeltWrapperVC.view];
 
@@ -110,7 +133,6 @@
     [loginVC hideLoader];
     dispatch_async(dispatch_get_main_queue(), ^{
         [loginVC.view removeFromSuperview];
-        [self.window setRootViewController:myeltWrapperVC];
     });
 }
 
@@ -121,53 +143,6 @@
     [self.window addSubview:loginVC.view];
     [self.window setRootViewController:loginVC];
 }
-
-
-
-// this happens while we are running ( in the background, or from within our own app )
-// only valid if MyELT-Info.plist specifies a protocol to handle
-- (BOOL)application:(UIApplication*)application openURL:(NSURL*)url sourceApplication:(NSString*)sourceApplication annotation:(id)annotation
-{
-    if (!url) {
-        return NO;
-    }
-
-    // calls into javascript global function 'handleOpenURL'
-    NSString* jsString = [NSString stringWithFormat:@"handleOpenURL(\"%@\");", url];
-    [self.viewController.webView stringByEvaluatingJavaScriptFromString:jsString];
-
-    // all plugins will get the notification, and their handlers will be called
-    //[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CDVPluginHandleOpenURLNotification object:url]];
-
-    return YES;
-}
-
-// repost all remote and local notification using the default NSNotificationCenter so multiple plugins may respond
-//- (void)            application:(UIApplication*)application
-//    didReceiveLocalNotification:(UILocalNotification*)notification
-//{
-//    // re-post ( broadcast )
-//    [[NSNotificationCenter defaultCenter] postNotificationName:CDVLocalNotification object:notification];
-//}
-
-//- (void)                                application:(UIApplication *)application
-//   didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-//{
-//    // re-post ( broadcast )
-//    NSString* token = [[[[deviceToken description]
-//                         stringByReplacingOccurrencesOfString: @"<" withString: @""]
-//                        stringByReplacingOccurrencesOfString: @">" withString: @""]
-//                       stringByReplacingOccurrencesOfString: @" " withString: @""];
-//
-//    [[NSNotificationCenter defaultCenter] postNotificationName:CDVRemoteNotification object:token];
-//}
-//
-//- (void)                                 application:(UIApplication *)application
-//    didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
-//{
-//    // re-post ( broadcast )
-//    [[NSNotificationCenter defaultCenter] postNotificationName:CDVRemoteNotificationError object:error];
-//}
 
 - (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window
 {

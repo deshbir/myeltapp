@@ -13,4 +13,6 @@
 @property(nonatomic,strong) IBOutlet UIView* header;
 @property(nonatomic,strong) IBOutlet UIView* body;
 
+- (void)loadUrlInWebView:(NSString*) url;
+
 @end

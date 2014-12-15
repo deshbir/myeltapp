@@ -29,6 +29,10 @@
 		522CC5201A248FEF00560FBD /* ngllogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 522CC51F1A248FEF00560FBD /* ngllogo.jpg */; };
 		522CC5291A24A64F00560FBD /* MyELTWrapperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522CC5271A24A64F00560FBD /* MyELTWrapperViewController.m */; };
 		522CC52A1A24A64F00560FBD /* MyELTWrapperViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 522CC5281A24A64F00560FBD /* MyELTWrapperViewController.xib */; };
+		523609451A3191FA0032FF74 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 523609441A3191FA0032FF74 /* user.png */; };
+		5236094C1A3196A20032FF74 /* logout128.png in Resources */ = {isa = PBXBuildFile; fileRef = 5236094B1A3196A20032FF74 /* logout128.png */; };
+		523609561A31CC270032FF74 /* languages128.png in Resources */ = {isa = PBXBuildFile; fileRef = 523609551A31CC270032FF74 /* languages128.png */; };
+		523609581A31CC300032FF74 /* help128.png in Resources */ = {isa = PBXBuildFile; fileRef = 523609571A31CC300032FF74 /* help128.png */; };
 		5273ED141A25B09A00AE8460 /* LoginViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5273ED131A25B09A00AE8460 /* LoginViewController~iphone.xib */; };
 		5273ED161A25B4E900AE8460 /* ngllogo_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 5273ED151A25B4E900AE8460 /* ngllogo_iphone.png */; };
 		5273ED1A1A25B82600AE8460 /* MyELTWrapperViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5273ED191A25B82600AE8460 /* MyELTWrapperViewController~iphone.xib */; };
@@ -44,6 +48,14 @@
 		52767BC419A60B6B007D3B7F /* icon-211.png in Resources */ = {isa = PBXBuildFile; fileRef = 52767BC319A60B6B007D3B7F /* icon-211.png */; };
 		52767BC619A60B77007D3B7F /* icon-185.png in Resources */ = {isa = PBXBuildFile; fileRef = 52767BC519A60B77007D3B7F /* icon-185.png */; };
 		529C83C719DBFFCB00F6D590 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 529C83C619DBFFCB00F6D590 /* JavaScriptCore.framework */; };
+		52D4650E1A3EC0180059F586 /* messages128.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D4650B1A3EC0180059F586 /* messages128.png */; };
+		52D4650F1A3EC0180059F586 /* home128.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D4650C1A3EC0180059F586 /* home128.png */; };
+		52D465101A3EC0180059F586 /* profile128.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D4650D1A3EC0180059F586 /* profile128.png */; };
+		52D465191A3EEE850059F586 /* MFSideMenuContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D465141A3EEE850059F586 /* MFSideMenuContainerViewController.m */; };
+		52D4651A1A3EEE850059F586 /* MFSideMenuShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D465161A3EEE850059F586 /* MFSideMenuShadow.m */; };
+		52D4651B1A3EEE850059F586 /* UIViewController+MFSideMenuAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D465181A3EEE850059F586 /* UIViewController+MFSideMenuAdditions.m */; };
+		52D4651F1A3EF8E60059F586 /* SideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D4651D1A3EF8E60059F586 /* SideMenuController.m */; };
+		52D465201A3EF8E60059F586 /* SideMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D4651E1A3EF8E60059F586 /* SideMenuController.xib */; };
 		52EF32611A08D902004CA8E9 /* MyELTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EF32601A08D902004CA8E9 /* MyELTViewController.m */; };
 		5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE5B34173C68D80009041E /* CoreLocation.framework */; };
 		5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
@@ -112,6 +124,10 @@
 		522CC5261A24A64F00560FBD /* MyELTWrapperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyELTWrapperViewController.h; sourceTree = "<group>"; };
 		522CC5271A24A64F00560FBD /* MyELTWrapperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyELTWrapperViewController.m; sourceTree = "<group>"; };
 		522CC5281A24A64F00560FBD /* MyELTWrapperViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyELTWrapperViewController.xib; sourceTree = "<group>"; };
+		523609441A3191FA0032FF74 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = user.png; path = ../../../../../../Downloads/user.png; sourceTree = "<group>"; };
+		5236094B1A3196A20032FF74 /* logout128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logout128.png; path = ../../../../../../Downloads/logout128.png; sourceTree = "<group>"; };
+		523609551A31CC270032FF74 /* languages128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = languages128.png; path = ../../../../../../Downloads/languages128.png; sourceTree = "<group>"; };
+		523609571A31CC300032FF74 /* help128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = help128.png; path = ../../../../../../Downloads/help128.png; sourceTree = "<group>"; };
 		5273ED131A25B09A00AE8460 /* LoginViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~iphone.xib"; sourceTree = "<group>"; };
 		5273ED151A25B4E900AE8460 /* ngllogo_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ngllogo_iphone.png; sourceTree = "<group>"; };
 		5273ED191A25B82600AE8460 /* MyELTWrapperViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyELTWrapperViewController~iphone.xib"; sourceTree = "<group>"; };
@@ -128,6 +144,19 @@
 		52767BC319A60B6B007D3B7F /* icon-211.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-211.png"; sourceTree = "<group>"; };
 		52767BC519A60B77007D3B7F /* icon-185.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-185.png"; sourceTree = "<group>"; };
 		529C83C619DBFFCB00F6D590 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		52D4650B1A3EC0180059F586 /* messages128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = messages128.png; path = ../../../../../../Downloads/messages128.png; sourceTree = "<group>"; };
+		52D4650C1A3EC0180059F586 /* home128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home128.png; path = ../../../../../../Downloads/home128.png; sourceTree = "<group>"; };
+		52D4650D1A3EC0180059F586 /* profile128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = profile128.png; path = ../../../../../../Downloads/profile128.png; sourceTree = "<group>"; };
+		52D465121A3EEE850059F586 /* MFSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSideMenu.h; sourceTree = "<group>"; };
+		52D465131A3EEE850059F586 /* MFSideMenuContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSideMenuContainerViewController.h; sourceTree = "<group>"; };
+		52D465141A3EEE850059F586 /* MFSideMenuContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSideMenuContainerViewController.m; sourceTree = "<group>"; };
+		52D465151A3EEE850059F586 /* MFSideMenuShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSideMenuShadow.h; sourceTree = "<group>"; };
+		52D465161A3EEE850059F586 /* MFSideMenuShadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSideMenuShadow.m; sourceTree = "<group>"; };
+		52D465171A3EEE850059F586 /* UIViewController+MFSideMenuAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MFSideMenuAdditions.h"; sourceTree = "<group>"; };
+		52D465181A3EEE850059F586 /* UIViewController+MFSideMenuAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MFSideMenuAdditions.m"; sourceTree = "<group>"; };
+		52D4651C1A3EF8E60059F586 /* SideMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuController.h; sourceTree = "<group>"; };
+		52D4651D1A3EF8E60059F586 /* SideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuController.m; sourceTree = "<group>"; };
+		52D4651E1A3EF8E60059F586 /* SideMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideMenuController.xib; sourceTree = "<group>"; };
 		52EF325F1A08D902004CA8E9 /* MyELTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyELTViewController.h; sourceTree = "<group>"; };
 		52EF32601A08D902004CA8E9 /* MyELTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyELTViewController.m; sourceTree = "<group>"; };
 		5AEE5B34173C68D80009041E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -182,6 +211,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				52D465111A3EEE850059F586 /* MFSideMenu */,
+				52D4651C1A3EF8E60059F586 /* SideMenuController.h */,
+				52D4651D1A3EF8E60059F586 /* SideMenuController.m */,
+				52D4651E1A3EF8E60059F586 /* SideMenuController.xib */,
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
 				52756FBC19A4927A00D581F7 /* LoginViewController.h */,
@@ -311,6 +344,13 @@
 		308D052D1370CCF300D202BF /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				52D4650B1A3EC0180059F586 /* messages128.png */,
+				52D4650C1A3EC0180059F586 /* home128.png */,
+				52D4650D1A3EC0180059F586 /* profile128.png */,
+				523609571A31CC300032FF74 /* help128.png */,
+				523609551A31CC270032FF74 /* languages128.png */,
+				5236094B1A3196A20032FF74 /* logout128.png */,
+				523609441A3191FA0032FF74 /* user.png */,
 				7E7966D41810823500FA85AD /* icon-40.png */,
 				7E7966D51810823500FA85AD /* icon-40@2x.png */,
 				5273ED231A25FC1900AE8460 /* home_iphone.png */,
@@ -368,6 +408,21 @@
 				30A0434614DC770100060A13 /* Localizable.strings */,
 			);
 			path = se.lproj;
+			sourceTree = "<group>";
+		};
+		52D465111A3EEE850059F586 /* MFSideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				52D465121A3EEE850059F586 /* MFSideMenu.h */,
+				52D465131A3EEE850059F586 /* MFSideMenuContainerViewController.h */,
+				52D465141A3EEE850059F586 /* MFSideMenuContainerViewController.m */,
+				52D465151A3EEE850059F586 /* MFSideMenuShadow.h */,
+				52D465161A3EEE850059F586 /* MFSideMenuShadow.m */,
+				52D465171A3EEE850059F586 /* UIViewController+MFSideMenuAdditions.h */,
+				52D465181A3EEE850059F586 /* UIViewController+MFSideMenuAdditions.m */,
+			);
+			name = MFSideMenu;
+			path = "../../../../../Downloads/MFSideMenu-master/MFSideMenu";
 			sourceTree = "<group>";
 		};
 		EB87FDF11871DA420020F90C /* Staging */ = {
@@ -458,25 +513,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52D4650F1A3EC0180059F586 /* home128.png in Resources */,
 				7E7966E41810823500FA85AD /* icon-76.png in Resources */,
 				52767BC419A60B6B007D3B7F /* icon-211.png in Resources */,
 				7E7966DF1810823500FA85AD /* icon-40@2x.png in Resources */,
 				308D05371370CCF300D202BF /* icon-72.png in Resources */,
+				5236094C1A3196A20032FF74 /* logout128.png in Resources */,
 				308D05381370CCF300D202BF /* icon.png in Resources */,
 				308D05391370CCF300D202BF /* icon@2x.png in Resources */,
 				5273ED1E1A25BABB00AE8460 /* icon-99.png in Resources */,
 				1F766FE113BBADB100FB74C0 /* Localizable.strings in Resources */,
+				52D4650E1A3EC0180059F586 /* messages128.png in Resources */,
+				52D465101A3EC0180059F586 /* profile128.png in Resources */,
 				52756FBB19A48D8D00D581F7 /* icon-132.png in Resources */,
 				7E7966E01810823500FA85AD /* icon-50.png in Resources */,
 				7E7966E31810823500FA85AD /* icon-60@2x.png in Resources */,
 				30A0434814DC770100060A13 /* Localizable.strings in Resources */,
 				5273ED281A25FC2900AE8460 /* menu.png in Resources */,
+				523609581A31CC300032FF74 /* help128.png in Resources */,
 				522CC5201A248FEF00560FBD /* ngllogo.jpg in Resources */,
 				5273ED241A25FC1900AE8460 /* home_iphone.png in Resources */,
 				52756FC219A4C47100D581F7 /* icon-264.png in Resources */,
 				7E7966E61810823500FA85AD /* icon-small.png in Resources */,
 				522CC52A1A24A64F00560FBD /* MyELTWrapperViewController.xib in Resources */,
 				5273ED211A25EABC00AE8460 /* home.png in Resources */,
+				523609561A31CC270032FF74 /* languages128.png in Resources */,
 				3088BBBD154F3926009F9C59 /* Default-Landscape@2x~ipad.png in Resources */,
 				3088BBBE154F3926009F9C59 /* Default-Landscape~ipad.png in Resources */,
 				3088BBBF154F3926009F9C59 /* Default-Portrait@2x~ipad.png in Resources */,
@@ -484,6 +545,7 @@
 				3088BBC0154F3926009F9C59 /* Default-Portrait~ipad.png in Resources */,
 				7E7966DE1810823500FA85AD /* icon-40.png in Resources */,
 				3088BBC1154F3926009F9C59 /* Default@2x~iphone.png in Resources */,
+				523609451A3191FA0032FF74 /* user.png in Resources */,
 				7E7966E21810823500FA85AD /* icon-60.png in Resources */,
 				3088BBC2154F3926009F9C59 /* Default~iphone.png in Resources */,
 				52767BC619A60B77007D3B7F /* icon-185.png in Resources */,
@@ -491,6 +553,7 @@
 				5273ED141A25B09A00AE8460 /* LoginViewController~iphone.xib in Resources */,
 				D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */,
 				52756FC019A4927A00D581F7 /* LoginViewController.xib in Resources */,
+				52D465201A3EF8E60059F586 /* SideMenuController.xib in Resources */,
 				7E7966E11810823500FA85AD /* icon-50@2x.png in Resources */,
 				5273ED1A1A25B82600AE8460 /* MyELTWrapperViewController~iphone.xib in Resources */,
 				5273ED271A25FC2900AE8460 /* menu_iphone.png in Resources */,
@@ -524,9 +587,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52D4651A1A3EEE850059F586 /* MFSideMenuShadow.m in Sources */,
 				52756FBF19A4927A00D581F7 /* LoginViewController.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
+				52D4651F1A3EF8E60059F586 /* SideMenuController.m in Sources */,
+				52D465191A3EEE850059F586 /* MFSideMenuContainerViewController.m in Sources */,
+				52D4651B1A3EEE850059F586 /* UIViewController+MFSideMenuAdditions.m in Sources */,
 				D145B8A1D05D4CFD9D6FE520 /* CDVFile.m in Sources */,
 				AFED1ACF42DA4D8C9107BDFA /* CDVLocalFilesystem.m in Sources */,
 				52EF32611A08D902004CA8E9 /* MyELTViewController.m in Sources */,
