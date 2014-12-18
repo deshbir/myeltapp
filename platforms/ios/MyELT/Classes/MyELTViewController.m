@@ -137,8 +137,10 @@
     /*********************************************************************************************
      * When web view finishes loading, call startMyELT function of javascript to load MyELT iframe.
      *********************************************************************************************/
+    NSData *_savedLocaleData = [[NSUserDefaults standardUserDefaults] objectForKey:@"savedLocale"];
+    NSString *savedLocale = [NSKeyedUnarchiver unarchiveObjectWithData:_savedLocaleData];
     
-    NSString *myeltURL = [NSString stringWithFormat:@"%@/ilrn/global/extlogin.do?u=%@&p=%@&isNative=true", SERVER_URL, [self Username], [self Password], nil];
+    NSString *myeltURL = [NSString stringWithFormat:@"%@/ilrn/global/extlogin.do?u=%@&p=%@&isNative=true&locale=%@", SERVER_URL, [self Username], [self Password],savedLocale, nil];
     NSString *javaScript = [NSString stringWithFormat:@"startMyELT('%@')", myeltURL, nil];
     [theWebView stringByEvaluatingJavaScriptFromString:javaScript];
     

@@ -124,6 +124,10 @@ NSString const * SERVER_URL = @"http://myelt3.comprotechnologies.com";
                      if (statusCode != 200) {
                          [self showAlert:@"Something went wrong. Please try again later." title:@"Error"];
                      } else {
+                         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:@"false"] forKey:@"firstLogin"];
+                         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.userName.text] forKey:@"userName"];
+                         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.password.text] forKey:@"password"];
+                         [[NSUserDefaults standardUserDefaults] synchronize];
                          NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data                                                                                options:0 error:nil];
                          
                          NSDictionary *responseJSON  = jsonObject[@"response"];

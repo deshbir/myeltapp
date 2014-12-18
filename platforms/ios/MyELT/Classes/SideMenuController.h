@@ -9,9 +9,17 @@
 #import <UIKit/UIKit.h>
 
 @interface SideMenuController : UIViewController <UITableViewDelegate, UITableViewDataSource>{
-    NSArray *items;
-    NSMutableArray *languages;    
-    int currentSelectedItem;
+    NSMutableArray *items;
+    NSArray *languages;
+    int currentExpandedIndex;
+    NSIndexPath *lastChildIndexPath;
+    NSIndexPath *lastTopIndexPath;
+    NSIndexPath *lastSettingsIndexPath;
+    NSString *imageName;
+    UIImage *image;
+    NSArray *itemsInSection;
+    NSString *itemString;
+    
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;

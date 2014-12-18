@@ -14,5 +14,6 @@
 @property(nonatomic,strong) IBOutlet UIView* body;
 
 - (void)loadUrlInWebView:(NSString*) url;
+- (void)changeLocaleNative:(NSString*) locale;
 
 @end

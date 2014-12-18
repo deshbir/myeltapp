@@ -61,7 +61,8 @@
 - (void)showLoginView;
 - (void)initLayoutForSideMenu;
 - (void)toggleSideMenu;
-- (void)loadHelpPage;
+- (void)loadUrlInWebView:(NSString*) url;
+- (void)changeLocaleNative:(NSString*) locale;
 - (void)initMyELTViewWithUserName:(NSString*)userName password:(NSString*)password;
 
 @end

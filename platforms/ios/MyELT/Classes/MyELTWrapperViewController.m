@@ -48,6 +48,11 @@
     NSString *javaScript = [NSString stringWithFormat:@"startMyELT('%@')", URL, nil];
     [webview stringByEvaluatingJavaScriptFromString:javaScript];
 }
+- (void)changeLocaleNative:(NSString*) locale{
+    UIWebView *webview = [[[[self.body subviews] objectAtIndex:0] subviews] objectAtIndex:0];
+    NSString *javaScript = [NSString stringWithFormat:@"changeLocaleNative('%@')", locale, nil];
+    [webview stringByEvaluatingJavaScriptFromString:javaScript];
+}
 
 //Function to toggle side menu
 - (IBAction)toggleSideMenu :(id)sender

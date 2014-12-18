@@ -83,9 +83,21 @@
     // [self.viewController viewWillAppear:] in your view controller.
     
     //Initialize and Show Login Page/VC on App startup
+    NSData *_firstLoginData = [[NSUserDefaults standardUserDefaults] objectForKey:@"firstLogin"];
+    NSString *firstLogin = [NSKeyedUnarchiver unarchiveObjectWithData:_firstLoginData];
     loginVC = [[LoginViewController alloc] init];
-    [self.window setRootViewController:loginVC];
-    [self.window makeKeyAndVisible];
+    if ([firstLogin  isEqual: @"false"]) {
+        NSData *userNameData = [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"];
+        NSString *userName = [NSKeyedUnarchiver unarchiveObjectWithData:userNameData];
+        NSData *passwordData = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
+        NSString *password = [NSKeyedUnarchiver unarchiveObjectWithData:passwordData];
+        [self initMyELTViewWithUserName:userName password:password];
+        
+    }else{
+        [self.window setRootViewController:loginVC];
+        [self.window makeKeyAndVisible];
+        
+    }
     
     return YES;
 }
@@ -109,8 +121,12 @@
 }
 
 //Function to load help page
--(void) loadHelpPage{
-    [myeltWrapperVC loadUrlInWebView:@"/ilrn/global/myeltHelp.do"];    
+-(void) loadUrlInWebView:(NSString *)url{
+    [myeltWrapperVC loadUrlInWebView:url];
+}
+
+- (void)changeLocaleNative:(NSString*) locale{
+    [myeltWrapperVC changeLocaleNative:locale];
 }
 
 //Initializes MyELT CordovaView in background
