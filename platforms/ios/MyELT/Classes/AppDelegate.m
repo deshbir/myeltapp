@@ -83,6 +83,7 @@
     // [self.viewController viewWillAppear:] in your view controller.
     
     //Initialize and Show Login Page/VC on App startup
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     NSData *_firstLoginData = [[NSUserDefaults standardUserDefaults] objectForKey:@"firstLogin"];
     NSString *firstLogin = [NSKeyedUnarchiver unarchiveObjectWithData:_firstLoginData];
     loginVC = [[LoginViewController alloc] init];
