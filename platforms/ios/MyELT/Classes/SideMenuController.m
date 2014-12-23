@@ -32,6 +32,7 @@
         languages = [NSArray new];
         currentExpandedIndex = -1;
         languages = [self languages];
+        homeCell = YES;
     }
     return self;
 }
@@ -110,23 +111,23 @@
     && indexPath.row > currentExpandedIndex
     && indexPath.row <= currentExpandedIndex + [languages count];
     
-    UITableViewCell *cell;    
-    if (isChild) {
-        cell = [tableView dequeueReusableCellWithIdentifier:ChildCellIdentifier];
-       
-    }
-    else {
-        cell = [tableView dequeueReusableCellWithIdentifier:ParentCellIdentifier];
-        
+    UITableViewCell *cell;
+    if(!isChild){
+         cell = [tableView dequeueReusableCellWithIdentifier:ParentCellIdentifier];
     }
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ParentCellIdentifier];
+        if(isChild){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ChildCellIdentifier];
+        }else{
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ParentCellIdentifier];
+        }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
     }
+    
     if (isChild) {
         cell.textLabel.text = [languages objectAtIndex:indexPath.row - currentExpandedIndex - 1 ] ;
-        if(lastChildIndexPath.row == indexPath.row){
+        
+        if(lastLanguagesIndexPath != nil && lastLanguagesIndexPath.row == indexPath.row){
             cell.backgroundColor = [UIColor lightGrayColor];
         }
     }else{
@@ -135,11 +136,13 @@
         CGSize imageSize = CGSizeMake(30, 30);
         UIGraphicsBeginImageContext(imageSize);
         CGRect imageRect = CGRectMake(0, 0, imageSize.width, imageSize.height);
-       
         
         if(indexPath.row == 0 && indexPath.section == 0){
-            lastTopIndexPath = indexPath;
-            [cell setBackgroundColor:[UIColor lightGrayColor]];
+            if(homeCell){
+                lastTopIndexPath = indexPath;
+                [cell setBackgroundColor:[UIColor lightGrayColor]];
+                homeCell = NO;
+            }
             imageName = @"home128.png";
         }else if(indexPath.row == 1 && indexPath.section == 0){
             imageName = @"profile128.png";
@@ -190,57 +193,57 @@
     }
     AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if(isChild){
-        [[self.tableView cellForRowAtIndexPath:lastChildIndexPath]setBackgroundColor:[UIColor clearColor]];
+        [[self.tableView cellForRowAtIndexPath:lastLanguagesIndexPath]setBackgroundColor:[UIColor clearColor]];
         if(indexPath.row == 1){
-            lastChildIndexPath = indexPath;
+            lastLanguagesIndexPath = indexPath;
             [[self.tableView cellForRowAtIndexPath:indexPath] setBackgroundColor:[UIColor lightGrayColor]];
             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:@"0"] forKey:@"savedLocale"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [appDelegate changeLocaleNative:@"0"];
         }else if(indexPath.row == 2){
-            lastChildIndexPath = indexPath;
+            lastLanguagesIndexPath = indexPath;
             [[self.tableView cellForRowAtIndexPath:indexPath] setBackgroundColor:[UIColor lightGrayColor]];
             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:@"2"] forKey:@"savedLocale"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [appDelegate changeLocaleNative:@"2"];
         }else if(indexPath.row == 3){
-            lastChildIndexPath = indexPath;
+            lastLanguagesIndexPath = indexPath;
             [[self.tableView cellForRowAtIndexPath:indexPath] setBackgroundColor:[UIColor lightGrayColor]];
             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:@"5"] forKey:@"savedLocale"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [appDelegate changeLocaleNative:@"5"];
         }else if(indexPath.row == 4){
-            lastChildIndexPath = indexPath;
+            lastLanguagesIndexPath = indexPath;
             [[self.tableView cellForRowAtIndexPath:indexPath] setBackgroundColor:[UIColor lightGrayColor]];
             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:@"3"] forKey:@"savedLocale"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [appDelegate changeLocaleNative:@"3"];
         }else if(indexPath.row == 5){
-            lastChildIndexPath = indexPath;
+            lastLanguagesIndexPath = indexPath;
             [[self.tableView cellForRowAtIndexPath:indexPath] setBackgroundColor:[UIColor lightGrayColor]];
             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:@"4"] forKey:@"savedLocale"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [appDelegate changeLocaleNative:@"4"];
         }else if(indexPath.row == 6){
-            lastChildIndexPath = indexPath;
+            lastLanguagesIndexPath = indexPath;
             [[self.tableView cellForRowAtIndexPath:indexPath] setBackgroundColor:[UIColor lightGrayColor]];
             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:@"6"] forKey:@"savedLocale"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [appDelegate changeLocaleNative:@"6"];
         }else if(indexPath.row == 7){
-            lastChildIndexPath = indexPath;
+            lastLanguagesIndexPath = indexPath;
             [[self.tableView cellForRowAtIndexPath:indexPath] setBackgroundColor:[UIColor lightGrayColor]];
             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:@"7"] forKey:@"savedLocale"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [appDelegate changeLocaleNative:@"7"];
         }else if(indexPath.row == 8){
-            lastChildIndexPath = indexPath;
+            lastLanguagesIndexPath = indexPath;
             [[self.tableView cellForRowAtIndexPath:indexPath] setBackgroundColor:[UIColor lightGrayColor]];
             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:@"9"] forKey:@"savedLocale"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [appDelegate changeLocaleNative:@"9"];
         }else if(indexPath.row == 9) {
-            lastChildIndexPath = indexPath;
+            lastLanguagesIndexPath = indexPath;
             [[self.tableView cellForRowAtIndexPath:indexPath] setBackgroundColor:[UIColor lightGrayColor]];
             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:@"8"] forKey:@"savedLocale"];
             [[NSUserDefaults standardUserDefaults] synchronize];

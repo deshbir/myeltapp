@@ -12,14 +12,14 @@
     NSMutableArray *items;
     NSArray *languages;
     int currentExpandedIndex;
-    NSIndexPath *lastChildIndexPath;
+    NSIndexPath *lastLanguagesIndexPath;
     NSIndexPath *lastTopIndexPath;
     NSIndexPath *lastSettingsIndexPath;
     NSString *imageName;
     UIImage *image;
     NSArray *itemsInSection;
     NSString *itemString;
-    
+    BOOL homeCell;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
